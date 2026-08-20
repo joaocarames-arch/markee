@@ -32,10 +32,11 @@ if (reducedMotion) {
 
 const i18n = {
   "pt": {
-    "meta.title": "markee — Monitorização de marcas · INPI &amp; EUIPO",
+    "meta.title": "markee — Monitorização de marcas · INPI & EUIPO",
     "meta.description": "O markee observa os registos de marcas de Portugal e da Europa em permanência. Alertas de similaridade, gestão de prazos e prospeção de clientes para profissionais de PI.",
     "preloader.meta": "A PREPARAR A VIGÍLIA",
     "skip.content": "Saltar para o conteúdo",
+    "nav.home_aria": "markee — página inicial",
     "nav.features": "Funcionalidades",
     "nav.engine": "O Motor",
     "nav.pricing": "Preços",
@@ -47,7 +48,7 @@ const i18n = {
     "hero.title.line1": "A sua marca,",
     "hero.title.line2": "sob vigilância",
     "hero.title.line3": "<em class=\"hero__title-accent\">absoluta.</em>",
-    "hero.subtitle": "O markee observa os registos de Portugal e da Europa em permanência —             deteta conflitos, antecipa prazos e transforma vigilância em vantagem.",
+    "hero.subtitle": "O markee observa os registos de Portugal e da Europa em permanência — deteta conflitos, antecipa prazos e transforma vigilância em vantagem.",
     "hero.cta.primary": "Entrar",
     "hero.cta.secondary": "Explorar funcionalidades",
     "hero.meta.location": "38.7223° N, 9.1393° W — LISBOA",
@@ -59,24 +60,26 @@ const i18n = {
     "ticker.nice": "45 CLASSES DE NICE",
     "ticker.phonetic": "ANÁLISE FONÉTICA PT",
     "ticker.alerts": "ALERTAS EM TEMPO ÚTIL",
+    "manifesto.aria": "Manifesto",
     "manifesto.eyebrow": "O NOSSO PONTO DE PARTIDA",
-    "manifesto.text": "Uma marca é mais do que um nome. É território. E território defende-se —           com atenção permanente, não com sorte.",
+    "manifesto.text": "Uma marca é mais do que um nome. É território. E território defende-se — com atenção permanente, não com sorte.",
     "features.eyebrow": "FUNCIONALIDADES",
     "features.title": "Cinco instrumentos.<br />Uma única vigília.",
     "feature.sim.title": "Alertas de similaridade",
-    "feature.sim.desc": "Cada novo pedido publicado é comparado com as suas marcas através de                   três lentes: semelhança textual, fonética afinada para português e                   sobreposição de classes de Nice.",
+    "feature.sim.desc": "Cada novo pedido publicado é comparado com as suas marcas através de três lentes: semelhança textual, fonética afinada para português e sobreposição de classes de Nice.",
     "feature.sim.meta": "50% TEXTUAL · 30% FONÉTICA · 20% CLASSES",
     "feature.life.title": "Ciclo de vida e prazos",
-    "feature.life.desc": "Renovações, períodos de oposição e períodos de graça calculados                   automaticamente. Cada data crítica aparece no calendário com                   bastante antecedência.",
+    "feature.life.desc": "Renovações, períodos de oposição e períodos de graça calculados automaticamente. Cada data crítica aparece no calendário com bastante antecedência.",
     "feature.life.meta": "RENOVAÇÃO · OPOSIÇÃO · PERÍODO DE GRAÇA",
     "feature.structured.title": "Leitura estruturada de pedidos",
-    "feature.structured.desc": "Os pedidos publicados são indexados em formato estruturado para                   apoiar a pesquisa e a comparação de marcas.",
+    "feature.structured.desc": "Os pedidos publicados são indexados em formato estruturado para apoiar a pesquisa e a comparação de marcas.",
     "feature.structured.meta": "PEDIDOS PUBLICADOS · DADOS ESTRUTURADOS",
     "feature.prospect.title": "Prospeção de clientes",
-    "feature.prospect.desc": "Para profissionais de PI: identifique empresas com atividade recente                   de marcas que ainda não têm representação — e chegue primeiro.",
+    "feature.prospect.desc": "Para profissionais de PI: identifique empresas com atividade recente de marcas que ainda não têm representação — e chegue primeiro.",
     "feature.prospect.meta": "OPORTUNIDADES · MULTI-CLIENTE",
     "feature.email.title": "Alertas por email",
-    "feature.email.desc": "Cada alerta chega por email com o contexto necessário para agir                   de imediato.",
+    "feature.email.desc": "Cada alerta chega por email com o contexto necessário para agir de imediato.",
+    "feature.email.meta": "EMAIL",
     "stats.label": "Números do markee",
     "stats.official": "registos oficiais<br />INPI · EUIPO",
     "stats.classes": "classes de Nice<br />cobertas",
@@ -86,18 +89,18 @@ const i18n = {
     "engine.title": "Veja como o markee<br />pensa uma colisão.",
     "engine.aria": "Demonstração do motor",
     "engine.sim.title": "Deteção de similaridade",
-    "engine.sim.desc": "Um pedido novo é decomposto e pontuado contra a sua watchlist em                   três dimensões independentes.",
+    "engine.sim.desc": "Um pedido novo é decomposto e pontuado contra a sua watchlist em três dimensões independentes.",
     "engine.deadlines.title": "Prazos sob controlo",
-    "engine.deadlines.desc": "Cada marca ganha uma linha temporal viva: renovações, oposições e                   períodos de graça, sempre à vista.",
+    "engine.deadlines.desc": "Cada marca ganha uma linha temporal viva: renovações, oposições e períodos de graça, sempre à vista.",
     "engine.alert.title": "Alerta entregue",
-    "engine.alert.desc": "O resultado chega onde estiver — caixa de correio — com                   o que decide.",
+    "engine.alert.desc": "O resultado chega onde estiver — caixa de correio — com o que decide.",
     "engine.report": "RELATÓRIO DE SIMILARIDADE",
     "engine.your_mark": "A sua marca",
     "engine.new_application": "Pedido novo",
     "engine.textual": "Textual",
     "engine.phonetic": "Fonética",
     "engine.classes": "Classes",
-    "engine.verdict": "Similaridade global — risco elevado de confusão.                   Recomenda-se análise de oposição.",
+    "engine.verdict": "Similaridade global — risco elevado de confusão. Recomenda-se análise de oposição.",
     "engine.timeline.label": "LINHA TEMPORAL — A sua marca",
     "engine.timeline.registered": "Registo concedido — EUIPO",
     "engine.timeline.opposition": "Prazo de oposição a pedido conflituante — faltam 101 dias",
@@ -110,6 +113,11 @@ const i18n = {
     "pricing.title": "Escolha a intensidade<br />da sua vigilância.",
     "pricing.note": "Sem contratos de permanência. Mude de plano quando quiser.",
     "pricing.per_month": "/mês",
+    "pricing.tier.free": "Free",
+    "pricing.tier.individual": "Individual",
+    "pricing.tier.pro": "Pro",
+    "pricing.tier.professional": "Profissional",
+    "pricing.tier.enterprise": "Enterprise",
     "pricing.free.1": "1 marca monitorizada",
     "pricing.free.2": "Cobertura EUIPO + INPI",
     "pricing.free.3": "Alertas de renovação",
@@ -129,12 +137,13 @@ const i18n = {
     "pricing.ent.2": "API completa",
     "pricing.ent.3": "SSO empresarial",
     "final.eyebrow": "O PRÓXIMO PASSO",
-    "final.title": "Enquanto lê isto,<br />alguém pode estar a registar<br />           <em>algo demasiado parecido.</em>",
+    "final.title": "Enquanto lê isto,<br />alguém pode estar a registar<br /><em>algo demasiado parecido.</em>",
     "final.hint": "PLANO TRIAL DISPONÍVEL PARA TESTAR A FUNCIONALIDADE",
     "footer.aria": "Rodapé",
     "footer.product": "PRODUTO",
     "footer.platform": "PLATAFORMA",
     "footer.registers": "REGISTOS",
+    "footer.inpi": "INPI — Portugal",
     "footer.euipo": "EUIPO — Europa",
     "footer.rights": "© 2026 MARKEE — TODOS OS DIREITOS RESERVADOS",
     "footer.made": "FEITO EM LISBOA · VIGILANTE POR NATUREZA",
@@ -144,10 +153,11 @@ const i18n = {
     "nav.close_menu": "Fechar menu"
   },
   "en": {
-    "meta.title": "markee — Trademark monitoring · INPI &amp; EUIPO",
+    "meta.title": "markee — Trademark monitoring · INPI & EUIPO",
     "meta.description": "markee keeps permanent watch over Portuguese and European trademark registers. Similarity alerts, deadline management and client prospecting for IP professionals.",
     "preloader.meta": "PREPARING THE WATCH",
     "skip.content": "Skip to content",
+    "nav.home_aria": "markee — home page",
     "nav.features": "Features",
     "nav.engine": "The Engine",
     "nav.pricing": "Pricing",
@@ -171,6 +181,7 @@ const i18n = {
     "ticker.nice": "45 NICE CLASSES",
     "ticker.phonetic": "PT PHONETIC ANALYSIS",
     "ticker.alerts": "TIMELY ALERTS",
+    "manifesto.aria": "Manifesto",
     "manifesto.eyebrow": "OUR STARTING POINT",
     "manifesto.text": "A trademark is more than a name. It is territory. And territory is defended — with permanent attention, not luck.",
     "features.eyebrow": "FEATURES",
@@ -189,6 +200,7 @@ const i18n = {
     "feature.prospect.meta": "OPPORTUNITIES · MULTI-CLIENT",
     "feature.email.title": "Email alerts",
     "feature.email.desc": "Every alert arrives by email with the context needed to act immediately.",
+    "feature.email.meta": "EMAIL",
     "stats.label": "markee numbers",
     "stats.official": "official registers<br />INPI · EUIPO",
     "stats.classes": "Nice classes<br />covered",
@@ -222,6 +234,11 @@ const i18n = {
     "pricing.title": "Choose the intensity<br />of your watch.",
     "pricing.note": "No lock-in contracts. Change plan whenever you want.",
     "pricing.per_month": "/month",
+    "pricing.tier.free": "Free",
+    "pricing.tier.individual": "Individual",
+    "pricing.tier.pro": "Pro",
+    "pricing.tier.professional": "Professional",
+    "pricing.tier.enterprise": "Enterprise",
     "pricing.free.1": "1 monitored mark",
     "pricing.free.2": "EUIPO + INPI coverage",
     "pricing.free.3": "Renewal alerts",
@@ -247,9 +264,10 @@ const i18n = {
     "footer.product": "PRODUCT",
     "footer.platform": "PLATFORM",
     "footer.registers": "REGISTERS",
+    "footer.inpi": "INPI — Portugal",
     "footer.euipo": "EUIPO — Europe",
     "footer.rights": "© 2026 MARKEE — ALL RIGHTS RESERVED",
-    "footer.made": "Made in Lisbon · watchful by nature",
+    "footer.made": "MADE IN LISBON · WATCHFUL BY NATURE",
     "language.aria": "Choose language",
     "nav.aria": "Main navigation",
     "nav.open_menu": "Open menu",
@@ -289,7 +307,10 @@ function applyLanguage(language) {
     if (attr) {
       el.setAttribute(attr, value);
     } else {
-      el.innerHTML = value;
+      // Hero lines are wrapped in .hero__line-inner by splitHeroLines();
+      // write into the wrapper so the intro clip animation keeps working.
+      const inner = el.querySelector('.hero__line-inner');
+      (inner || el).innerHTML = value;
     }
   });
 
@@ -306,6 +327,18 @@ function applyLanguage(language) {
   });
 }
 
+/**
+ * Re-applies text splitting after a language switch replaced translated
+ * innerHTML, then rebuilds the animations that target the split spans.
+ */
+function refreshSplitText() {
+  const manifesto = document.querySelector('[data-split-words]');
+  if (manifesto && manifesto.dataset.i18n && hasGsap && !reducedMotion) {
+    splitWords(manifesto);
+    buildManifestoScrub();
+  }
+}
+
 function initLanguageSwitch() {
   const initial = getStoredLanguage() || document.documentElement.dataset.defaultLang || 'pt';
   applyLanguage(initial);
@@ -314,6 +347,7 @@ function initLanguageSwitch() {
       const language = button.dataset.langOption === 'en' ? 'en' : 'pt';
       setStoredLanguage(language);
       applyLanguage(language);
+      refreshSplitText();
       if (hasGsap) {
         ScrollTrigger.refresh();
       }
@@ -523,6 +557,42 @@ function playHeroIntro() {
   );
 }
 
+// Manifesto scrub tween, rebuilt whenever the words are re-split (e.g. after
+// a language switch replaced the translated text and its .w spans).
+let manifestoScrub = null;
+
+function buildManifestoScrub() {
+  if (!hasGsap || reducedMotion) {
+    return;
+  }
+  const manifesto = document.querySelector('.manifesto__text');
+  if (!manifesto) {
+    return;
+  }
+  if (manifestoScrub) {
+    if (manifestoScrub.scrollTrigger) {
+      manifestoScrub.scrollTrigger.kill();
+    }
+    manifestoScrub.kill();
+    manifestoScrub = null;
+  }
+  const words = manifesto.querySelectorAll('.w');
+  if (!words.length) {
+    return;
+  }
+  manifestoScrub = gsap.to(words, {
+    opacity: 1,
+    stagger: 0.4,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: manifesto,
+      start: 'top 78%',
+      end: 'bottom 45%',
+      scrub: 0.6,
+    },
+  });
+}
+
 function initScrollAnimations() {
   if (!hasGsap || reducedMotion) {
     return;
@@ -540,20 +610,7 @@ function initScrollAnimations() {
   });
 
   // Manifesto: each word lights up as the statement scrubs through view.
-  const manifesto = document.querySelector('.manifesto__text');
-  if (manifesto) {
-    gsap.to(manifesto.querySelectorAll('.w'), {
-      opacity: 1,
-      stagger: 0.4,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: manifesto,
-        start: 'top 78%',
-        end: 'bottom 45%',
-        scrub: 0.6,
-      },
-    });
-  }
+  buildManifestoScrub();
 
   // Stat counters.
   gsap.utils.toArray('[data-count]').forEach((el) => {

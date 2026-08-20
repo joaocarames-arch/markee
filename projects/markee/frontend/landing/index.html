@@ -37,7 +37,7 @@
     </script>
 
     <!-- Custom styles -->
-    <link rel="stylesheet" href="/static/styles.css?v=mobile-buttons-20260820" />
+    <link rel="stylesheet" href="/static/styles.css?v=i18n-complete-20260820" />
   </head>
 
   <body>
@@ -56,7 +56,7 @@
     <!-- ========================== NAVIGATION ========================== -->
     <header class="site-nav" id="siteNav">
       <div class="site-nav__inner glass-pill">
-        <a class="site-nav__brand magnetic" href="/" aria-label="markee — página inicial">
+        <a class="site-nav__brand magnetic" href="/" aria-label="markee — página inicial" data-i18n="nav.home_aria" data-i18n-attr="aria-label">
           <img
             src="/assets/brand-v2/logos/markee-wordmark-dark.svg?v=brand-v2-live-hotfix-20260726"
             alt="markee"
@@ -112,7 +112,7 @@
         <div class="hero__vignette" aria-hidden="true"></div>
 
         <div class="hero__content">
-          <p class="micro-label font-mono" data-hero-fade>
+          <p class="micro-label font-mono" data-hero-fade data-i18n="hero.eyebrow">
             INPI · EUIPO — MONITORIZAÇÃO CONTÍNUA DE MARCAS
           </p>
 
@@ -122,7 +122,7 @@
             <span class="hero__line" data-i18n="hero.title.line3"><em class="hero__title-accent">absoluta.</em></span>
           </h1>
 
-          <p class="hero__subtitle" data-hero-fade>
+          <p class="hero__subtitle" data-hero-fade data-i18n="hero.subtitle">
             O markee observa os registos de Portugal e da Europa em permanência —
             deteta conflitos, antecipa prazos e transforma vigilância em vantagem.
           </p>
@@ -137,7 +137,7 @@
           <span class="hero__meta-item" data-i18n="hero.meta.location">38.7223° N, 9.1393° W — LISBOA</span>
           <span class="hero__scroll-hint">
             <span class="hero__scroll-line"></span>
-            DESLIZE
+            <span data-i18n="hero.meta.scroll">DESLIZE</span>
           </span>
           <span class="hero__meta-item" data-i18n="hero.meta.est">EST. 2026 — SEMPRE ATENTO</span>
         </div>
@@ -163,9 +163,9 @@
       </div>
 
       <!-- ========================== MANIFESTO ========================== -->
-      <section class="manifesto" aria-label="Manifesto">
+      <section class="manifesto" aria-label="Manifesto" data-i18n="manifesto.aria" data-i18n-attr="aria-label">
         <p class="micro-label font-mono reveal" data-i18n="manifesto.eyebrow">O NOSSO PONTO DE PARTIDA</p>
-        <h2 class="manifesto__text" data-split-words>
+        <h2 class="manifesto__text" data-split-words data-i18n="manifesto.text">
           Uma marca é mais do que um nome. É território. E território defende-se —
           com atenção permanente, não com sorte.
         </h2>
@@ -175,7 +175,7 @@
       <section class="features" id="funcionalidades" aria-labelledby="features-title">
         <div class="features__intro">
           <p class="micro-label font-mono reveal" data-i18n="features.eyebrow">FUNCIONALIDADES</p>
-          <h2 class="section-title reveal" id="features-title">
+          <h2 class="section-title reveal" id="features-title" data-i18n="features.title">
             Cinco instrumentos.<br />Uma única vigília.
           </h2>
         </div>
@@ -187,7 +187,7 @@
               <span class="feature-panel__index font-mono">01</span>
               <div class="feature-panel__body">
                 <h3 class="feature-panel__title" data-i18n="feature.sim.title">Alertas de similaridade</h3>
-                <p class="feature-panel__desc">
+                <p class="feature-panel__desc" data-i18n="feature.sim.desc">
                   Cada novo pedido publicado é comparado com as suas marcas através de
                   três lentes: semelhança textual, fonética afinada para português e
                   sobreposição de classes de Nice.
@@ -204,7 +204,7 @@
               <span class="feature-panel__index font-mono">02</span>
               <div class="feature-panel__body">
                 <h3 class="feature-panel__title" data-i18n="feature.life.title">Ciclo de vida e prazos</h3>
-                <p class="feature-panel__desc">
+                <p class="feature-panel__desc" data-i18n="feature.life.desc">
                   Renovações, períodos de oposição e períodos de graça calculados
                   automaticamente. Cada data crítica aparece no calendário com
                   bastante antecedência.
@@ -221,7 +221,7 @@
               <span class="feature-panel__index font-mono">03</span>
               <div class="feature-panel__body">
                 <h3 class="feature-panel__title" data-i18n="feature.structured.title">Leitura estruturada de pedidos</h3>
-                <p class="feature-panel__desc">
+                <p class="feature-panel__desc" data-i18n="feature.structured.desc">
                   Os pedidos publicados são indexados em formato estruturado para
                   apoiar a pesquisa e a comparação de marcas.
                 </p>
@@ -237,7 +237,7 @@
               <span class="feature-panel__index font-mono">04</span>
               <div class="feature-panel__body">
                 <h3 class="feature-panel__title" data-i18n="feature.prospect.title">Prospeção de clientes</h3>
-                <p class="feature-panel__desc">
+                <p class="feature-panel__desc" data-i18n="feature.prospect.desc">
                   Para profissionais de PI: identifique empresas com atividade recente
                   de marcas que ainda não têm representação — e chegue primeiro.
                 </p>
@@ -253,11 +253,11 @@
               <span class="feature-panel__index font-mono">05</span>
               <div class="feature-panel__body">
                 <h3 class="feature-panel__title" data-i18n="feature.email.title">Alertas por email</h3>
-                <p class="feature-panel__desc">
+                <p class="feature-panel__desc" data-i18n="feature.email.desc">
                   Cada alerta chega por email com o contexto necessário para agir
                   de imediato.
                 </p>
-                <p class="feature-panel__meta font-mono">EMAIL</p>
+                <p class="feature-panel__meta font-mono" data-i18n="feature.email.meta">EMAIL</p>
               </div>
               <div class="feature-panel__visual" aria-hidden="true">
                 <div class="pulse-glyph"><i></i><i></i><i></i></div>
@@ -296,7 +296,7 @@
       <!-- ==================== INTERACTIVE SHOWCASE ==================== -->
       <section class="engine" id="motor" aria-labelledby="engine-title">
         <p class="micro-label font-mono reveal" data-i18n="engine.eyebrow">O MOTOR EM AÇÃO</p>
-        <h2 class="section-title reveal" id="engine-title">
+        <h2 class="section-title reveal" id="engine-title" data-i18n="engine.title">
           Veja como o markee<br />pensa uma colisão.
         </h2>
 
@@ -314,7 +314,7 @@
               <span class="engine__item-index font-mono">A</span>
               <span class="engine__item-body">
                 <span class="engine__item-title" data-i18n="engine.sim.title">Deteção de similaridade</span>
-                <span class="engine__item-desc">
+                <span class="engine__item-desc" data-i18n="engine.sim.desc">
                   Um pedido novo é decomposto e pontuado contra a sua watchlist em
                   três dimensões independentes.
                 </span>
@@ -333,7 +333,7 @@
               <span class="engine__item-index font-mono">B</span>
               <span class="engine__item-body">
                 <span class="engine__item-title" data-i18n="engine.deadlines.title">Prazos sob controlo</span>
-                <span class="engine__item-desc">
+                <span class="engine__item-desc" data-i18n="engine.deadlines.desc">
                   Cada marca ganha uma linha temporal viva: renovações, oposições e
                   períodos de graça, sempre à vista.
                 </span>
@@ -352,7 +352,7 @@
               <span class="engine__item-index font-mono">C</span>
               <span class="engine__item-body">
                 <span class="engine__item-title" data-i18n="engine.alert.title">Alerta entregue</span>
-                <span class="engine__item-desc">
+                <span class="engine__item-desc" data-i18n="engine.alert.desc">
                   O resultado chega onde estiver — caixa de correio — com
                   o que decide.
                 </span>
@@ -389,7 +389,7 @@
               </div>
               <div class="sim-verdict">
                 <span class="sim-verdict__score font-mono">87%</span>
-                <span class="sim-verdict__text">
+                <span class="sim-verdict__text" data-i18n="engine.verdict">
                   Similaridade global — risco elevado de confusão.
                   Recomenda-se análise de oposição.
                 </span>
@@ -423,14 +423,14 @@
               <p class="micro-label font-mono" data-i18n="engine.sent">NOTIFICAÇÕES ENVIADAS</p>
               <div class="alert-mock alert-mock--email">
                 <span class="alert-mock__channel font-mono">EMAIL</span>
-                <p class="alert-mock__title">
+                <p class="alert-mock__title" data-i18n="engine.email_one">
                   Detetámos um novo pedido com 87% de similaridade à sua marca «A sua marca».
                 </p>
                 <p class="alert-mock__meta font-mono" data-i18n="engine.email_meta">EUIPO · CLASSES 9, 42 · HÁ 12 MIN</p>
               </div>
               <div class="alert-mock alert-mock--email">
                 <span class="alert-mock__channel font-mono">EMAIL</span>
-                <p class="alert-mock__title">
+                <p class="alert-mock__title" data-i18n="engine.email_two">
                   Pedido novo com 87% de similaridade publicado. Prazo de oposição previsto a 2026-11-02.
                 </p>
                 <p class="alert-mock__meta font-mono" data-i18n="engine.email_meta">EUIPO · CLASSES 9, 42 · HÁ 12 MIN</p>
@@ -451,7 +451,7 @@
         <div class="pricing__grid">
           <!-- Free -->
           <article class="price-card glass-card tilt-card reveal">
-            <h3 class="price-card__tier">Free</h3>
+            <h3 class="price-card__tier" data-i18n="pricing.tier.free">Free</h3>
             <p class="price-card__amount"><span class="font-mono">€0</span><small data-i18n="pricing.per_month">/mês</small></p>
             <ul class="price-card__features">
               <li data-i18n="pricing.free.1">1 marca monitorizada</li>
@@ -464,11 +464,11 @@
 
           <!-- Individual -->
           <article class="price-card glass-card tilt-card reveal">
-            <h3 class="price-card__tier">Individual</h3>
+            <h3 class="price-card__tier" data-i18n="pricing.tier.individual">Individual</h3>
             <p class="price-card__amount"><span class="font-mono">€5</span><small data-i18n="pricing.per_month">/mês</small></p>
             <ul class="price-card__features">
               <li data-i18n="pricing.ind.1">5 marcas monitorizadas</li>
-              <li>Alertas de similaridade</li>
+              <li data-i18n="pricing.ind.2">Alertas de similaridade</li>
               <li data-i18n="pricing.ind.3">Alertas de oposição</li>
               <li data-i18n="pricing.email">Notificações por email</li>
             </ul>
@@ -477,7 +477,7 @@
 
           <!-- Pro (highlighted) -->
           <article class="price-card price-card--featured glass-card tilt-card reveal">
-                        <h3 class="price-card__tier">Pro</h3>
+                        <h3 class="price-card__tier" data-i18n="pricing.tier.pro">Pro</h3>
             <p class="price-card__amount"><span class="font-mono">€29</span><small data-i18n="pricing.per_month">/mês</small></p>
             <ul class="price-card__features">
               <li data-i18n="pricing.pro.1">100 marcas monitorizadas</li>
@@ -489,11 +489,11 @@
 
           <!-- Profissional -->
           <article class="price-card glass-card tilt-card reveal">
-            <h3 class="price-card__tier">Profissional</h3>
+            <h3 class="price-card__tier" data-i18n="pricing.tier.professional">Profissional</h3>
             <p class="price-card__amount"><span class="font-mono">€99</span><small data-i18n="pricing.per_month">/mês</small></p>
             <ul class="price-card__features">
               <li data-i18n="pricing.prof.1">500 marcas monitorizadas</li>
-              <li>Prospeção de clientes</li>
+              <li data-i18n="pricing.prof.2">Prospeção de clientes</li>
               <li data-i18n="pricing.prof.3">Gestão multi-cliente</li>
               <li data-i18n="pricing.prof.4">Relatórios white-label</li>
             </ul>
@@ -502,7 +502,7 @@
 
           <!-- Enterprise -->
           <article class="price-card glass-card tilt-card reveal">
-            <h3 class="price-card__tier">Enterprise</h3>
+            <h3 class="price-card__tier" data-i18n="pricing.tier.enterprise">Enterprise</h3>
             <p class="price-card__amount"><span class="font-mono">€249</span><small data-i18n="pricing.per_month">/mês</small></p>
             <ul class="price-card__features">
               <li data-i18n="pricing.ent.1">Marcas ilimitadas</li>
@@ -517,7 +517,7 @@
       <!-- ========================= FINAL CTA ========================= -->
       <section class="final-cta" aria-labelledby="final-cta-title">
                 <p class="micro-label font-mono reveal" data-i18n="final.eyebrow">O PRÓXIMO PASSO</p>
-        <h2 class="final-cta__title reveal" id="final-cta-title">
+        <h2 class="final-cta__title reveal" id="final-cta-title" data-i18n="final.title">
           Enquanto lê isto,<br />alguém pode estar a registar<br />
           <em>algo demasiado parecido.</em>
         </h2>
@@ -545,7 +545,7 @@
         </div>
         <div class="site-footer__col">
           <p class="micro-label font-mono" data-i18n="footer.registers">REGISTOS</p>
-          <a href="https://inpi.justica.gov.pt" target="_blank" rel="noopener noreferrer">INPI — Portugal</a>
+          <a href="https://inpi.justica.gov.pt" target="_blank" rel="noopener noreferrer" data-i18n="footer.inpi">INPI — Portugal</a>
           <a href="https://euipo.europa.eu" target="_blank" rel="noopener noreferrer" data-i18n="footer.euipo">EUIPO — Europa</a>
         </div>
       </div>
@@ -561,6 +561,6 @@
     </footer>
 
     <!-- Page behaviour: Lenis, GSAP/ScrollTrigger, Three.js, interactions -->
-    <script type="module" src="/static/script.js?v=i18n-20260820"></script>
+    <script type="module" src="/static/script.js?v=i18n-complete-20260820"></script>
   </body>
 </html>
