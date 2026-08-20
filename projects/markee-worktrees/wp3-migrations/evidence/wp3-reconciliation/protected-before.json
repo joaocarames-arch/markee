@@ -1,0 +1,324 @@
+{
+  "containers": [
+    {
+      "health": "healthy",
+      "id": "63952ec708649c77ec071f7b8e76988b8e530a4d8ee8f3435a2ba99543eec6ce",
+      "image": "hud-spud-hud-spud",
+      "image_id": "sha256:4e10a3595facf7bc56e796cbe667b1e0c01b587f316b80bfd11b6a6a29258a68",
+      "mounts": [
+        {
+          "destination": "/home/hermeswebui/.hermes",
+          "name": null,
+          "rw": true,
+          "type": "bind"
+        },
+        {
+          "destination": "/opt/hermes/hermes_webui/static/spud-avatar.jpg",
+          "name": null,
+          "rw": false,
+          "type": "bind"
+        },
+        {
+          "destination": "/workspace",
+          "name": null,
+          "rw": true,
+          "type": "bind"
+        }
+      ],
+      "name": "hud-spud-hud-spud-1",
+      "networks": [
+        "hud-spud_hud-net"
+      ],
+      "ports": {
+        "8787/tcp": [
+          {
+            "host_ip": "127.0.0.1",
+            "host_port": "8789"
+          }
+        ]
+      },
+      "restart_count": 0,
+      "started_at": "2026-07-22T13:33:42.934560023Z",
+      "state": "running"
+    },
+    {
+      "health": "healthy",
+      "id": "1324b489ef21d7801680e0d018b52a9d788687f5a1ce077791b5a7b9fa004116",
+      "image": "imoveis-portugal:latest",
+      "image_id": "sha256:8fabb6de34a360bd118e3837c680bb49a06432677104a3c341af69ef95bc34c2",
+      "mounts": [
+        {
+          "destination": "/data",
+          "name": null,
+          "rw": true,
+          "type": "bind"
+        }
+      ],
+      "name": "imoveis-portugal",
+      "networks": [
+        "imobatata_default"
+      ],
+      "ports": {
+        "8501/tcp": [
+          {
+            "host_ip": "127.0.0.1",
+            "host_port": "8501"
+          }
+        ]
+      },
+      "restart_count": 0,
+      "started_at": "2026-07-22T21:31:40.866991775Z",
+      "state": "running"
+    },
+    {
+      "health": "none",
+      "id": "726f8b41ac449784d7b2618a1865ab73b51367f72542030ac9a8b6228a49a8db",
+      "image": "markee-app",
+      "image_id": "sha256:dc2181ca81ad9d58670dce47c2657c528a1b72366c9493f9b4e68cb8ae615d9b",
+      "mounts": [
+        {
+          "destination": "/app/alembic",
+          "name": null,
+          "rw": false,
+          "type": "bind"
+        },
+        {
+          "destination": "/app/app",
+          "name": null,
+          "rw": true,
+          "type": "bind"
+        },
+        {
+          "destination": "/app/assets",
+          "name": null,
+          "rw": false,
+          "type": "bind"
+        },
+        {
+          "destination": "/app/frontend",
+          "name": null,
+          "rw": false,
+          "type": "bind"
+        }
+      ],
+      "name": "markee-app-1",
+      "networks": [
+        "markee_default"
+      ],
+      "ports": {
+        "8000/tcp": [
+          {
+            "host_ip": "127.0.0.1",
+            "host_port": "8000"
+          }
+        ]
+      },
+      "restart_count": 0,
+      "started_at": "2026-07-24T09:31:32.507794415Z",
+      "state": "running"
+    },
+    {
+      "health": "none",
+      "id": "c350ab34511d32a339c0c608d0b228f9917b8bf1c6a718908c60e38b3508ecb0",
+      "image": "markee-beat",
+      "image_id": "sha256:6038520b141a8ca2a9dfcbfa8bdc019f1621ac717d3792b3b0ab3d05d819c7c2",
+      "mounts": [
+        {
+          "destination": "/app/app",
+          "name": null,
+          "rw": true,
+          "type": "bind"
+        }
+      ],
+      "name": "markee-beat-1",
+      "networks": [
+        "markee_default"
+      ],
+      "ports": {},
+      "restart_count": 0,
+      "started_at": "2026-07-24T09:31:32.502821894Z",
+      "state": "running"
+    },
+    {
+      "health": "healthy",
+      "id": "a38df2561f78943fc4171b8d800cbf7ffc41727bb2ef2a578aaed62edb3e6808",
+      "image": "postgres:15-alpine",
+      "image_id": "sha256:3d0f7584ed7d04e27fa050d6683a74746608faf21f202be78460d679cc56461f",
+      "mounts": [
+        {
+          "destination": "/var/lib/postgresql/data",
+          "name": "markee_pgdata",
+          "rw": true,
+          "type": "volume"
+        }
+      ],
+      "name": "markee-db-1",
+      "networks": [
+        "markee_default"
+      ],
+      "ports": {
+        "5432/tcp": [
+          {
+            "host_ip": "127.0.0.1",
+            "host_port": "5432"
+          }
+        ]
+      },
+      "restart_count": 0,
+      "started_at": "2026-07-24T09:31:26.714203292Z",
+      "state": "running"
+    },
+    {
+      "health": "healthy",
+      "id": "b4a2ada57e34936f6788dd7b87cd0c7bf11a638513a4231413acf9f3135ecf05",
+      "image": "redis:7-alpine",
+      "image_id": "sha256:6ab0b6e7381779332f97b8ca76193e45b0756f38d4c0dcda72dbb3c32061ab99",
+      "mounts": [
+        {
+          "destination": "/data",
+          "name": "markee_redisdata",
+          "rw": true,
+          "type": "volume"
+        }
+      ],
+      "name": "markee-redis-1",
+      "networks": [
+        "markee_default"
+      ],
+      "ports": {},
+      "restart_count": 0,
+      "started_at": "2026-07-24T09:31:26.712097545Z",
+      "state": "running"
+    },
+    {
+      "health": "none",
+      "id": "f53b816b2d01337561f2a3482fdf878a4e91978537c82177250f98f61a023d1b",
+      "image": "markee-worker",
+      "image_id": "sha256:fcc696a78525b012733e342c9185d88068372772b9e71744916c3080a692df93",
+      "mounts": [
+        {
+          "destination": "/app/app",
+          "name": null,
+          "rw": true,
+          "type": "bind"
+        }
+      ],
+      "name": "markee-worker-1",
+      "networks": [
+        "markee_default"
+      ],
+      "ports": {},
+      "restart_count": 0,
+      "started_at": "2026-07-24T09:31:32.515748058Z",
+      "state": "running"
+    },
+    {
+      "health": "none",
+      "id": "b756afaeeaa2ef4a4f5984a6a58bc8729db21934547964a4367fc28149c88469",
+      "image": "monte-rocha:latest",
+      "image_id": "sha256:c1f908f3604040a29f17605324b6ede120ee93057fde83bd69dce5440443e119",
+      "mounts": [
+        {
+          "destination": "/data",
+          "name": null,
+          "rw": true,
+          "type": "bind"
+        }
+      ],
+      "name": "monte-rocha-refresh",
+      "networks": [
+        "monte-rocha_default"
+      ],
+      "ports": {},
+      "restart_count": 0,
+      "started_at": "2026-07-23T16:20:20.840096618Z",
+      "state": "running"
+    },
+    {
+      "health": "healthy",
+      "id": "0048610f1ae2444ea4146a06529d90a67d509d66bb6b81f82a8e2aaee6dcb6da",
+      "image": "monte-rocha:latest",
+      "image_id": "sha256:eb7120f2b0d8368ce144b65e484cd29c2e28829f61abc082d29769bf8d708ed8",
+      "mounts": [
+        {
+          "destination": "/data",
+          "name": null,
+          "rw": true,
+          "type": "bind"
+        }
+      ],
+      "name": "monte-rocha-web",
+      "networks": [
+        "monte-rocha_default"
+      ],
+      "ports": {
+        "8000/tcp": [
+          {
+            "host_ip": "127.0.0.1",
+            "host_port": "8502"
+          }
+        ]
+      },
+      "restart_count": 0,
+      "started_at": "2026-07-23T22:21:30.423282061Z",
+      "state": "running"
+    }
+  ],
+  "networks": [
+    {
+      "driver": "bridge",
+      "id": "476873fa7eea1ebc4b5c3d761c95a8298548382de88ad5c8de3ec6c84ae7eb27",
+      "name": "bridge",
+      "scope": "local"
+    },
+    {
+      "driver": "host",
+      "id": "be0019007f0f88a6e38b0657ba219b47d566669d54b9db365ebd63022eff2b14",
+      "name": "host",
+      "scope": "local"
+    },
+    {
+      "driver": "bridge",
+      "id": "d63efe79327d98ea068c989a1085054fb4aba20b272e1ac63ce7ac43563f9d6d",
+      "name": "hud-spud_hud-net",
+      "scope": "local"
+    },
+    {
+      "driver": "bridge",
+      "id": "fe7d0fbc2429e83c124b48b839fcd4f51f168a85ceafae9f7029f6346892d25f",
+      "name": "imobatata_default",
+      "scope": "local"
+    },
+    {
+      "driver": "bridge",
+      "id": "1709a7dba3d335c00d8a0f0309e82b3827a7ba60c848623b1299ad70ec7981fa",
+      "name": "markee_default",
+      "scope": "local"
+    },
+    {
+      "driver": "bridge",
+      "id": "4ff8bc06b3a6f0330bcfd0f66b090afb26ebe85ffd474f8c511acde5ebf78d40",
+      "name": "monte-rocha_default",
+      "scope": "local"
+    },
+    {
+      "driver": "null",
+      "id": "e90c636de99e21db9be1b1fcaa3ed7b12240d28cd2aa0e1f7dae48a408aa9a29",
+      "name": "none",
+      "scope": "local"
+    }
+  ],
+  "sha256": "57dc09bd954ecf7f78c336f1fd3e46488573b57219291ba7c3198c83bb167d3c",
+  "volumes": [
+    {
+      "driver": "local",
+      "mountpoint": "/var/lib/docker/volumes/markee_pgdata/_data",
+      "name": "markee_pgdata"
+    },
+    {
+      "driver": "local",
+      "mountpoint": "/var/lib/docker/volumes/markee_redisdata/_data",
+      "name": "markee_redisdata"
+    }
+  ]
+}

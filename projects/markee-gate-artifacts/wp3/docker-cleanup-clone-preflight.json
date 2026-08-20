@@ -1,0 +1,191 @@
+{
+  "cleanup_complete": true,
+  "counts_after": "0/0/0",
+  "counts_before": "0/0/0",
+  "evidence_finalized_by_exit_trap": true,
+  "exact_identities": {
+    "container": "markee-wp3-disposable-db-1",
+    "network": "markee-wp3-disposable_net",
+    "volume": "markee-wp3-disposable_pgdata"
+  },
+  "gate_j1": {
+    "blocker": "unstamped overlapping schema collides with upgrade head",
+    "gate": "NO-GO until reconciliation/adoption revision is implemented and re-tested",
+    "label": "reconciliation/adoption revision preserving existing objects/data",
+    "options": {
+      "A": "baseline/stamp + additive migration",
+      "B": "reconciliation/adoption revision preserving existing objects/data",
+      "C": "destructive reset; production-rejected without explicit approval"
+    },
+    "recommendation": "B"
+  },
+  "git_dirty_baseline": {
+    "unchanged": true
+  },
+  "orchestration_exit_code": 0,
+  "provenance": {
+    "derivative": {
+      "deterministic": true,
+      "mode_after": "600",
+      "mode_before": "600",
+      "path": "/home/batata/projects/markee-gate-artifacts/wp3/full-schema-live-pg16.sql",
+      "sha256_after": "506f0f4d74607882a0cf33eb0ad8eaf60ad8320717ce42308aedb702d79f5679",
+      "sha256_before": "506f0f4d74607882a0cf33eb0ad8eaf60ad8320717ce42308aedb702d79f5679",
+      "size_bytes_after": 46344,
+      "size_bytes_before": 46344,
+      "transformation": {
+        "all_other_bytes_preserved": true,
+        "removed_bytes": 29,
+        "removed_exact_byte_sequence": "SET transaction_timeout = 0;\\n",
+        "removed_occurrences": 1,
+        "restrict_unrestrict_preserved": true
+      }
+    },
+    "original": {
+      "immutable": true,
+      "mode_after": "600",
+      "mode_before": "600",
+      "path": "/home/batata/projects/markee-gate-artifacts/wp3/full-schema-live.sql",
+      "sha256_after": "8e4eeeddb9284582cb69e9ad84665d3424fad36dd0d5b4af44fbfa1ba1a83788",
+      "sha256_before": "8e4eeeddb9284582cb69e9ad84665d3424fad36dd0d5b4af44fbfa1ba1a83788",
+      "size_bytes_after": 46373,
+      "size_bytes_before": 46373
+    }
+  },
+  "raw_state_deleted_after_evidence": true,
+  "real_stack": {
+    "after": {
+      "containers": [
+        {
+          "health": "none",
+          "name": "markee-app-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "none",
+          "name": "markee-beat-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "healthy",
+          "name": "markee-db-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "healthy",
+          "name": "markee-redis-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "none",
+          "name": "markee-worker-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        }
+      ],
+      "networks": [
+        {
+          "driver": "bridge",
+          "name": "markee_default",
+          "scope": "local"
+        }
+      ],
+      "volumes": [
+        {
+          "driver": "local",
+          "name": "markee_pgdata"
+        },
+        {
+          "driver": "local",
+          "name": "markee_redisdata"
+        }
+      ]
+    },
+    "before": {
+      "containers": [
+        {
+          "health": "none",
+          "name": "markee-app-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "none",
+          "name": "markee-beat-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "healthy",
+          "name": "markee-db-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "healthy",
+          "name": "markee-redis-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "none",
+          "name": "markee-worker-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        }
+      ],
+      "networks": [
+        {
+          "driver": "bridge",
+          "name": "markee_default",
+          "scope": "local"
+        }
+      ],
+      "volumes": [
+        {
+          "driver": "local",
+          "name": "markee_pgdata"
+        },
+        {
+          "driver": "local",
+          "name": "markee_redisdata"
+        }
+      ]
+    },
+    "healthy": true,
+    "unchanged": true
+  },
+  "restore": {
+    "attempted": true,
+    "client": "psql 18",
+    "exactly_once": true,
+    "exit_code": 0,
+    "succeeded": true,
+    "target_server": "PostgreSQL 16"
+  },
+  "status": "PASS"
+}

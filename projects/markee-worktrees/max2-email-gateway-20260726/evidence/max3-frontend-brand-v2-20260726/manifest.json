@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "verdict": "PASS",
+  "gate": "11/11 committed paths present with matching SHA-256",
+  "asset_root": "assets/brand-v2",
+  "provenance": {
+    "original_source": "/home/batata/projects/markee/assets/brand-v2",
+    "original_copy_worktree": "/home/batata/projects/markee-worktrees/max3-frontend-brand-v2-20260726/assets/brand-v2",
+    "note": "Original source paths are retained for traceability only; this committed manifest is the canonical verification source.",
+    "superseded": {
+      "logos/markee-wordmark-dark.svg": "Superseded by the 2026-07-26 live visual hotfix to provide legible lowercase markee lettering with the final e in cyan."
+    }
+  },
+  "relative_paths": [
+    "README.md",
+    "docs/BRAND_MANUAL.md",
+    "docs/DESIGN.md",
+    "logos/markee-brand-sheet.svg",
+    "logos/markee-wordmark-dark.svg",
+    "logos/markee-wordmark-light.svg",
+    "logos/markee-wordmark-mono-black.svg",
+    "logos/markee-wordmark-mono-white.svg",
+    "logos/wordmark-meta.json",
+    "tokens/css-variables.css",
+    "tokens/tokens.json"
+  ],
+  "sha256": {
+    "README.md": "89f7606c99ac2cda98180866dfd03a55f233b369df2232864af70551f5bdca69",
+    "docs/BRAND_MANUAL.md": "f84e9f6af56faafe7382b8c85e56d1a7c88f830323292c0a21a33ffa8e45da8e",
+    "docs/DESIGN.md": "2d2dc5d78253d32615f6f56a0c0529a2d55e494e7484e668685f02cfea11ebd7",
+    "logos/markee-brand-sheet.svg": "3ada2ebf9289cf6b6a97b8e8eb0f13b3ea1b8c06fc0656ebedec063f2637aeb7",
+    "logos/markee-wordmark-dark.svg": "ac18f23610bb4684eedf89bf863ac66eb3881dbcc92242ff35d0b37cd01d783e",
+    "logos/markee-wordmark-light.svg": "0131bad2c3788f83950c98512c15334b0b1b2bb363f2f93c41ff44f11d12d2a1",
+    "logos/markee-wordmark-mono-black.svg": "fd783b516b457573061e8d902d8ca859e921d91e23eb2e9abbc62f6cba4a62fa",
+    "logos/markee-wordmark-mono-white.svg": "f7429f679113acc5d14862df0fc3f52825143ab0845ad691fa53bddf3adcfc90",
+    "logos/wordmark-meta.json": "a9686e946493ee0565cb3889fff81ed07154c83bc666b521a6b644c9a015e48e",
+    "tokens/css-variables.css": "d00ed0f434502f66e0269940c3e5d10aaea886066c37c76abfc898807412ca39",
+    "tokens/tokens.json": "091409a220db50cc3ee2fe051522ace8b7b7661cce8fefbd11a04f1efe2d7c48"
+  },
+  "json_parse": "PASS",
+  "git_whitespace_exception": {
+    "path": "assets/brand-v2/tokens/tokens.json",
+    "attribute": "whitespace=-blank-at-eof",
+    "scope": "blank-at-eof only; trailing whitespace remains enabled elsewhere",
+    "reason": "Preserve the committed source byte-exact, including its blank line at EOF."
+  }
+}

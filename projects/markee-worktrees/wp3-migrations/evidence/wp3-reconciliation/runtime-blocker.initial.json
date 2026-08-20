@@ -1,0 +1,42 @@
+{
+  "dump": {
+    "actual_sha256": "506f0f4d74607882a0cf33eb0ad8eaf60ad8320717ce42308aedb702d79f5679",
+    "expected_sha256": "506f0f4d74607882a0cf33eb0ad8eaf60ad8320717ce42308aedb702d79f5679",
+    "hash_match": true,
+    "path": "/home/batata/projects/markee-gate-artifacts/wp3/full-schema-live-pg16.sql"
+  },
+  "helper": {
+    "has_main_guard": false,
+    "observed_invocations": {
+      "--help": {
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": ""
+      },
+      "down": {
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": ""
+      },
+      "up": {
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": ""
+      }
+    },
+    "path": "scripts/disposable_env.py",
+    "sha256": "60cbf0fb4c2325e595a5d8fd714c2bc79a0cc7f41f0e61b412654dbaee882875",
+    "top_level_function_names": [
+      "load_disposable_url"
+    ]
+  },
+  "reason_code": "DISPOSABLE_HELPER_NO_CLI_RESTORE_TARGET_NOT_FRESH",
+  "restore": {
+    "attempted": true,
+    "completed": false,
+    "exit_code": 3,
+    "sanitized_error": "schema \"app\" already exists"
+  },
+  "status": "PARTIAL",
+  "subsequent_live_phases": "NOT_RUN"
+}

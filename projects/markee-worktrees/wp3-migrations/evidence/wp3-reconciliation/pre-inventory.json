@@ -1,0 +1,27 @@
+{
+  "alembic_version": null,
+  "extensions": [
+    [
+      "pg_trgm",
+      "1.6"
+    ]
+  ],
+  "fingerprint": "77964fe8423bee35b890f33a3568b6f6e541dfb9d6a08bfe5548f2e093c021c0",
+  "index_count": 27,
+  "rows_nonzero": {},
+  "rows_total": 0,
+  "schemas": [
+    "app",
+    "core",
+    "events",
+    "public",
+    "raw"
+  ],
+  "server_version": "PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+  "server_version_num": "160014",
+  "structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+  "table_count": 40,
+  "tag": "pre",
+  "version_rows": [],
+  "version_table_exists": true
+}

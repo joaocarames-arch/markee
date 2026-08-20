@@ -1,0 +1,293 @@
+# markee — BPI event taxonomy
+# Machine-readable taxonomy for Portuguese BPI lifecycle events.
+# Source: empirical BPI samples and docs/research/BPI_VS_EUIPO_GAPS.md, 2026-07-24.
+version: 1
+source: inpi_bpi
+jurisdiction: PT
+parser_version_baseline: bpi_parser_v1
+normalization:
+  date_formats_observed: ["YYYY.MM.DD", "YYYY-MM-DD", "DD/MM/YYYY"]
+  number_policy: "strip spaces and punctuation for canonical IDs; preserve original in *_raw fields"
+  nice_classes_range: [1, 45]
+  provenance_required: true
+confidence_thresholds:
+  auto_accept: 0.85
+  review: 0.65
+  quarantine_below: 0.65
+event_types:
+  - event_type: application_published
+    priority: P0
+    lifecycle_effect: starts_pt_opposition_period
+    st17_codes: [BB]
+    observed_headings:
+      - "REGISTO NACIONAL DE MARCAS > Pedidos"
+      - "Pedidos"
+    aliases:
+      - "Publicação de pedidos"
+      - "Pedido de registo"
+    parser_strategy: st17_block_fields
+    record_granularity: one_event_per_application
+    required_fields: [bulletin_number, publication_date, page_number, application_number, application_date, raw_text_excerpt]
+    recommended_fields: [word_mark, nice_classes, goods_services_text, applicant_name, applicant_country, legal_notice, colour_claim, vienna_codes]
+    deadline_rules:
+      - deadline_type: opposition_pt
+        basis: "BPI notice citing CPI articles 226 and 17"
+        offset: P2M
+    source_priority: bpi_for_publication_provenance_euipo_for_current_bibliography
+
+  - event_type: grant_published
+    priority: P0
+    lifecycle_effect: registration_confirmed
+    st17_codes: [FG]
+    observed_headings: ["Concessões", "Concessão"]
+    aliases: ["Registo", "Concessão; Registo"]
+    parser_strategy: table_by_heading
+    record_granularity: one_event_per_process
+    required_fields: [bulletin_number, publication_date, page_number, process_number, registration_date]
+    recommended_fields: [dispatch_date, holder_name, holder_country, nice_classes, observations]
+    deadline_rules: []
+    source_priority: bpi_for_dispatch_publication_euipo_for_status_snapshot
+
+  - event_type: refusal_published
+    priority: P0
+    lifecycle_effect: refusal_alert
+    st17_codes: [FC]
+    observed_headings: ["Recusas", "Recusa"]
+    aliases: ["Despacho de recusa", "Recusa provisória", "Recusa definitiva"]
+    parser_strategy: table_by_heading_with_legal_basis
+    record_granularity: one_event_per_process
+    required_fields: [bulletin_number, publication_date, page_number, process_number, refusal_date, raw_text_excerpt]
+    recommended_fields: [application_date, holder_name, holder_country, nice_classes, legal_basis_text, legal_basis_structured, observations]
+    deadline_rules:
+      - deadline_type: refusal_review_watch
+        basis: "configurable; requires legal validation before final countdown"
+        offset: null
+    source_priority: bpi_for_legal_basis_euipo_for_status_snapshot
+
+  - event_type: renewal_published
+    priority: P1
+    lifecycle_effect: renewal_confirmed
+    st17_codes: [FG]
+    observed_headings: ["Renovações", "Renovação"]
+    aliases: ["Renovações de registos", "N.os"]
+    parser_strategy: compact_number_list
+    record_granularity: one_event_per_registration_number
+    required_fields: [bulletin_number, publication_date, page_number, registration_number]
+    recommended_fields: [raw_text_excerpt]
+    deadline_rules: []
+    source_priority: euipo_for_expiry_calculation_bpi_for_publication_audit
+
+  - event_type: lapse_fee_nonpayment
+    priority: P0
+    lifecycle_effect: mark_lapsed_or_expired
+    st17_codes: [MM]
+    observed_headings: ["Caducidades por falta de pagamento de taxa", "Caducidades"]
+    aliases: ["Falta de pagamento de taxa", "Caducidade"]
+    parser_strategy: table_by_heading
+    record_granularity: one_event_per_process
+    required_fields: [bulletin_number, publication_date, page_number, process_number, lapse_date]
+    recommended_fields: [registration_date, holder_name, holder_country, observations]
+    deadline_rules: []
+    source_priority: bpi_for_cause_and_publication_euipo_for_current_status
+
+  - event_type: lapse_by_judgment
+    priority: P1
+    lifecycle_effect: court_related_lapse
+    st17_codes: [MM, RL]
+    observed_headings: ["Caducidades por sentença", "Caducidade por sentença"]
+    aliases: ["Sentença", "Decisão judicial mantendo recusa"]
+    parser_strategy: table_by_heading_with_free_text_observations
+    record_granularity: one_event_per_process_and_judgment
+    required_fields: [bulletin_number, publication_date, page_number, process_number, raw_text_excerpt]
+    recommended_fields: [judgment_date, court_name, court_case_number_hash, outcome, observations]
+    deadline_rules: []
+    source_priority: bpi_for_judgment_text_euipo_for_status_snapshot
+
+  - event_type: validity_by_judgment
+    priority: P1
+    lifecycle_effect: validity_restored_or_confirmed
+    st17_codes: [RL]
+    observed_headings: ["Vigências por sentença", "Vigência por sentença"]
+    aliases: ["Despachos proferidos por sentença alterando", "Vigência"]
+    parser_strategy: table_by_heading_with_free_text_observations
+    record_granularity: one_event_per_process_and_judgment
+    required_fields: [bulletin_number, publication_date, page_number, process_number, raw_text_excerpt]
+    recommended_fields: [judgment_date, dispatch_date, holder_name, holder_country, nice_classes, observations]
+    deadline_rules: []
+    source_priority: bpi_for_publication_and_text
+
+  - event_type: assignment_recorded
+    priority: P1
+    lifecycle_effect: ownership_changed
+    st17_codes: [PC]
+    observed_headings: ["Transmissões", "Transmissão"]
+    aliases: ["Transmissão total", "Transmissão parcial", "Averbamento de transmissão"]
+    parser_strategy: table_previous_current_holder
+    record_granularity: one_event_per_process_and_holder_change
+    required_fields: [bulletin_number, publication_date, page_number, process_number, recordal_date]
+    recommended_fields: [previous_holder_name, previous_holder_country, new_holder_name, new_holder_country, observations]
+    deadline_rules: []
+    source_priority: bpi_for_chain_of_title_euipo_for_current_owner
+
+  - event_type: recordal_other
+    priority: P1
+    lifecycle_effect: legal_recordal_other
+    st17_codes: [FG, PC, QB, HK]
+    observed_headings: ["Outros Averbamentos", "Outros averbamentos", "Averbamentos"]
+    aliases: ["Artigo 29.º", "Outros atos", "Averbamento"]
+    parser_strategy: table_with_subtype_classifier
+    subtype_aliases:
+      invalidity_request: ["declaração de nulidade", "pedido de nulidade"]
+      cancellation_request: ["anulação", "pedido de anulação"]
+      representative_change: ["mandatário", "representante"]
+      generic_recordal: ["averbamento"]
+    record_granularity: one_event_per_process_and_observation_hash
+    required_fields: [bulletin_number, publication_date, page_number, process_number, raw_text_excerpt]
+    recommended_fields: [recordal_date, holder_name, holder_country, recordal_subtype, observations]
+    deadline_rules: []
+    source_priority: bpi_for_textual_recordal
+
+  - event_type: encumbrance_recorded
+    priority: P1
+    lifecycle_effect: encumbrance_added
+    st17_codes: [PC, FG]
+    observed_headings: ["Penhora", "Outros Averbamentos"]
+    aliases: ["Averbamento da penhora", "Penhora processo"]
+    parser_strategy: recordal_other_subtype_regex
+    record_granularity: one_event_per_process_and_court_case_hash
+    required_fields: [bulletin_number, publication_date, page_number, process_number, raw_text_excerpt]
+    recommended_fields: [recordal_date, court_name, court_case_number_hash, claimant_name, defendant_name, observations]
+    deadline_rules: []
+    rgpd_profile: sensitive_legal_process
+    source_priority: bpi_for_encumbrance_text
+
+  - event_type: encumbrance_lifted
+    priority: P1
+    lifecycle_effect: encumbrance_removed
+    st17_codes: [PC, FG]
+    observed_headings: ["Levantamento da penhora", "Outros Averbamentos"]
+    aliases: ["Averbamento do levantamento da penhora", "Levantamento de penhora"]
+    parser_strategy: recordal_other_subtype_regex
+    record_granularity: one_event_per_process_and_court_case_hash
+    required_fields: [bulletin_number, publication_date, page_number, process_number, raw_text_excerpt]
+    recommended_fields: [recordal_date, court_name, court_case_number_hash, observations]
+    deadline_rules: []
+    rgpd_profile: sensitive_legal_process
+    source_priority: bpi_for_encumbrance_text
+
+  - event_type: surrender_total
+    priority: P1
+    lifecycle_effect: rights_surrendered_total
+    st17_codes: [MA]
+    observed_headings: ["Renúncias", "Renúncia"]
+    aliases: ["Renúncia total", "Surrendered"]
+    parser_strategy: table_by_heading_scope_classifier
+    record_granularity: one_event_per_process
+    required_fields: [bulletin_number, publication_date, page_number, process_number, surrender_date]
+    recommended_fields: [registration_date, holder_name, holder_country, observations]
+    deadline_rules: []
+    source_priority: bpi_for_scope_euipo_for_status_snapshot
+
+  - event_type: surrender_partial
+    priority: P1
+    lifecycle_effect: rights_surrendered_partial
+    st17_codes: [MA]
+    observed_headings: ["Renúncias parciais", "Renúncia parcial"]
+    aliases: ["Renúncia parcial", "Limitação por renúncia"]
+    parser_strategy: table_by_heading_scope_classifier
+    record_granularity: one_event_per_process_and_scope_hash
+    required_fields: [bulletin_number, publication_date, page_number, process_number, surrender_date, raw_text_excerpt]
+    recommended_fields: [registration_date, holder_name, holder_country, affected_nice_classes, affected_goods_services_text, observations]
+    deadline_rules: []
+    source_priority: bpi_for_scope_text
+
+  - event_type: non_essential_change
+    priority: P1
+    lifecycle_effect: mark_or_record_changed
+    st17_codes: [HK, FG]
+    observed_headings: ["Alteração de elementos não essenciais", "Alterações"]
+    aliases: ["Alterado o sinal", "elementos não essenciais"]
+    parser_strategy: free_text_before_after_optional
+    record_granularity: one_event_per_process_and_change_hash
+    required_fields: [bulletin_number, publication_date, page_number, process_number, raw_text_excerpt]
+    recommended_fields: [change_date, changed_elements, before_value, after_value, observations]
+    deadline_rules: []
+    source_priority: bpi_for_before_after_text
+
+  - event_type: revalidation_requested
+    priority: P1
+    lifecycle_effect: revalidation_process_started
+    st17_codes: [FG, RL]
+    observed_headings: ["Pedidos de revalidação", "Pedido de revalidação"]
+    aliases: ["Revalidação"]
+    parser_strategy: table_by_heading
+    record_granularity: one_event_per_process
+    required_fields: [bulletin_number, publication_date, page_number, process_number, raw_text_excerpt]
+    recommended_fields: [request_date, holder_name, holder_country, observations]
+    deadline_rules: []
+    source_priority: bpi_for_revalidation_publication
+
+  - event_type: revalidation_deferred
+    priority: P1
+    lifecycle_effect: revalidation_deferred_or_allowed
+    st17_codes: [FG, RL]
+    observed_headings: ["Avisos de deferimento de revalidação", "Deferimento de revalidação"]
+    aliases: ["Aviso de deferimento", "Revalidação deferida"]
+    parser_strategy: table_by_heading
+    record_granularity: one_event_per_process
+    required_fields: [bulletin_number, publication_date, page_number, process_number, raw_text_excerpt]
+    recommended_fields: [deferral_date, holder_name, holder_country, observations]
+    deadline_rules: []
+    source_priority: bpi_for_revalidation_publication
+
+  - event_type: correction_published
+    priority: P2
+    lifecycle_effect: correction_or_rectification
+    st17_codes: [HK]
+    observed_headings: ["Retificações", "Rectificações", "Correções"]
+    aliases: ["Retificação", "Correção"]
+    parser_strategy: collect_only_until_golden_fixture_exists
+    record_granularity: one_event_per_process_and_correction_hash
+    required_fields: [bulletin_number, publication_date, page_number, raw_text_excerpt]
+    recommended_fields: [process_number, correction_date, before_value, after_value, observations]
+    deadline_rules: []
+    source_priority: bpi_for_text
+
+  - event_type: license_recorded
+    priority: P2
+    lifecycle_effect: licence_recorded
+    st17_codes: [QB]
+    observed_headings: ["Licenças", "Licenças concedidas e registadas"]
+    aliases: ["Licença de exploração", "Licença"]
+    parser_strategy: disabled_until_real_mark_fixture
+    record_granularity: one_event_per_process_and_license_hash
+    required_fields: [bulletin_number, publication_date, page_number, raw_text_excerpt]
+    recommended_fields: [process_number, licensee_name, licensor_name, licence_scope, observations]
+    deadline_rules: []
+    source_priority: bpi_for_text
+
+  - event_type: opposition_filed
+    priority: P1
+    lifecycle_effect: opposition_or_claim_filed
+    st17_codes: [BB, FG]
+    observed_headings: ["Oposições", "Reclamações", "Contestações"]
+    aliases: ["Oposição", "Reclamação", "Contestação"]
+    parser_strategy: collect_only_until_observed_in_mark_samples
+    record_granularity: one_event_per_process_and_opposition_reference
+    required_fields: [bulletin_number, publication_date, page_number, process_number, raw_text_excerpt]
+    recommended_fields: [opposition_date, opponent_name, holder_name, opposition_reference, observations]
+    deadline_rules: []
+    source_priority: bpi_for_publication_euipo_for_structured_oppositions_when_available
+
+  - event_type: unknown_bpi_mark_event
+    priority: P2
+    lifecycle_effect: unknown_requires_review
+    st17_codes: []
+    observed_headings: []
+    aliases: []
+    parser_strategy: quarantine_unknown_section
+    record_granularity: one_event_per_section_page_and_text_hash
+    required_fields: [bulletin_number, publication_date, page_number, section_path, raw_text_excerpt]
+    recommended_fields: [process_number, observations]
+    deadline_rules: []
+    source_priority: preserve_raw_do_not_alert

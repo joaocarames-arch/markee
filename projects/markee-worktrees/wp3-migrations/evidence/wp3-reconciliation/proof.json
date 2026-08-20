@@ -1,0 +1,2302 @@
+{
+  "apply": {
+    "contract_id": "markee-wp3-002-structure",
+    "contract_payload_sha256": "96fda452869da2d1d9107d1f2bc849c7363fb3b8b4f6381ebebc5721d84d7611",
+    "contract_version": 3,
+    "duration_s": 2.999,
+    "operations": [
+      "table:app.api_keys",
+      "partition:raw.api_responses_2026_07",
+      "partition:raw.api_responses_2026_08",
+      "index:app.alerts:user_id,is_dismissed,created_at",
+      "index:app.alerts:watchlist_id,similarity_score",
+      "index:app.deadlines:due_date,status",
+      "index:app.prospection_opportunities:opportunity_type,score",
+      "index:app.review_queue:status,created_at",
+      "index:core.holders:name:gin_trgm_ops",
+      "index:core.representatives:name:gin_trgm_ops",
+      "index:core.trademarks:word_mark:gin_trgm_ops",
+      "index:events.lifecycle_events:trademark_id,event_date",
+      "index:events.lifecycle_events:trademark_id,event_type",
+      "index:raw.api_responses:source_id,created_at_desc"
+    ],
+    "operations_count": 14,
+    "reason": "adopted_to_002",
+    "revision": "002",
+    "status": "adopted",
+    "structural_fingerprint_after": "32f6dafcc9d6289cbaa2da751fb9ad3e770e5c0d24350ea48fc11251ea01318a",
+    "structural_fingerprint_before": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d"
+  },
+  "apply_txn_facts": {
+    "advisory_before_first_ddl": true,
+    "alter_table_count": 100,
+    "alters_before_creates": true,
+    "analysis_ok": true,
+    "capture_ok": true,
+    "create_index_count": 11,
+    "create_table_count": 3,
+    "ddl_outside_window": 0,
+    "errors_for_pid": [],
+    "label": "apply",
+    "lock_table_count": 40,
+    "pid": "146",
+    "selects_between_stamp_and_commit": true,
+    "stamp_after_all_create_index": true,
+    "stamp_insert_count": 1,
+    "terminator": "COMMIT",
+    "trailing_after_terminator": [],
+    "verification_selects_between_last_ddl_and_stamp": true,
+    "window_counts": {
+      "ADVISORY_LOCK": 1,
+      "ALTER TABLE": 100,
+      "BEGIN": 1,
+      "COMMIT": 1,
+      "CREATE INDEX": 11,
+      "CREATE TABLE": 3,
+      "LOCK TABLE": 40,
+      "OTHER": 8,
+      "SELECT": 1051,
+      "STAMP_INSERT": 1
+    },
+    "window_statements": 1217
+  },
+  "canonical_v2_xref_match": false,
+  "dry_run": {
+    "contract": {
+      "id": "markee-wp3-002-structure",
+      "payload_sha256": "96fda452869da2d1d9107d1f2bc849c7363fb3b8b4f6381ebebc5721d84d7611",
+      "version": 3
+    },
+    "drop_not_null": 33,
+    "dry_run_blocked": 0,
+    "dry_run_ops": 100,
+    "dry_run_skip": 0,
+    "fingerprint_unchanged": true,
+    "metadata_ops": 100,
+    "no_stamp_version_rows": [],
+    "normalized_preview": {
+      "accepted": true,
+      "differences": 0,
+      "verdict": "adoptable_restored"
+    },
+    "post_dry_run_fingerprint": "77964fe8423bee35b890f33a3568b6f6e541dfb9d6a08bfe5548f2e093c021c0",
+    "post_dry_run_structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+    "raw_classification": {
+      "accepted": false,
+      "differences": 100,
+      "verdict": "unknown"
+    },
+    "reconciliation_keys": [
+      "table:app.api_keys",
+      "partition:raw.api_responses_2026_07",
+      "partition:raw.api_responses_2026_08",
+      "index:app.alerts:user_id,is_dismissed,created_at",
+      "index:app.alerts:watchlist_id,similarity_score",
+      "index:app.deadlines:due_date,status",
+      "index:app.prospection_opportunities:opportunity_type,score",
+      "index:app.review_queue:status,created_at",
+      "index:core.holders:name:gin_trgm_ops",
+      "index:core.representatives:name:gin_trgm_ops",
+      "index:core.trademarks:word_mark:gin_trgm_ops",
+      "index:events.lifecycle_events:trademark_id,event_date",
+      "index:events.lifecycle_events:trademark_id,event_type",
+      "index:raw.api_responses:source_id,created_at_desc"
+    ],
+    "reconciliation_ops": 14,
+    "set_default": 67,
+    "sql_executed": 0,
+    "version_table_exists": true
+  },
+  "dump": {
+    "actual_sha256": "506f0f4d74607882a0cf33eb0ad8eaf60ad8320717ce42308aedb702d79f5679",
+    "expected_sha256": "506f0f4d74607882a0cf33eb0ad8eaf60ad8320717ce42308aedb702d79f5679",
+    "hash_match": true,
+    "path": "/home/batata/projects/markee-gate-artifacts/wp3/full-schema-live-pg16.sql"
+  },
+  "failure": null,
+  "finished_utc": "2026-07-25T17:55:56.837345+00:00",
+  "fresh_up": {
+    "exit_code": 0,
+    "stderr_tail": [],
+    "stdout": "state=up healthy=true empty=true image=postgres:16-alpine"
+  },
+  "gates": {
+    "apply_adopted_to_002": true,
+    "apply_advisory_lock_held": true,
+    "apply_order_metadata_then_additive": true,
+    "apply_single_txn_log_proof": true,
+    "apply_stamp_after_final_verification": true,
+    "dryrun_exact14_keys": true,
+    "dryrun_metadata_100_67_33": true,
+    "dryrun_ops_100_blocked_0": true,
+    "dryrun_preview_accepted_zero_diff": true,
+    "dryrun_zero_sql_no_stamp": true,
+    "dump_sha256_match": true,
+    "fault_injection_removed": true,
+    "fresh_db_empty_relations": true,
+    "helper_up_healthy_empty": true,
+    "idempotent_fingerprint_identical": true,
+    "idempotent_noop": true,
+    "idempotent_relfilenodes_identical": true,
+    "idempotent_zero_ddl_log_proof": true,
+    "identity_mode_rw": true,
+    "midplan_failure_reconciliation_failed": true,
+    "midplan_txn_rolled_back_log_proof": true,
+    "no_heap_rewrite_relfilenodes_unchanged": true,
+    "post_accepted_zero_canonical_diff": true,
+    "post_data_writes_stamp_only": true,
+    "post_fingerprint_matches_result": true,
+    "post_stamp_002_only": true,
+    "postgres_16_14": true,
+    "pre_no_stamp": true,
+    "pre_zero_rows": true,
+    "protected_before_matches_recorded": true,
+    "protected_manifest_unchanged": true,
+    "restore_exit_zero_no_warnings": true,
+    "rollback_original_fingerprint_no_stamp": true,
+    "rollback_restore_deterministic": true,
+    "rollback_restore_exit_zero": true,
+    "rollback_up_healthy_empty": true,
+    "teardown_final_zero": true,
+    "teardown_mid_zero": true,
+    "zero_residuals_and_port_free": true
+  },
+  "idem_txn_facts": {
+    "advisory_before_first_ddl": true,
+    "alter_table_count": 0,
+    "alters_before_creates": true,
+    "analysis_ok": true,
+    "capture_ok": true,
+    "create_index_count": 0,
+    "create_table_count": 0,
+    "ddl_outside_window": 0,
+    "errors_for_pid": [],
+    "label": "idempotent",
+    "lock_table_count": 43,
+    "pid": "393",
+    "selects_between_stamp_and_commit": false,
+    "stamp_after_all_create_index": false,
+    "stamp_insert_count": 0,
+    "terminator": "COMMIT",
+    "trailing_after_terminator": [],
+    "verification_selects_between_last_ddl_and_stamp": false,
+    "window_counts": {
+      "ADVISORY_LOCK": 1,
+      "BEGIN": 1,
+      "COMMIT": 1,
+      "LOCK TABLE": 43,
+      "OTHER": 4,
+      "SELECT": 544
+    },
+    "window_statements": 594
+  },
+  "idempotent": {
+    "contract_id": "markee-wp3-002-structure",
+    "contract_payload_sha256": "96fda452869da2d1d9107d1f2bc849c7363fb3b8b4f6381ebebc5721d84d7611",
+    "contract_version": 3,
+    "duration_s": 1.284,
+    "operations": [],
+    "operations_count": 0,
+    "reason": "already_002_noop",
+    "revision": "002",
+    "status": "already_adopted",
+    "structural_fingerprint_after": "32f6dafcc9d6289cbaa2da751fb9ad3e770e5c0d24350ea48fc11251ea01318a",
+    "structural_fingerprint_before": "32f6dafcc9d6289cbaa2da751fb9ad3e770e5c0d24350ea48fc11251ea01318a"
+  },
+  "idempotent_fingerprint_unchanged": true,
+  "idempotent_relfilenodes_unchanged": true,
+  "identity_rw": {
+    "image": "postgres:16-alpine",
+    "mode": "rw",
+    "rw": true
+  },
+  "lock_rewrite_scan": {
+    "advisory_lock_key": "hashtextextended('markee:wp3:schema-adoption', 0)",
+    "advisory_lock_log_proof": true,
+    "data_write_check": {
+      "expected": {
+        "public.alembic_version": 1
+      },
+      "rows_nonzero_post_apply": {
+        "public.alembic_version": 1
+      }
+    },
+    "heap_rewrite_check": {
+      "created_objects": [
+        "app.api_keys",
+        "app.api_keys_key_hash_key",
+        "app.api_keys_pkey",
+        "app.idx_alerts_composite_score",
+        "app.idx_alerts_user_unread",
+        "app.idx_deadlines_due_date",
+        "app.idx_prospection_score",
+        "app.idx_review_queue_status",
+        "core.idx_holders_name_trgm",
+        "core.idx_reps_name_trgm",
+        "core.idx_trademarks_wordmark",
+        "events.idx_events_trademark_type",
+        "events.idx_lifecycle_events_trademark",
+        "raw.api_responses_2026_07",
+        "raw.api_responses_2026_07_pkey",
+        "raw.api_responses_2026_07_source_id_created_at_idx",
+        "raw.api_responses_2026_07_source_id_idx",
+        "raw.api_responses_2026_08",
+        "raw.api_responses_2026_08_pkey",
+        "raw.api_responses_2026_08_source_id_created_at_idx",
+        "raw.api_responses_2026_08_source_id_idx",
+        "raw.idx_raw_source_created"
+      ],
+      "dropped_objects": [],
+      "pre_existing_relations": 115,
+      "relfilenode_changed": []
+    },
+    "lock_sampler": {
+      "distinct_locktype_mode": [
+        [
+          "advisory",
+          "ExclusiveLock"
+        ],
+        [
+          "object",
+          "AccessShareLock"
+        ],
+        [
+          "relation",
+          "AccessExclusiveLock"
+        ],
+        [
+          "relation",
+          "AccessShareLock"
+        ],
+        [
+          "relation",
+          "RowExclusiveLock"
+        ],
+        [
+          "relation",
+          "ShareLock"
+        ],
+        [
+          "relation",
+          "ShareRowExclusiveLock"
+        ],
+        [
+          "relation",
+          "ShareUpdateExclusiveLock"
+        ],
+        [
+          "transactionid",
+          "ExclusiveLock"
+        ],
+        [
+          "virtualxid",
+          "ExclusiveLock"
+        ]
+      ],
+      "relations_access_share_count": 91,
+      "relations_seen_access_share": [
+        "17117",
+        "alembic_version",
+        "alembic_version_pkc",
+        "alert_deliveries",
+        "alerts",
+        "api_keys",
+        "app.alert_deliveries",
+        "app.alerts",
+        "app.client_portfolios",
+        "app.deadlines",
+        "app.prospection_opportunities",
+        "app.review_queue",
+        "app.subscriptions",
+        "app.team_members",
+        "app.teams",
+        "app.users",
+        "app.watchlist_items",
+        "app.watchlists",
+        "client_portfolios",
+        "core.documents",
+        "core.goods_services",
+        "core.holders",
+        "core.nice_classes",
+        "core.representatives",
+        "core.source_runs",
+        "core.sources",
+        "core.trademark_holders",
+        "core.trademark_representatives",
+        "core.trademark_versions",
+        "core.trademarks",
+        "deadlines",
+        "events.lifecycle_events",
+        "information_schema.tables",
+        "lifecycle_events",
+        "pg_am",
+        "pg_am_name_index",
+        "pg_am_oid_index",
+        "pg_attrdef",
+        "pg_attrdef_adrelid_adnum_index",
+        "pg_attrdef_oid_index",
+        "pg_attribute",
+        "pg_attribute_relid_attnam_index",
+        "pg_attribute_relid_attnum_index",
+        "pg_class",
+        "pg_class_oid_index",
+        "pg_class_relname_nsp_index",
+        "pg_class_tblspc_relfilenode_index",
+        "pg_collation",
+        "pg_collation_name_enc_nsp_index",
+        "pg_collation_oid_index",
+        "pg_constraint",
+        "pg_constraint_conname_nsp_index",
+        "pg_constraint_conparentid_index",
+        "pg_constraint_conrelid_contypid_conname_index",
+        "pg_constraint_contypid_index",
+        "pg_constraint_oid_index",
+        "pg_description",
+        "pg_description_o_c_o_index",
+        "pg_enum",
+        "pg_enum_oid_index"
+      ],
+      "samples": 23,
+      "samples_with_advisory_lock": 22
+    },
+    "lock_table_statements": 40,
+    "note": "SET DEFAULT / DROP NOT NULL are catalog-only in PostgreSQL 16; zero relfilenode changes on pre-existing relations proves no heap rewrite; all user tables empty (0 pages), so no data scan or write occurred; the single alembic_version row is the stamp.",
+    "statio_informational": {
+      "alembic_version_ins_upd_del": "1|0|0",
+      "heap_blocks_touched_excl_alembic_version": "0",
+      "tuple_writes_excl_alembic_version": "0"
+    }
+  },
+  "offline_gates": {
+    "artifact": {
+      "counts": {
+        "adoption_plus_reconcile_suites": {
+          "failed": 0,
+          "passed": 118,
+          "total": 118
+        },
+        "all_tests_wp3": {
+          "failed": 0,
+          "passed": 358,
+          "total": 358
+        },
+        "frozen_design_tests": {
+          "failed": 0,
+          "passed": 4,
+          "total": 4
+        }
+      },
+      "date": "2026-07-25",
+      "path": "/tmp/markee-wp3-combined-offline-final.json",
+      "sha256": "907c106bcf26183056557c6eacd9dc08dd0255ff04e0a9da847248bfd7e5540a",
+      "status": "PASS"
+    },
+    "note": "Offline gates already PASS per Forja directive; broad offline discovery not rerun in this live-proof session.",
+    "stated_pass": {
+      "critical": "4/4",
+      "focused": "118/118",
+      "wp3": "358/358"
+    }
+  },
+  "post_verify": {
+    "accepted": true,
+    "differences": 0,
+    "fingerprint": "54a37d0b5e74e456d4ce44ebe5b767e5b48fa7f9c26ca2327bb7e02d9fd3b086",
+    "index_count": 38,
+    "rows_nonzero": {
+      "public.alembic_version": 1
+    },
+    "structural_fingerprint": "32f6dafcc9d6289cbaa2da751fb9ad3e770e5c0d24350ea48fc11251ea01318a",
+    "table_count": 43,
+    "verdict": "adoptable_restored",
+    "version_rows": [
+      "002"
+    ]
+  },
+  "pre_inventory": {
+    "alembic_version": null,
+    "extensions": [
+      [
+        "pg_trgm",
+        "1.6"
+      ]
+    ],
+    "fingerprint": "77964fe8423bee35b890f33a3568b6f6e541dfb9d6a08bfe5548f2e093c021c0",
+    "index_count": 27,
+    "rows_nonzero": {},
+    "rows_total": 0,
+    "schemas": [
+      "app",
+      "core",
+      "events",
+      "public",
+      "raw"
+    ],
+    "server_version": "PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+    "server_version_num": "160014",
+    "structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+    "table_count": 40,
+    "tag": "pre",
+    "version_rows": [],
+    "version_table_exists": true
+  },
+  "protected_before": {
+    "containers": [
+      {
+        "health": "healthy",
+        "id": "63952ec708649c77ec071f7b8e76988b8e530a4d8ee8f3435a2ba99543eec6ce",
+        "image": "hud-spud-hud-spud",
+        "image_id": "sha256:4e10a3595facf7bc56e796cbe667b1e0c01b587f316b80bfd11b6a6a29258a68",
+        "mounts": [
+          {
+            "destination": "/home/hermeswebui/.hermes",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          },
+          {
+            "destination": "/opt/hermes/hermes_webui/static/spud-avatar.jpg",
+            "name": null,
+            "rw": false,
+            "type": "bind"
+          },
+          {
+            "destination": "/workspace",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "hud-spud-hud-spud-1",
+        "networks": [
+          "hud-spud_hud-net"
+        ],
+        "ports": {
+          "8787/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "8789"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-22T13:33:42.934560023Z",
+        "state": "running"
+      },
+      {
+        "health": "healthy",
+        "id": "1324b489ef21d7801680e0d018b52a9d788687f5a1ce077791b5a7b9fa004116",
+        "image": "imoveis-portugal:latest",
+        "image_id": "sha256:8fabb6de34a360bd118e3837c680bb49a06432677104a3c341af69ef95bc34c2",
+        "mounts": [
+          {
+            "destination": "/data",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "imoveis-portugal",
+        "networks": [
+          "imobatata_default"
+        ],
+        "ports": {
+          "8501/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "8501"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-22T21:31:40.866991775Z",
+        "state": "running"
+      },
+      {
+        "health": "none",
+        "id": "726f8b41ac449784d7b2618a1865ab73b51367f72542030ac9a8b6228a49a8db",
+        "image": "markee-app",
+        "image_id": "sha256:dc2181ca81ad9d58670dce47c2657c528a1b72366c9493f9b4e68cb8ae615d9b",
+        "mounts": [
+          {
+            "destination": "/app/alembic",
+            "name": null,
+            "rw": false,
+            "type": "bind"
+          },
+          {
+            "destination": "/app/app",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          },
+          {
+            "destination": "/app/assets",
+            "name": null,
+            "rw": false,
+            "type": "bind"
+          },
+          {
+            "destination": "/app/frontend",
+            "name": null,
+            "rw": false,
+            "type": "bind"
+          }
+        ],
+        "name": "markee-app-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {
+          "8000/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "8000"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:32.507794415Z",
+        "state": "running"
+      },
+      {
+        "health": "none",
+        "id": "c350ab34511d32a339c0c608d0b228f9917b8bf1c6a718908c60e38b3508ecb0",
+        "image": "markee-beat",
+        "image_id": "sha256:6038520b141a8ca2a9dfcbfa8bdc019f1621ac717d3792b3b0ab3d05d819c7c2",
+        "mounts": [
+          {
+            "destination": "/app/app",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "markee-beat-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {},
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:32.502821894Z",
+        "state": "running"
+      },
+      {
+        "health": "healthy",
+        "id": "a38df2561f78943fc4171b8d800cbf7ffc41727bb2ef2a578aaed62edb3e6808",
+        "image": "postgres:15-alpine",
+        "image_id": "sha256:3d0f7584ed7d04e27fa050d6683a74746608faf21f202be78460d679cc56461f",
+        "mounts": [
+          {
+            "destination": "/var/lib/postgresql/data",
+            "name": "markee_pgdata",
+            "rw": true,
+            "type": "volume"
+          }
+        ],
+        "name": "markee-db-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {
+          "5432/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "5432"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:26.714203292Z",
+        "state": "running"
+      },
+      {
+        "health": "healthy",
+        "id": "b4a2ada57e34936f6788dd7b87cd0c7bf11a638513a4231413acf9f3135ecf05",
+        "image": "redis:7-alpine",
+        "image_id": "sha256:6ab0b6e7381779332f97b8ca76193e45b0756f38d4c0dcda72dbb3c32061ab99",
+        "mounts": [
+          {
+            "destination": "/data",
+            "name": "markee_redisdata",
+            "rw": true,
+            "type": "volume"
+          }
+        ],
+        "name": "markee-redis-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {},
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:26.712097545Z",
+        "state": "running"
+      },
+      {
+        "health": "none",
+        "id": "f53b816b2d01337561f2a3482fdf878a4e91978537c82177250f98f61a023d1b",
+        "image": "markee-worker",
+        "image_id": "sha256:fcc696a78525b012733e342c9185d88068372772b9e71744916c3080a692df93",
+        "mounts": [
+          {
+            "destination": "/app/app",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "markee-worker-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {},
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:32.515748058Z",
+        "state": "running"
+      },
+      {
+        "health": "none",
+        "id": "b756afaeeaa2ef4a4f5984a6a58bc8729db21934547964a4367fc28149c88469",
+        "image": "monte-rocha:latest",
+        "image_id": "sha256:c1f908f3604040a29f17605324b6ede120ee93057fde83bd69dce5440443e119",
+        "mounts": [
+          {
+            "destination": "/data",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "monte-rocha-refresh",
+        "networks": [
+          "monte-rocha_default"
+        ],
+        "ports": {},
+        "restart_count": 0,
+        "started_at": "2026-07-23T16:20:20.840096618Z",
+        "state": "running"
+      },
+      {
+        "health": "healthy",
+        "id": "0048610f1ae2444ea4146a06529d90a67d509d66bb6b81f82a8e2aaee6dcb6da",
+        "image": "monte-rocha:latest",
+        "image_id": "sha256:eb7120f2b0d8368ce144b65e484cd29c2e28829f61abc082d29769bf8d708ed8",
+        "mounts": [
+          {
+            "destination": "/data",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "monte-rocha-web",
+        "networks": [
+          "monte-rocha_default"
+        ],
+        "ports": {
+          "8000/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "8502"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-23T22:21:30.423282061Z",
+        "state": "running"
+      }
+    ],
+    "networks": [
+      {
+        "driver": "bridge",
+        "id": "476873fa7eea1ebc4b5c3d761c95a8298548382de88ad5c8de3ec6c84ae7eb27",
+        "name": "bridge",
+        "scope": "local"
+      },
+      {
+        "driver": "host",
+        "id": "be0019007f0f88a6e38b0657ba219b47d566669d54b9db365ebd63022eff2b14",
+        "name": "host",
+        "scope": "local"
+      },
+      {
+        "driver": "bridge",
+        "id": "d63efe79327d98ea068c989a1085054fb4aba20b272e1ac63ce7ac43563f9d6d",
+        "name": "hud-spud_hud-net",
+        "scope": "local"
+      },
+      {
+        "driver": "bridge",
+        "id": "fe7d0fbc2429e83c124b48b839fcd4f51f168a85ceafae9f7029f6346892d25f",
+        "name": "imobatata_default",
+        "scope": "local"
+      },
+      {
+        "driver": "bridge",
+        "id": "1709a7dba3d335c00d8a0f0309e82b3827a7ba60c848623b1299ad70ec7981fa",
+        "name": "markee_default",
+        "scope": "local"
+      },
+      {
+        "driver": "bridge",
+        "id": "4ff8bc06b3a6f0330bcfd0f66b090afb26ebe85ffd474f8c511acde5ebf78d40",
+        "name": "monte-rocha_default",
+        "scope": "local"
+      },
+      {
+        "driver": "null",
+        "id": "e90c636de99e21db9be1b1fcaa3ed7b12240d28cd2aa0e1f7dae48a408aa9a29",
+        "name": "none",
+        "scope": "local"
+      }
+    ],
+    "sha256": "57dc09bd954ecf7f78c336f1fd3e46488573b57219291ba7c3198c83bb167d3c",
+    "volumes": [
+      {
+        "driver": "local",
+        "mountpoint": "/var/lib/docker/volumes/markee_pgdata/_data",
+        "name": "markee_pgdata"
+      },
+      {
+        "driver": "local",
+        "mountpoint": "/var/lib/docker/volumes/markee_redisdata/_data",
+        "name": "markee_redisdata"
+      }
+    ]
+  },
+  "protected_final": {
+    "containers": [
+      {
+        "health": "healthy",
+        "id": "63952ec708649c77ec071f7b8e76988b8e530a4d8ee8f3435a2ba99543eec6ce",
+        "image": "hud-spud-hud-spud",
+        "image_id": "sha256:4e10a3595facf7bc56e796cbe667b1e0c01b587f316b80bfd11b6a6a29258a68",
+        "mounts": [
+          {
+            "destination": "/home/hermeswebui/.hermes",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          },
+          {
+            "destination": "/opt/hermes/hermes_webui/static/spud-avatar.jpg",
+            "name": null,
+            "rw": false,
+            "type": "bind"
+          },
+          {
+            "destination": "/workspace",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "hud-spud-hud-spud-1",
+        "networks": [
+          "hud-spud_hud-net"
+        ],
+        "ports": {
+          "8787/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "8789"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-22T13:33:42.934560023Z",
+        "state": "running"
+      },
+      {
+        "health": "healthy",
+        "id": "1324b489ef21d7801680e0d018b52a9d788687f5a1ce077791b5a7b9fa004116",
+        "image": "imoveis-portugal:latest",
+        "image_id": "sha256:8fabb6de34a360bd118e3837c680bb49a06432677104a3c341af69ef95bc34c2",
+        "mounts": [
+          {
+            "destination": "/data",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "imoveis-portugal",
+        "networks": [
+          "imobatata_default"
+        ],
+        "ports": {
+          "8501/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "8501"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-22T21:31:40.866991775Z",
+        "state": "running"
+      },
+      {
+        "health": "none",
+        "id": "726f8b41ac449784d7b2618a1865ab73b51367f72542030ac9a8b6228a49a8db",
+        "image": "markee-app",
+        "image_id": "sha256:dc2181ca81ad9d58670dce47c2657c528a1b72366c9493f9b4e68cb8ae615d9b",
+        "mounts": [
+          {
+            "destination": "/app/alembic",
+            "name": null,
+            "rw": false,
+            "type": "bind"
+          },
+          {
+            "destination": "/app/app",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          },
+          {
+            "destination": "/app/assets",
+            "name": null,
+            "rw": false,
+            "type": "bind"
+          },
+          {
+            "destination": "/app/frontend",
+            "name": null,
+            "rw": false,
+            "type": "bind"
+          }
+        ],
+        "name": "markee-app-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {
+          "8000/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "8000"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:32.507794415Z",
+        "state": "running"
+      },
+      {
+        "health": "none",
+        "id": "c350ab34511d32a339c0c608d0b228f9917b8bf1c6a718908c60e38b3508ecb0",
+        "image": "markee-beat",
+        "image_id": "sha256:6038520b141a8ca2a9dfcbfa8bdc019f1621ac717d3792b3b0ab3d05d819c7c2",
+        "mounts": [
+          {
+            "destination": "/app/app",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "markee-beat-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {},
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:32.502821894Z",
+        "state": "running"
+      },
+      {
+        "health": "healthy",
+        "id": "a38df2561f78943fc4171b8d800cbf7ffc41727bb2ef2a578aaed62edb3e6808",
+        "image": "postgres:15-alpine",
+        "image_id": "sha256:3d0f7584ed7d04e27fa050d6683a74746608faf21f202be78460d679cc56461f",
+        "mounts": [
+          {
+            "destination": "/var/lib/postgresql/data",
+            "name": "markee_pgdata",
+            "rw": true,
+            "type": "volume"
+          }
+        ],
+        "name": "markee-db-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {
+          "5432/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "5432"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:26.714203292Z",
+        "state": "running"
+      },
+      {
+        "health": "healthy",
+        "id": "b4a2ada57e34936f6788dd7b87cd0c7bf11a638513a4231413acf9f3135ecf05",
+        "image": "redis:7-alpine",
+        "image_id": "sha256:6ab0b6e7381779332f97b8ca76193e45b0756f38d4c0dcda72dbb3c32061ab99",
+        "mounts": [
+          {
+            "destination": "/data",
+            "name": "markee_redisdata",
+            "rw": true,
+            "type": "volume"
+          }
+        ],
+        "name": "markee-redis-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {},
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:26.712097545Z",
+        "state": "running"
+      },
+      {
+        "health": "none",
+        "id": "f53b816b2d01337561f2a3482fdf878a4e91978537c82177250f98f61a023d1b",
+        "image": "markee-worker",
+        "image_id": "sha256:fcc696a78525b012733e342c9185d88068372772b9e71744916c3080a692df93",
+        "mounts": [
+          {
+            "destination": "/app/app",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "markee-worker-1",
+        "networks": [
+          "markee_default"
+        ],
+        "ports": {},
+        "restart_count": 0,
+        "started_at": "2026-07-24T09:31:32.515748058Z",
+        "state": "running"
+      },
+      {
+        "health": "none",
+        "id": "b756afaeeaa2ef4a4f5984a6a58bc8729db21934547964a4367fc28149c88469",
+        "image": "monte-rocha:latest",
+        "image_id": "sha256:c1f908f3604040a29f17605324b6ede120ee93057fde83bd69dce5440443e119",
+        "mounts": [
+          {
+            "destination": "/data",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "monte-rocha-refresh",
+        "networks": [
+          "monte-rocha_default"
+        ],
+        "ports": {},
+        "restart_count": 0,
+        "started_at": "2026-07-23T16:20:20.840096618Z",
+        "state": "running"
+      },
+      {
+        "health": "healthy",
+        "id": "0048610f1ae2444ea4146a06529d90a67d509d66bb6b81f82a8e2aaee6dcb6da",
+        "image": "monte-rocha:latest",
+        "image_id": "sha256:eb7120f2b0d8368ce144b65e484cd29c2e28829f61abc082d29769bf8d708ed8",
+        "mounts": [
+          {
+            "destination": "/data",
+            "name": null,
+            "rw": true,
+            "type": "bind"
+          }
+        ],
+        "name": "monte-rocha-web",
+        "networks": [
+          "monte-rocha_default"
+        ],
+        "ports": {
+          "8000/tcp": [
+            {
+              "host_ip": "127.0.0.1",
+              "host_port": "8502"
+            }
+          ]
+        },
+        "restart_count": 0,
+        "started_at": "2026-07-23T22:21:30.423282061Z",
+        "state": "running"
+      }
+    ],
+    "networks": [
+      {
+        "driver": "bridge",
+        "id": "476873fa7eea1ebc4b5c3d761c95a8298548382de88ad5c8de3ec6c84ae7eb27",
+        "name": "bridge",
+        "scope": "local"
+      },
+      {
+        "driver": "host",
+        "id": "be0019007f0f88a6e38b0657ba219b47d566669d54b9db365ebd63022eff2b14",
+        "name": "host",
+        "scope": "local"
+      },
+      {
+        "driver": "bridge",
+        "id": "d63efe79327d98ea068c989a1085054fb4aba20b272e1ac63ce7ac43563f9d6d",
+        "name": "hud-spud_hud-net",
+        "scope": "local"
+      },
+      {
+        "driver": "bridge",
+        "id": "fe7d0fbc2429e83c124b48b839fcd4f51f168a85ceafae9f7029f6346892d25f",
+        "name": "imobatata_default",
+        "scope": "local"
+      },
+      {
+        "driver": "bridge",
+        "id": "1709a7dba3d335c00d8a0f0309e82b3827a7ba60c848623b1299ad70ec7981fa",
+        "name": "markee_default",
+        "scope": "local"
+      },
+      {
+        "driver": "bridge",
+        "id": "4ff8bc06b3a6f0330bcfd0f66b090afb26ebe85ffd474f8c511acde5ebf78d40",
+        "name": "monte-rocha_default",
+        "scope": "local"
+      },
+      {
+        "driver": "null",
+        "id": "e90c636de99e21db9be1b1fcaa3ed7b12240d28cd2aa0e1f7dae48a408aa9a29",
+        "name": "none",
+        "scope": "local"
+      }
+    ],
+    "sha256": "57dc09bd954ecf7f78c336f1fd3e46488573b57219291ba7c3198c83bb167d3c",
+    "volumes": [
+      {
+        "driver": "local",
+        "mountpoint": "/var/lib/docker/volumes/markee_pgdata/_data",
+        "name": "markee_pgdata"
+      },
+      {
+        "driver": "local",
+        "mountpoint": "/var/lib/docker/volumes/markee_redisdata/_data",
+        "name": "markee_redisdata"
+      }
+    ]
+  },
+  "protected_identical": true,
+  "protected_matches_recorded": true,
+  "relfilenodes_post_apply": {
+    "app.alert_deliveries": [
+      "r",
+      "16470"
+    ],
+    "app.alert_deliveries_pkey": [
+      "i",
+      "16692"
+    ],
+    "app.alerts": [
+      "r",
+      "16475"
+    ],
+    "app.alerts_pkey": [
+      "i",
+      "16694"
+    ],
+    "app.api_keys": [
+      "r",
+      "17117"
+    ],
+    "app.api_keys_key_hash_key": [
+      "i",
+      "17126"
+    ],
+    "app.api_keys_pkey": [
+      "i",
+      "17124"
+    ],
+    "app.client_portfolios": [
+      "r",
+      "16480"
+    ],
+    "app.client_portfolios_pkey": [
+      "i",
+      "16696"
+    ],
+    "app.deadlines": [
+      "r",
+      "16485"
+    ],
+    "app.deadlines_pkey": [
+      "i",
+      "16698"
+    ],
+    "app.idx_alerts_composite_score": [
+      "i",
+      "17154"
+    ],
+    "app.idx_alerts_user_unread": [
+      "i",
+      "17153"
+    ],
+    "app.idx_deadlines_due_date": [
+      "i",
+      "17155"
+    ],
+    "app.idx_prospection_score": [
+      "i",
+      "17156"
+    ],
+    "app.idx_review_queue_status": [
+      "i",
+      "17157"
+    ],
+    "app.ix_app_subscriptions_stripe_customer_id": [
+      "i",
+      "16788"
+    ],
+    "app.ix_app_users_email": [
+      "i",
+      "16789"
+    ],
+    "app.prospection_opportunities": [
+      "r",
+      "16490"
+    ],
+    "app.prospection_opportunities_pkey": [
+      "i",
+      "16700"
+    ],
+    "app.review_queue": [
+      "r",
+      "16495"
+    ],
+    "app.review_queue_pkey": [
+      "i",
+      "16702"
+    ],
+    "app.subscriptions": [
+      "r",
+      "16500"
+    ],
+    "app.subscriptions_pkey": [
+      "i",
+      "16704"
+    ],
+    "app.team_members": [
+      "r",
+      "16505"
+    ],
+    "app.team_members_pkey": [
+      "i",
+      "16706"
+    ],
+    "app.teams": [
+      "r",
+      "16508"
+    ],
+    "app.teams_pkey": [
+      "i",
+      "16708"
+    ],
+    "app.uq_team_members_team_user": [
+      "i",
+      "16710"
+    ],
+    "app.users": [
+      "r",
+      "16511"
+    ],
+    "app.users_pkey": [
+      "i",
+      "16712"
+    ],
+    "app.watchlist_items": [
+      "r",
+      "16516"
+    ],
+    "app.watchlist_items_pkey": [
+      "i",
+      "16714"
+    ],
+    "app.watchlists": [
+      "r",
+      "16521"
+    ],
+    "app.watchlists_pkey": [
+      "i",
+      "16716"
+    ],
+    "core.documents": [
+      "r",
+      "16526"
+    ],
+    "core.documents_pkey": [
+      "i",
+      "16718"
+    ],
+    "core.goods_services": [
+      "r",
+      "16531"
+    ],
+    "core.goods_services_pkey": [
+      "i",
+      "16720"
+    ],
+    "core.holders": [
+      "r",
+      "16536"
+    ],
+    "core.holders_pkey": [
+      "i",
+      "16722"
+    ],
+    "core.idx_holders_name_trgm": [
+      "i",
+      "17158"
+    ],
+    "core.idx_reps_name_trgm": [
+      "i",
+      "17159"
+    ],
+    "core.idx_trademarks_wordmark": [
+      "i",
+      "17160"
+    ],
+    "core.ix_core_documents_file_hash": [
+      "i",
+      "16790"
+    ],
+    "core.ix_core_documents_trademark_id": [
+      "i",
+      "16791"
+    ],
+    "core.ix_core_goods_services_trademark_id": [
+      "i",
+      "16792"
+    ],
+    "core.ix_core_holders_name": [
+      "i",
+      "16793"
+    ],
+    "core.ix_core_holders_source_id": [
+      "i",
+      "16794"
+    ],
+    "core.ix_core_representatives_name": [
+      "i",
+      "16795"
+    ],
+    "core.ix_core_representatives_source_id": [
+      "i",
+      "16796"
+    ],
+    "core.ix_core_source_runs_source_id": [
+      "i",
+      "16797"
+    ],
+    "core.ix_core_source_runs_status": [
+      "i",
+      "16798"
+    ],
+    "core.ix_core_trademark_versions_trademark_id": [
+      "i",
+      "16799"
+    ],
+    "core.ix_core_trademarks_application_number": [
+      "i",
+      "16800"
+    ],
+    "core.ix_core_trademarks_jurisdiction": [
+      "i",
+      "16801"
+    ],
+    "core.ix_core_trademarks_source_id": [
+      "i",
+      "16802"
+    ],
+    "core.ix_core_trademarks_update_date": [
+      "i",
+      "16803"
+    ],
+    "core.nice_classes": [
+      "r",
+      "16542"
+    ],
+    "core.nice_classes_class_number_key": [
+      "i",
+      "16724"
+    ],
+    "core.nice_classes_pkey": [
+      "i",
+      "16726"
+    ],
+    "core.representatives": [
+      "r",
+      "16548"
+    ],
+    "core.representatives_pkey": [
+      "i",
+      "16728"
+    ],
+    "core.source_runs": [
+      "r",
+      "16554"
+    ],
+    "core.source_runs_pkey": [
+      "i",
+      "16730"
+    ],
+    "core.sources": [
+      "r",
+      "16559"
+    ],
+    "core.sources_name_key": [
+      "i",
+      "16732"
+    ],
+    "core.sources_pkey": [
+      "i",
+      "16734"
+    ],
+    "core.trademark_holders": [
+      "r",
+      "16565"
+    ],
+    "core.trademark_holders_pkey": [
+      "i",
+      "16736"
+    ],
+    "core.trademark_representatives": [
+      "r",
+      "16568"
+    ],
+    "core.trademark_representatives_pkey": [
+      "i",
+      "16738"
+    ],
+    "core.trademark_versions": [
+      "r",
+      "16571"
+    ],
+    "core.trademark_versions_pkey": [
+      "i",
+      "16740"
+    ],
+    "core.trademarks": [
+      "r",
+      "16576"
+    ],
+    "core.trademarks_pkey": [
+      "i",
+      "16742"
+    ],
+    "core.uq_versions_trademark_version": [
+      "i",
+      "16744"
+    ],
+    "events.idx_events_trademark_type": [
+      "i",
+      "17162"
+    ],
+    "events.idx_lifecycle_events_trademark": [
+      "i",
+      "17161"
+    ],
+    "events.ix_events_lifecycle_events_deadline_date": [
+      "i",
+      "16804"
+    ],
+    "events.ix_events_lifecycle_events_event_type": [
+      "i",
+      "16805"
+    ],
+    "events.ix_events_lifecycle_events_trademark_id": [
+      "i",
+      "16806"
+    ],
+    "events.lifecycle_events": [
+      "r",
+      "16581"
+    ],
+    "events.lifecycle_events_pkey": [
+      "i",
+      "16746"
+    ],
+    "public.alembic_version": [
+      "r",
+      "16586"
+    ],
+    "public.alembic_version_pkc": [
+      "i",
+      "16748"
+    ],
+    "public.alert_deliveries": [
+      "r",
+      "16589"
+    ],
+    "public.alert_deliveries_pkey": [
+      "i",
+      "16750"
+    ],
+    "public.alerts": [
+      "r",
+      "16596"
+    ],
+    "public.alerts_pkey": [
+      "i",
+      "16752"
+    ],
+    "public.api_keys": [
+      "r",
+      "16603"
+    ],
+    "public.api_keys_key_hash_key": [
+      "i",
+      "16754"
+    ],
+    "public.api_keys_pkey": [
+      "i",
+      "16756"
+    ],
+    "public.client_portfolios": [
+      "r",
+      "16610"
+    ],
+    "public.client_portfolios_pkey": [
+      "i",
+      "16758"
+    ],
+    "public.deadlines": [
+      "r",
+      "16617"
+    ],
+    "public.deadlines_pkey": [
+      "i",
+      "16760"
+    ],
+    "public.idx_alerts_composite_score": [
+      "i",
+      "16807"
+    ],
+    "public.idx_alerts_user_unread": [
+      "i",
+      "16808"
+    ],
+    "public.idx_deadlines_due_date": [
+      "i",
+      "16809"
+    ],
+    "public.idx_lifecycle_events_trademark": [
+      "i",
+      "16810"
+    ],
+    "public.idx_prospection_score": [
+      "i",
+      "16811"
+    ],
+    "public.idx_trademarks_jurisdiction": [
+      "i",
+      "16812"
+    ],
+    "public.idx_trademarks_wordmark": [
+      "i",
+      "16813"
+    ],
+    "public.lifecycle_events": [
+      "r",
+      "16625"
+    ],
+    "public.lifecycle_events_pkey": [
+      "i",
+      "16762"
+    ],
+    "public.prospection_opportunities": [
+      "r",
+      "16632"
+    ],
+    "public.prospection_opportunities_pkey": [
+      "i",
+      "16764"
+    ],
+    "public.subscriptions": [
+      "r",
+      "16640"
+    ],
+    "public.subscriptions_pkey": [
+      "i",
+      "16766"
+    ],
+    "public.team_members": [
+      "r",
+      "16648"
+    ],
+    "public.team_members_pkey": [
+      "i",
+      "16768"
+    ],
+    "public.teams": [
+      "r",
+      "16653"
+    ],
+    "public.teams_pkey": [
+      "i",
+      "16770"
+    ],
+    "public.trademarks": [
+      "r",
+      "16658"
+    ],
+    "public.trademarks_pkey": [
+      "i",
+      "16772"
+    ],
+    "public.trademarks_source_id_key": [
+      "i",
+      "16774"
+    ],
+    "public.uq_team_members_team_user": [
+      "i",
+      "16776"
+    ],
+    "public.users": [
+      "r",
+      "16666"
+    ],
+    "public.users_email_key": [
+      "i",
+      "16778"
+    ],
+    "public.users_pkey": [
+      "i",
+      "16780"
+    ],
+    "public.watchlist_items": [
+      "r",
+      "16674"
+    ],
+    "public.watchlist_items_pkey": [
+      "i",
+      "16782"
+    ],
+    "public.watchlists": [
+      "r",
+      "16681"
+    ],
+    "public.watchlists_pkey": [
+      "i",
+      "16784"
+    ],
+    "raw.api_responses": [
+      "p",
+      "0"
+    ],
+    "raw.api_responses_2026_07": [
+      "r",
+      "17133"
+    ],
+    "raw.api_responses_2026_07_pkey": [
+      "i",
+      "17138"
+    ],
+    "raw.api_responses_2026_07_source_id_created_at_idx": [
+      "i",
+      "17164"
+    ],
+    "raw.api_responses_2026_07_source_id_idx": [
+      "i",
+      "17140"
+    ],
+    "raw.api_responses_2026_08": [
+      "r",
+      "17143"
+    ],
+    "raw.api_responses_2026_08_pkey": [
+      "i",
+      "17148"
+    ],
+    "raw.api_responses_2026_08_source_id_created_at_idx": [
+      "i",
+      "17165"
+    ],
+    "raw.api_responses_2026_08_source_id_idx": [
+      "i",
+      "17150"
+    ],
+    "raw.api_responses_pkey": [
+      "I",
+      "0"
+    ],
+    "raw.idx_raw_source_created": [
+      "I",
+      "0"
+    ],
+    "raw.ix_raw_api_responses_source_id": [
+      "I",
+      "0"
+    ]
+  },
+  "relfilenodes_pre_apply": {
+    "app.alert_deliveries": [
+      "r",
+      "16470"
+    ],
+    "app.alert_deliveries_pkey": [
+      "i",
+      "16692"
+    ],
+    "app.alerts": [
+      "r",
+      "16475"
+    ],
+    "app.alerts_pkey": [
+      "i",
+      "16694"
+    ],
+    "app.client_portfolios": [
+      "r",
+      "16480"
+    ],
+    "app.client_portfolios_pkey": [
+      "i",
+      "16696"
+    ],
+    "app.deadlines": [
+      "r",
+      "16485"
+    ],
+    "app.deadlines_pkey": [
+      "i",
+      "16698"
+    ],
+    "app.ix_app_subscriptions_stripe_customer_id": [
+      "i",
+      "16788"
+    ],
+    "app.ix_app_users_email": [
+      "i",
+      "16789"
+    ],
+    "app.prospection_opportunities": [
+      "r",
+      "16490"
+    ],
+    "app.prospection_opportunities_pkey": [
+      "i",
+      "16700"
+    ],
+    "app.review_queue": [
+      "r",
+      "16495"
+    ],
+    "app.review_queue_pkey": [
+      "i",
+      "16702"
+    ],
+    "app.subscriptions": [
+      "r",
+      "16500"
+    ],
+    "app.subscriptions_pkey": [
+      "i",
+      "16704"
+    ],
+    "app.team_members": [
+      "r",
+      "16505"
+    ],
+    "app.team_members_pkey": [
+      "i",
+      "16706"
+    ],
+    "app.teams": [
+      "r",
+      "16508"
+    ],
+    "app.teams_pkey": [
+      "i",
+      "16708"
+    ],
+    "app.uq_team_members_team_user": [
+      "i",
+      "16710"
+    ],
+    "app.users": [
+      "r",
+      "16511"
+    ],
+    "app.users_pkey": [
+      "i",
+      "16712"
+    ],
+    "app.watchlist_items": [
+      "r",
+      "16516"
+    ],
+    "app.watchlist_items_pkey": [
+      "i",
+      "16714"
+    ],
+    "app.watchlists": [
+      "r",
+      "16521"
+    ],
+    "app.watchlists_pkey": [
+      "i",
+      "16716"
+    ],
+    "core.documents": [
+      "r",
+      "16526"
+    ],
+    "core.documents_pkey": [
+      "i",
+      "16718"
+    ],
+    "core.goods_services": [
+      "r",
+      "16531"
+    ],
+    "core.goods_services_pkey": [
+      "i",
+      "16720"
+    ],
+    "core.holders": [
+      "r",
+      "16536"
+    ],
+    "core.holders_pkey": [
+      "i",
+      "16722"
+    ],
+    "core.ix_core_documents_file_hash": [
+      "i",
+      "16790"
+    ],
+    "core.ix_core_documents_trademark_id": [
+      "i",
+      "16791"
+    ],
+    "core.ix_core_goods_services_trademark_id": [
+      "i",
+      "16792"
+    ],
+    "core.ix_core_holders_name": [
+      "i",
+      "16793"
+    ],
+    "core.ix_core_holders_source_id": [
+      "i",
+      "16794"
+    ],
+    "core.ix_core_representatives_name": [
+      "i",
+      "16795"
+    ],
+    "core.ix_core_representatives_source_id": [
+      "i",
+      "16796"
+    ],
+    "core.ix_core_source_runs_source_id": [
+      "i",
+      "16797"
+    ],
+    "core.ix_core_source_runs_status": [
+      "i",
+      "16798"
+    ],
+    "core.ix_core_trademark_versions_trademark_id": [
+      "i",
+      "16799"
+    ],
+    "core.ix_core_trademarks_application_number": [
+      "i",
+      "16800"
+    ],
+    "core.ix_core_trademarks_jurisdiction": [
+      "i",
+      "16801"
+    ],
+    "core.ix_core_trademarks_source_id": [
+      "i",
+      "16802"
+    ],
+    "core.ix_core_trademarks_update_date": [
+      "i",
+      "16803"
+    ],
+    "core.nice_classes": [
+      "r",
+      "16542"
+    ],
+    "core.nice_classes_class_number_key": [
+      "i",
+      "16724"
+    ],
+    "core.nice_classes_pkey": [
+      "i",
+      "16726"
+    ],
+    "core.representatives": [
+      "r",
+      "16548"
+    ],
+    "core.representatives_pkey": [
+      "i",
+      "16728"
+    ],
+    "core.source_runs": [
+      "r",
+      "16554"
+    ],
+    "core.source_runs_pkey": [
+      "i",
+      "16730"
+    ],
+    "core.sources": [
+      "r",
+      "16559"
+    ],
+    "core.sources_name_key": [
+      "i",
+      "16732"
+    ],
+    "core.sources_pkey": [
+      "i",
+      "16734"
+    ],
+    "core.trademark_holders": [
+      "r",
+      "16565"
+    ],
+    "core.trademark_holders_pkey": [
+      "i",
+      "16736"
+    ],
+    "core.trademark_representatives": [
+      "r",
+      "16568"
+    ],
+    "core.trademark_representatives_pkey": [
+      "i",
+      "16738"
+    ],
+    "core.trademark_versions": [
+      "r",
+      "16571"
+    ],
+    "core.trademark_versions_pkey": [
+      "i",
+      "16740"
+    ],
+    "core.trademarks": [
+      "r",
+      "16576"
+    ],
+    "core.trademarks_pkey": [
+      "i",
+      "16742"
+    ],
+    "core.uq_versions_trademark_version": [
+      "i",
+      "16744"
+    ],
+    "events.ix_events_lifecycle_events_deadline_date": [
+      "i",
+      "16804"
+    ],
+    "events.ix_events_lifecycle_events_event_type": [
+      "i",
+      "16805"
+    ],
+    "events.ix_events_lifecycle_events_trademark_id": [
+      "i",
+      "16806"
+    ],
+    "events.lifecycle_events": [
+      "r",
+      "16581"
+    ],
+    "events.lifecycle_events_pkey": [
+      "i",
+      "16746"
+    ],
+    "public.alembic_version": [
+      "r",
+      "16586"
+    ],
+    "public.alembic_version_pkc": [
+      "i",
+      "16748"
+    ],
+    "public.alert_deliveries": [
+      "r",
+      "16589"
+    ],
+    "public.alert_deliveries_pkey": [
+      "i",
+      "16750"
+    ],
+    "public.alerts": [
+      "r",
+      "16596"
+    ],
+    "public.alerts_pkey": [
+      "i",
+      "16752"
+    ],
+    "public.api_keys": [
+      "r",
+      "16603"
+    ],
+    "public.api_keys_key_hash_key": [
+      "i",
+      "16754"
+    ],
+    "public.api_keys_pkey": [
+      "i",
+      "16756"
+    ],
+    "public.client_portfolios": [
+      "r",
+      "16610"
+    ],
+    "public.client_portfolios_pkey": [
+      "i",
+      "16758"
+    ],
+    "public.deadlines": [
+      "r",
+      "16617"
+    ],
+    "public.deadlines_pkey": [
+      "i",
+      "16760"
+    ],
+    "public.idx_alerts_composite_score": [
+      "i",
+      "16807"
+    ],
+    "public.idx_alerts_user_unread": [
+      "i",
+      "16808"
+    ],
+    "public.idx_deadlines_due_date": [
+      "i",
+      "16809"
+    ],
+    "public.idx_lifecycle_events_trademark": [
+      "i",
+      "16810"
+    ],
+    "public.idx_prospection_score": [
+      "i",
+      "16811"
+    ],
+    "public.idx_trademarks_jurisdiction": [
+      "i",
+      "16812"
+    ],
+    "public.idx_trademarks_wordmark": [
+      "i",
+      "16813"
+    ],
+    "public.lifecycle_events": [
+      "r",
+      "16625"
+    ],
+    "public.lifecycle_events_pkey": [
+      "i",
+      "16762"
+    ],
+    "public.prospection_opportunities": [
+      "r",
+      "16632"
+    ],
+    "public.prospection_opportunities_pkey": [
+      "i",
+      "16764"
+    ],
+    "public.subscriptions": [
+      "r",
+      "16640"
+    ],
+    "public.subscriptions_pkey": [
+      "i",
+      "16766"
+    ],
+    "public.team_members": [
+      "r",
+      "16648"
+    ],
+    "public.team_members_pkey": [
+      "i",
+      "16768"
+    ],
+    "public.teams": [
+      "r",
+      "16653"
+    ],
+    "public.teams_pkey": [
+      "i",
+      "16770"
+    ],
+    "public.trademarks": [
+      "r",
+      "16658"
+    ],
+    "public.trademarks_pkey": [
+      "i",
+      "16772"
+    ],
+    "public.trademarks_source_id_key": [
+      "i",
+      "16774"
+    ],
+    "public.uq_team_members_team_user": [
+      "i",
+      "16776"
+    ],
+    "public.users": [
+      "r",
+      "16666"
+    ],
+    "public.users_email_key": [
+      "i",
+      "16778"
+    ],
+    "public.users_pkey": [
+      "i",
+      "16780"
+    ],
+    "public.watchlist_items": [
+      "r",
+      "16674"
+    ],
+    "public.watchlist_items_pkey": [
+      "i",
+      "16782"
+    ],
+    "public.watchlists": [
+      "r",
+      "16681"
+    ],
+    "public.watchlists_pkey": [
+      "i",
+      "16784"
+    ],
+    "raw.api_responses": [
+      "p",
+      "0"
+    ],
+    "raw.api_responses_pkey": [
+      "I",
+      "0"
+    ],
+    "raw.ix_raw_api_responses_source_id": [
+      "I",
+      "0"
+    ]
+  },
+  "residuals_initial": {
+    "container_names": [],
+    "containers": 0,
+    "network_names": [],
+    "networks": 0,
+    "port_5441_free": true,
+    "volume_names": [],
+    "volumes": 0
+  },
+  "restore": {
+    "exit_code": 0,
+    "on_error_stop": true,
+    "single_transaction": true,
+    "stderr_lines": 0,
+    "stderr_sample": []
+  },
+  "rollback": {
+    "adopt_failure": {
+      "message": "static reconciliation operation failed",
+      "reason": "reconciliation_failed",
+      "type": "AdoptionError"
+    },
+    "fault_injection": {
+      "behaviour": "RAISE EXCEPTION 'WP3_DETERMINISTIC_FAULT'",
+      "event_trigger": "wp3_fault ON ddl_command_start TAG IN (CREATE INDEX)",
+      "expected_fail_point": "reconciliation op 4/14 (first CREATE INDEX), after 100 metadata ALTERs + 3 CREATE TABLEs in-txn"
+    },
+    "fault_removed": true,
+    "post_inventory": {
+      "alembic_version": null,
+      "extensions": [
+        [
+          "pg_trgm",
+          "1.6"
+        ]
+      ],
+      "fingerprint": "77964fe8423bee35b890f33a3568b6f6e541dfb9d6a08bfe5548f2e093c021c0",
+      "index_count": 27,
+      "rows_nonzero": {},
+      "rows_total": 0,
+      "schemas": [
+        "app",
+        "core",
+        "events",
+        "public",
+        "raw"
+      ],
+      "server_version": "PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+      "server_version_num": "160014",
+      "structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+      "table_count": 40,
+      "tag": "rollback-post",
+      "version_rows": [],
+      "version_table_exists": true
+    },
+    "pre_inventory": {
+      "alembic_version": null,
+      "extensions": [
+        [
+          "pg_trgm",
+          "1.6"
+        ]
+      ],
+      "fingerprint": "77964fe8423bee35b890f33a3568b6f6e541dfb9d6a08bfe5548f2e093c021c0",
+      "index_count": 27,
+      "rows_nonzero": {},
+      "rows_total": 0,
+      "schemas": [
+        "app",
+        "core",
+        "events",
+        "public",
+        "raw"
+      ],
+      "server_version": "PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+      "server_version_num": "160014",
+      "structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+      "table_count": 40,
+      "tag": "rollback-pre",
+      "version_rows": [],
+      "version_table_exists": true
+    },
+    "proof": {
+      "catalog_fingerprint_matches_original": true,
+      "no_stamp": true,
+      "observed_structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+      "original_structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+      "rows_total": 0,
+      "structural_fingerprint_matches_original": true,
+      "table_count_matches": true
+    },
+    "restore": {
+      "exit_code": 0,
+      "on_error_stop": true,
+      "single_transaction": true,
+      "stderr_lines": 0,
+      "stderr_sample": []
+    },
+    "txn_log_order": {
+      "advisory_before_first_ddl": true,
+      "alter_table_count": 100,
+      "alters_before_creates": true,
+      "analysis_ok": true,
+      "capture_ok": true,
+      "create_index_count": 1,
+      "create_table_count": 3,
+      "ddl_outside_window": 0,
+      "errors_for_pid": [
+        "WP3_DETERMINISTIC_FAULT"
+      ],
+      "label": "midplan-failure",
+      "lock_table_count": 40,
+      "pid": "131",
+      "selects_between_stamp_and_commit": false,
+      "stamp_after_all_create_index": false,
+      "stamp_insert_count": 0,
+      "terminator": "ROLLBACK",
+      "trailing_after_terminator": [],
+      "verification_selects_between_last_ddl_and_stamp": false,
+      "window_counts": {
+        "ADVISORY_LOCK": 1,
+        "ALTER TABLE": 100,
+        "BEGIN": 1,
+        "CREATE INDEX": 1,
+        "CREATE TABLE": 3,
+        "LOCK TABLE": 40,
+        "OTHER": 4,
+        "ROLLBACK": 1,
+        "SELECT": 508
+      },
+      "window_statements": 659
+    },
+    "up": {
+      "exit_code": 0,
+      "stderr_tail": [],
+      "stdout": "state=up healthy=true empty=true image=postgres:16-alpine"
+    }
+  },
+  "runtime_blocker": {
+    "attestation": {
+      "adoption": "stamped 002 via adopted_to_002 with 14 additive ops after 100 in-txn metadata ops; post-verify accepted with 0 differences",
+      "guard": "assert_wp3_adoption_target accepted the attested Docker identity (Mode=rw) on both disposables",
+      "idempotency": "already_002_noop",
+      "midplan_rollback": "deterministic CREATE INDEX fault rolled back atomically; original fingerprint, no stamp",
+      "prior_1701_run": "superseded \u2014 failed on scratch-harness API misuse (LiveInventory attribute access, raw-structure planning) and pre-17:23 application code; repaired harness re-proved live"
+    },
+    "cleanup_after": {
+      "container_names": [],
+      "containers": 0,
+      "network_names": [],
+      "networks": 0,
+      "port_5441_free": true,
+      "volume_names": [],
+      "volumes": 0
+    },
+    "reason_code": "WP3_PG16_LIVE_PROOF_COMPLETE",
+    "status": "RESOLVED"
+  },
+  "started_utc": "2026-07-25T17:55:33.730970+00:00",
+  "state_final": {
+    "container_names": [],
+    "containers": 0,
+    "network_names": [],
+    "networks": 0,
+    "port_5441_free": true,
+    "volume_names": [],
+    "volumes": 0
+  },
+  "state_final_verified": {
+    "container_names": [],
+    "containers": 0,
+    "network_names": [],
+    "networks": 0,
+    "port_5441_free": true,
+    "volume_names": [],
+    "volumes": 0
+  },
+  "state_mid": {
+    "container_names": [],
+    "containers": 0,
+    "network_names": [],
+    "networks": 0,
+    "port_5441_free": true,
+    "volume_names": [],
+    "volumes": 0
+  },
+  "status": "PASS",
+  "teardown_final": {
+    "exit_code": 0,
+    "stderr_tail": [],
+    "stdout": "state=down resources=0/0/0 port_free=true"
+  },
+  "teardown_mid": {
+    "exit_code": 0,
+    "stderr_tail": [],
+    "stdout": "state=down resources=0/0/0 port_free=true"
+  }
+}

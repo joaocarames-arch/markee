@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "markee"
+version = "0.1.0"
+description = "Trademark monitoring SaaS (INPI + EUIPO)"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "João" }]
+dependencies = [
+    "fastapi>=0.133",
+    "uvicorn[standard]>=0.41",
+    "python-multipart>=0.0.20",
+    "sqlalchemy[asyncio]>=2.0.51",
+    "asyncpg>=0.31",
+    "greenlet>=3.5",
+    "alembic>=1.18",
+    "celery[redis]>=5.6",
+    "redis>=6.0",
+    "pydantic>=2.13",
+    "pydantic-settings>=2.13",
+    "email-validator>=2.0",
+    "python-jose[cryptography]>=3.5",
+    "bcrypt>=4.0",
+    "httpx>=0.28",
+    "stripe>=15.0",
+    "pymupdf>=1.28",
+    "pdfplumber>=0.11",
+    "rapidfuzz>=3.14",
+    "jellyfish>=1.2",
+    "jinja2>=3.1",
+    "aiosmtplib>=5.0",
+    "python-telegram-bot>=22.0",
+    "structlog>=26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "aiosqlite>=0.20",
+    "httpx>=0.28",
+]
+
+[tool.setuptools]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 90
+target-version = "py311"

@@ -1,0 +1,42 @@
+{
+  "font": "Sora-Bold.ttf",
+  "font_path_source": "Google Fonts (Sora v2.000, OFL 1.1)",
+  "url": "https://fonts.gstatic.com/s/sora/v17/xMQOuFFYT72X5wkB_18qmnndmSe1mX-K.ttf",
+  "license": "OFL-1.1 (SIL Open Font License 1.1)",
+  "license_url": "https://scripts.sil.org/OFL",
+  "weights_used": "Bold (700)",
+  "units_per_em": 1000,
+  "cap_height": 730,
+  "x_height": 534,
+  "ascender": 970,
+  "descender": -290,
+  "advances": {
+    "m": 983,
+    "a": 594,
+    "r": 421,
+    "k": 639,
+    "e": 624
+  },
+  "side_bearings": {
+    "m": [
+      73,
+      -63
+    ],
+    "a": [
+      31,
+      -63
+    ],
+    "r": [
+      73,
+      -10
+    ],
+    "k": [
+      73,
+      0
+    ],
+    "e": [
+      39,
+      -33
+    ]
+  }
+}

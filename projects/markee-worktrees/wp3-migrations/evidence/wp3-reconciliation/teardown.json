@@ -1,0 +1,31 @@
+{
+  "final": {
+    "exit_code": 0,
+    "stderr_tail": [],
+    "stdout": "state=down resources=0/0/0 port_free=true"
+  },
+  "finally_guard": null,
+  "mid": {
+    "exit_code": 0,
+    "stderr_tail": [],
+    "stdout": "state=down resources=0/0/0 port_free=true"
+  },
+  "mid_state": {
+    "container_names": [],
+    "containers": 0,
+    "network_names": [],
+    "networks": 0,
+    "port_5441_free": true,
+    "volume_names": [],
+    "volumes": 0
+  },
+  "state_final": {
+    "container_names": [],
+    "containers": 0,
+    "network_names": [],
+    "networks": 0,
+    "port_5441_free": true,
+    "volume_names": [],
+    "volumes": 0
+  }
+}

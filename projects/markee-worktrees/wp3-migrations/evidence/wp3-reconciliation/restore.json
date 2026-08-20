@@ -1,0 +1,16 @@
+{
+  "first": {
+    "exit_code": 0,
+    "on_error_stop": true,
+    "single_transaction": true,
+    "stderr_lines": 0,
+    "stderr_sample": []
+  },
+  "rollback_phase": {
+    "exit_code": 0,
+    "on_error_stop": true,
+    "single_transaction": true,
+    "stderr_lines": 0,
+    "stderr_sample": []
+  }
+}

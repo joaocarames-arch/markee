@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300">
+  <rect width="800" height="300" fill="#08090a"/>
+  <text x="400" y="175" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="120" font-weight="600" fill="#ffffff" text-anchor="middle" dominant-baseline="central">mark<tspan fill="#35d0e0">e</tspan>e</text>
+  <line x1="565" y1="155" x2="610" y2="155" stroke="#35d0e0" stroke-width="1.5" opacity="0.6"/>
+</svg>

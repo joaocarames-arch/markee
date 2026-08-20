@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="120" viewBox="0 0 520 120">
+  <rect width="520" height="120" fill="#ffffff" rx="8"/>
+  <!-- Radar icon -->
+  <g transform="translate(40, 24)" fill="none" stroke="#35d0e0" stroke-width="3">
+    <circle cx="36" cy="36" r="34" stroke-opacity="0.7" stroke-width="2"/>
+    <circle cx="36" cy="36" r="22" stroke-opacity="0.5" stroke-width="1.5"/>
+    <circle cx="36" cy="36" r="10" stroke-opacity="0.35" stroke-width="1"/>
+    <line x1="36" y1="2" x2="36" y2="70" stroke="#35d0e0" stroke-opacity="0.4" stroke-width="1"/>
+    <line x1="2" y1="36" x2="70" y2="36" stroke="#35d0e0" stroke-opacity="0.4" stroke-width="1"/>
+    <!-- Sweep arc -->
+    <path d="M 36 36 L 36 8 A 28 28 0 0 1 60 18 Z" fill="#35d0e0" fill-opacity="0.5" stroke="none"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="300" y="78" font-family="'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="64" font-weight="600" fill="#08090a" text-anchor="middle" letter-spacing="-1.5">markee</text>
+</svg>

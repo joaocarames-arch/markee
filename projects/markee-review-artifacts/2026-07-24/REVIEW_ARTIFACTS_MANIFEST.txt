@@ -1,0 +1,3 @@
+Markee review artifacts — 2026-07-24
+No review ZIP or extracted review bundle was present in the repository worktree or /home/batata/projects at F0 integration time.
+This directory is intentionally empty of deliverable bundles.

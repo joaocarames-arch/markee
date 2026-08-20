@@ -1,0 +1,36 @@
+# Secrets and local environment — NEVER inside the image
+.env
+.env.*
+*.pem
+*.key
+
+# VCS and tooling
+.git
+.gitignore
+.dockerignore
+
+# Python artefacts
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Local data / runtime
+data/
+pgdata/
+redisdata/
+*.log
+
+# Tests, docs and editorial sources not needed at runtime
+tests/
+docs/
+contents/
+evidence/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store

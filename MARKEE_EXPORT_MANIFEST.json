@@ -1,0 +1,29 @@
+{
+  "created_utc": "20260820T152748Z",
+  "source_roots": [
+    "/home/batata/projects/markee",
+    "/home/batata/projects/markee-worktrees",
+    "/home/batata/projects/markee-gate-artifacts",
+    "/home/batata/projects/markee-pre-f0-backup",
+    "/home/batata/projects/markee-private-audit-20260727",
+    "/home/batata/projects/markee-review-artifacts"
+  ],
+  "excluded_dirs": [
+    ".cache",
+    ".git",
+    ".mypy_cache",
+    ".next",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".turbo",
+    ".venv",
+    "__pycache__",
+    "build",
+    "coverage",
+    "dist",
+    "node_modules",
+    "venv"
+  ],
+  "excluded_secret_file_policy": "Skipped .env runtime files, non-example .env.* variants, and private-key/cert-like files. Kept .env.example/sample/template.",
+  "notes": "Dependencies/build caches/VCS internals excluded so archive stays portable and avoids secret/cached rubbish."
+}

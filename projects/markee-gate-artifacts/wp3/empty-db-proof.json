@@ -1,0 +1,691 @@
+{
+  "actor": "Max",
+  "after": {
+    "alembic_version": "002",
+    "extensions": [
+      [
+        "pg_trgm",
+        "1.6"
+      ]
+    ],
+    "fingerprint": "a18cbdf09946369f5dbb1215ab5990fcf2a61853b9b5f8935022433151bf9de7",
+    "indexes": [
+      [
+        "app",
+        "alerts",
+        "idx_alerts_composite_score"
+      ],
+      [
+        "app",
+        "alerts",
+        "idx_alerts_user_unread"
+      ],
+      [
+        "app",
+        "api_keys",
+        "api_keys_key_hash_key"
+      ],
+      [
+        "app",
+        "deadlines",
+        "idx_deadlines_due_date"
+      ],
+      [
+        "app",
+        "prospection_opportunities",
+        "idx_prospection_score"
+      ],
+      [
+        "app",
+        "review_queue",
+        "idx_review_queue_status"
+      ],
+      [
+        "app",
+        "team_members",
+        "uq_team_members_team_user"
+      ],
+      [
+        "app",
+        "users",
+        "users_email_key"
+      ],
+      [
+        "core",
+        "documents",
+        "idx_docs_file_hash"
+      ],
+      [
+        "core",
+        "documents",
+        "idx_docs_trademark_id"
+      ],
+      [
+        "core",
+        "goods_services",
+        "idx_gs_trademark_id"
+      ],
+      [
+        "core",
+        "holders",
+        "idx_holders_name_trgm"
+      ],
+      [
+        "core",
+        "holders",
+        "idx_holders_source_id"
+      ],
+      [
+        "core",
+        "nice_classes",
+        "nice_classes_class_number_key"
+      ],
+      [
+        "core",
+        "representatives",
+        "idx_reps_name_trgm"
+      ],
+      [
+        "core",
+        "representatives",
+        "idx_reps_source_id"
+      ],
+      [
+        "core",
+        "source_runs",
+        "idx_runs_source_id"
+      ],
+      [
+        "core",
+        "source_runs",
+        "idx_runs_status"
+      ],
+      [
+        "core",
+        "sources",
+        "sources_name_key"
+      ],
+      [
+        "core",
+        "trademark_versions",
+        "idx_versions_trademark_id"
+      ],
+      [
+        "core",
+        "trademark_versions",
+        "uq_versions_trademark_version"
+      ],
+      [
+        "core",
+        "trademarks",
+        "idx_trademarks_jurisdiction"
+      ],
+      [
+        "core",
+        "trademarks",
+        "idx_trademarks_update_date"
+      ],
+      [
+        "core",
+        "trademarks",
+        "idx_trademarks_wordmark"
+      ],
+      [
+        "core",
+        "trademarks",
+        "trademarks_source_id_key"
+      ],
+      [
+        "events",
+        "lifecycle_events",
+        "idx_events_deadline_date"
+      ],
+      [
+        "events",
+        "lifecycle_events",
+        "idx_events_event_type"
+      ],
+      [
+        "events",
+        "lifecycle_events",
+        "idx_events_trademark_type"
+      ],
+      [
+        "events",
+        "lifecycle_events",
+        "idx_lifecycle_events_trademark"
+      ],
+      [
+        "raw",
+        "api_responses",
+        "idx_raw_source_created"
+      ],
+      [
+        "raw",
+        "api_responses_2026_07",
+        "api_responses_2026_07_source_id_created_at_idx"
+      ],
+      [
+        "raw",
+        "api_responses_2026_08",
+        "api_responses_2026_08_source_id_created_at_idx"
+      ]
+    ],
+    "schemas": [
+      "app",
+      "core",
+      "events",
+      "public",
+      "raw"
+    ],
+    "tables": [
+      [
+        "app",
+        "alert_deliveries"
+      ],
+      [
+        "app",
+        "alerts"
+      ],
+      [
+        "app",
+        "api_keys"
+      ],
+      [
+        "app",
+        "client_portfolios"
+      ],
+      [
+        "app",
+        "deadlines"
+      ],
+      [
+        "app",
+        "prospection_opportunities"
+      ],
+      [
+        "app",
+        "review_queue"
+      ],
+      [
+        "app",
+        "subscriptions"
+      ],
+      [
+        "app",
+        "team_members"
+      ],
+      [
+        "app",
+        "teams"
+      ],
+      [
+        "app",
+        "users"
+      ],
+      [
+        "app",
+        "watchlist_items"
+      ],
+      [
+        "app",
+        "watchlists"
+      ],
+      [
+        "core",
+        "documents"
+      ],
+      [
+        "core",
+        "goods_services"
+      ],
+      [
+        "core",
+        "holders"
+      ],
+      [
+        "core",
+        "nice_classes"
+      ],
+      [
+        "core",
+        "representatives"
+      ],
+      [
+        "core",
+        "source_runs"
+      ],
+      [
+        "core",
+        "sources"
+      ],
+      [
+        "core",
+        "trademark_holders"
+      ],
+      [
+        "core",
+        "trademark_representatives"
+      ],
+      [
+        "core",
+        "trademark_versions"
+      ],
+      [
+        "core",
+        "trademarks"
+      ],
+      [
+        "events",
+        "lifecycle_events"
+      ],
+      [
+        "public",
+        "alembic_version"
+      ],
+      [
+        "raw",
+        "api_responses"
+      ],
+      [
+        "raw",
+        "api_responses_2026_07"
+      ],
+      [
+        "raw",
+        "api_responses_2026_08"
+      ]
+    ],
+    "target": "127.0.0.1:5441/markee_wp3_disposable as markee_wp3"
+  },
+  "after_second": {
+    "alembic_version": "002",
+    "extensions": [
+      [
+        "pg_trgm",
+        "1.6"
+      ]
+    ],
+    "fingerprint": "a18cbdf09946369f5dbb1215ab5990fcf2a61853b9b5f8935022433151bf9de7",
+    "indexes": [
+      [
+        "app",
+        "alerts",
+        "idx_alerts_composite_score"
+      ],
+      [
+        "app",
+        "alerts",
+        "idx_alerts_user_unread"
+      ],
+      [
+        "app",
+        "api_keys",
+        "api_keys_key_hash_key"
+      ],
+      [
+        "app",
+        "deadlines",
+        "idx_deadlines_due_date"
+      ],
+      [
+        "app",
+        "prospection_opportunities",
+        "idx_prospection_score"
+      ],
+      [
+        "app",
+        "review_queue",
+        "idx_review_queue_status"
+      ],
+      [
+        "app",
+        "team_members",
+        "uq_team_members_team_user"
+      ],
+      [
+        "app",
+        "users",
+        "users_email_key"
+      ],
+      [
+        "core",
+        "documents",
+        "idx_docs_file_hash"
+      ],
+      [
+        "core",
+        "documents",
+        "idx_docs_trademark_id"
+      ],
+      [
+        "core",
+        "goods_services",
+        "idx_gs_trademark_id"
+      ],
+      [
+        "core",
+        "holders",
+        "idx_holders_name_trgm"
+      ],
+      [
+        "core",
+        "holders",
+        "idx_holders_source_id"
+      ],
+      [
+        "core",
+        "nice_classes",
+        "nice_classes_class_number_key"
+      ],
+      [
+        "core",
+        "representatives",
+        "idx_reps_name_trgm"
+      ],
+      [
+        "core",
+        "representatives",
+        "idx_reps_source_id"
+      ],
+      [
+        "core",
+        "source_runs",
+        "idx_runs_source_id"
+      ],
+      [
+        "core",
+        "source_runs",
+        "idx_runs_status"
+      ],
+      [
+        "core",
+        "sources",
+        "sources_name_key"
+      ],
+      [
+        "core",
+        "trademark_versions",
+        "idx_versions_trademark_id"
+      ],
+      [
+        "core",
+        "trademark_versions",
+        "uq_versions_trademark_version"
+      ],
+      [
+        "core",
+        "trademarks",
+        "idx_trademarks_jurisdiction"
+      ],
+      [
+        "core",
+        "trademarks",
+        "idx_trademarks_update_date"
+      ],
+      [
+        "core",
+        "trademarks",
+        "idx_trademarks_wordmark"
+      ],
+      [
+        "core",
+        "trademarks",
+        "trademarks_source_id_key"
+      ],
+      [
+        "events",
+        "lifecycle_events",
+        "idx_events_deadline_date"
+      ],
+      [
+        "events",
+        "lifecycle_events",
+        "idx_events_event_type"
+      ],
+      [
+        "events",
+        "lifecycle_events",
+        "idx_events_trademark_type"
+      ],
+      [
+        "events",
+        "lifecycle_events",
+        "idx_lifecycle_events_trademark"
+      ],
+      [
+        "raw",
+        "api_responses",
+        "idx_raw_source_created"
+      ],
+      [
+        "raw",
+        "api_responses_2026_07",
+        "api_responses_2026_07_source_id_created_at_idx"
+      ],
+      [
+        "raw",
+        "api_responses_2026_08",
+        "api_responses_2026_08_source_id_created_at_idx"
+      ]
+    ],
+    "schemas": [
+      "app",
+      "core",
+      "events",
+      "public",
+      "raw"
+    ],
+    "tables": [
+      [
+        "app",
+        "alert_deliveries"
+      ],
+      [
+        "app",
+        "alerts"
+      ],
+      [
+        "app",
+        "api_keys"
+      ],
+      [
+        "app",
+        "client_portfolios"
+      ],
+      [
+        "app",
+        "deadlines"
+      ],
+      [
+        "app",
+        "prospection_opportunities"
+      ],
+      [
+        "app",
+        "review_queue"
+      ],
+      [
+        "app",
+        "subscriptions"
+      ],
+      [
+        "app",
+        "team_members"
+      ],
+      [
+        "app",
+        "teams"
+      ],
+      [
+        "app",
+        "users"
+      ],
+      [
+        "app",
+        "watchlist_items"
+      ],
+      [
+        "app",
+        "watchlists"
+      ],
+      [
+        "core",
+        "documents"
+      ],
+      [
+        "core",
+        "goods_services"
+      ],
+      [
+        "core",
+        "holders"
+      ],
+      [
+        "core",
+        "nice_classes"
+      ],
+      [
+        "core",
+        "representatives"
+      ],
+      [
+        "core",
+        "source_runs"
+      ],
+      [
+        "core",
+        "sources"
+      ],
+      [
+        "core",
+        "trademark_holders"
+      ],
+      [
+        "core",
+        "trademark_representatives"
+      ],
+      [
+        "core",
+        "trademark_versions"
+      ],
+      [
+        "core",
+        "trademarks"
+      ],
+      [
+        "events",
+        "lifecycle_events"
+      ],
+      [
+        "public",
+        "alembic_version"
+      ],
+      [
+        "raw",
+        "api_responses"
+      ],
+      [
+        "raw",
+        "api_responses_2026_07"
+      ],
+      [
+        "raw",
+        "api_responses_2026_08"
+      ]
+    ],
+    "target": "127.0.0.1:5441/markee_wp3_disposable as markee_wp3"
+  },
+  "before": {
+    "alembic_version": null,
+    "extensions": [],
+    "fingerprint": "65ec25be2eed6c640a875ef3b1b96c89c5663512b656509dadb4102f61681660",
+    "indexes": [],
+    "schemas": [
+      "public"
+    ],
+    "tables": [],
+    "target": "127.0.0.1:5441/markee_wp3_disposable as markee_wp3"
+  },
+  "command_exits": {
+    "guard": 0,
+    "proof_first_upgrade": 0,
+    "proof_second_upgrade": 0,
+    "round_trip_downgrade": 0,
+    "round_trip_reupgrade": 0
+  },
+  "current_version": "002",
+  "fingerprint_first": "a18cbdf09946369f5dbb1215ab5990fcf2a61853b9b5f8935022433151bf9de7",
+  "fingerprint_second": "a18cbdf09946369f5dbb1215ab5990fcf2a61853b9b5f8935022433151bf9de7",
+  "graph": {
+    "cycle": false,
+    "heads": [
+      "002"
+    ],
+    "linear": true,
+    "multiple_heads": false,
+    "revisions": [
+      "001",
+      "002"
+    ]
+  },
+  "heads": [
+    "002"
+  ],
+  "limitations": [
+    "pgvector extension not available in postgres:15-alpine; migration 002 handles gracefully with RAISE NOTICE (canonical parity with real markee-db-1 which also lacks pgvector).",
+    "Fingerprint is structural (schemas+tables+indexes+extensions+alembic_version); does not include row counts or data, which is correct for empty-DB proof.",
+    "No final commit/push/merge/deploy performed; proof only."
+  ],
+  "object_counts": {
+    "extensions": [
+      {
+        "name": "pg_trgm",
+        "version": "1.6"
+      }
+    ],
+    "indexes": 32,
+    "schemas": 5,
+    "tables": 29
+  },
+  "partition_exists": true,
+  "partitions": {
+    "raw.api_responses_2026_07_exists": true
+  },
+  "round_trip": {
+    "after_downgrade_alembic_version": null,
+    "after_downgrade_fingerprint": "d79cc4ad9eecab1f84c689ed1cae05798d90f729905fc57413490cc5189d31b0",
+    "after_downgrade_schemas": [
+      "public"
+    ],
+    "after_downgrade_tables": 1,
+    "after_reupgrade_alembic_version": "002",
+    "after_reupgrade_fingerprint": "a18cbdf09946369f5dbb1215ab5990fcf2a61853b9b5f8935022433151bf9de7",
+    "after_reupgrade_schemas": [
+      "app",
+      "core",
+      "events",
+      "public",
+      "raw"
+    ],
+    "after_reupgrade_tables": 29,
+    "defect": null,
+    "downgrade_exit_ok": true,
+    "fingerprint_matches_first": true,
+    "fingerprint_matches_second": true,
+    "reupgrade_exit_ok": true
+  },
+  "session": "20260724_235236_ac431c",
+  "target_identity_sanitized": {
+    "container_name": "markee-wp3-disposable-db-1",
+    "database": "markee_wp3_disposable",
+    "host": "127.0.0.1",
+    "image": "postgres:15-alpine",
+    "label": "markee-project=wp3-disposable",
+    "network_name": "markee-wp3-disposable_net",
+    "port": 5441,
+    "user": "markee_wp3",
+    "volume_name": "markee-wp3-disposable_pgdata"
+  },
+  "verdict": "PASS"
+}

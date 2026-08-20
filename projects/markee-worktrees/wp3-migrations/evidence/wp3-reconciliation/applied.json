@@ -1,0 +1,78 @@
+{
+  "post_verify": {
+    "accepted": true,
+    "differences": 0,
+    "fingerprint": "54a37d0b5e74e456d4ce44ebe5b767e5b48fa7f9c26ca2327bb7e02d9fd3b086",
+    "index_count": 38,
+    "rows_nonzero": {
+      "public.alembic_version": 1
+    },
+    "structural_fingerprint": "32f6dafcc9d6289cbaa2da751fb9ad3e770e5c0d24350ea48fc11251ea01318a",
+    "table_count": 43,
+    "verdict": "adoptable_restored",
+    "version_rows": [
+      "002"
+    ]
+  },
+  "result": {
+    "contract_id": "markee-wp3-002-structure",
+    "contract_payload_sha256": "96fda452869da2d1d9107d1f2bc849c7363fb3b8b4f6381ebebc5721d84d7611",
+    "contract_version": 3,
+    "duration_s": 2.999,
+    "operations": [
+      "table:app.api_keys",
+      "partition:raw.api_responses_2026_07",
+      "partition:raw.api_responses_2026_08",
+      "index:app.alerts:user_id,is_dismissed,created_at",
+      "index:app.alerts:watchlist_id,similarity_score",
+      "index:app.deadlines:due_date,status",
+      "index:app.prospection_opportunities:opportunity_type,score",
+      "index:app.review_queue:status,created_at",
+      "index:core.holders:name:gin_trgm_ops",
+      "index:core.representatives:name:gin_trgm_ops",
+      "index:core.trademarks:word_mark:gin_trgm_ops",
+      "index:events.lifecycle_events:trademark_id,event_date",
+      "index:events.lifecycle_events:trademark_id,event_type",
+      "index:raw.api_responses:source_id,created_at_desc"
+    ],
+    "operations_count": 14,
+    "reason": "adopted_to_002",
+    "revision": "002",
+    "status": "adopted",
+    "structural_fingerprint_after": "32f6dafcc9d6289cbaa2da751fb9ad3e770e5c0d24350ea48fc11251ea01318a",
+    "structural_fingerprint_before": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d"
+  },
+  "txn_log_order": {
+    "advisory_before_first_ddl": true,
+    "alter_table_count": 100,
+    "alters_before_creates": true,
+    "analysis_ok": true,
+    "capture_ok": true,
+    "create_index_count": 11,
+    "create_table_count": 3,
+    "ddl_outside_window": 0,
+    "errors_for_pid": [],
+    "label": "apply",
+    "lock_table_count": 40,
+    "pid": "146",
+    "selects_between_stamp_and_commit": true,
+    "stamp_after_all_create_index": true,
+    "stamp_insert_count": 1,
+    "terminator": "COMMIT",
+    "trailing_after_terminator": [],
+    "verification_selects_between_last_ddl_and_stamp": true,
+    "window_counts": {
+      "ADVISORY_LOCK": 1,
+      "ALTER TABLE": 100,
+      "BEGIN": 1,
+      "COMMIT": 1,
+      "CREATE INDEX": 11,
+      "CREATE TABLE": 3,
+      "LOCK TABLE": 40,
+      "OTHER": 8,
+      "SELECT": 1051,
+      "STAMP_INSERT": 1
+    },
+    "window_statements": 1217
+  }
+}

@@ -1,0 +1,52 @@
+/* markee v2 — design tokens
+ * Mirror of tokens/tokens.json. Single source of truth: tokens.json.
+ * No invented aliases. No ambra. No gradient colors.
+ */
+
+:root {
+  /* color */
+  --color-ink: #08090A;
+  --color-charcoal: #111214;
+  --color-surface: #1A1C1F;
+  --color-text-primary: #E8E8E8;
+  --color-text-secondary: #8A8D93;
+  --color-accent: #35D0E0;
+  --color-accent-hover: #5EDCF0;
+  --color-accent-pressed: #25A8B8;
+  --color-danger: #E05252;
+  --color-success: #4ADE80;
+  /* warning: sem cor própria. Estado comunicado por ícone + texto sobre ink/charcoal/surface, com texto primário. Zero âmbar. */
+  --color-white: #FFFFFF;
+  --color-light-grey: #F5F5F5;
+
+  /* spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* shadow (apenas neutras) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  /* shadow-glow removido: sem glow ciano. */
+
+  /* logo */
+  --logo-clearspace: 1x x-height;
+  --logo-min-height: 24px;
+  --logo-min-height-lower-limit: 16px;
+  --logo-accent: #35D0E0;
+
+  /* typography (UI) */
+  --font-ui-sans: Inter, system-ui, sans-serif;
+  --font-ui-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-wordmark-source: "Sora Bold"; /* wordmark delivered as SVG paths; reference only */
+}

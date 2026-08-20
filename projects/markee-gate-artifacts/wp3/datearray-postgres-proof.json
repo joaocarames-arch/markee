@@ -1,0 +1,50 @@
+{
+  "overall_pass": true,
+  "postgres": {
+    "case_kinds": [
+      "list_of_date",
+      "empty_list",
+      "null"
+    ],
+    "catalog_physical_type": "date[]",
+    "compiled_ddl_type": "DATE[]",
+    "engine_disposed": true,
+    "inserted_case_count": 3,
+    "invalid_element_rejected": true,
+    "parameterized_insert": true,
+    "postgres_server_version": "16.14",
+    "returned_python_types_exact": true,
+    "roundtrip_exact": true,
+    "selected_case_count": 3,
+    "temporary_table_dropped": true,
+    "transaction_usable_after_rollback": true
+  },
+  "proof": "markee DateArray PostgreSQL 16 disposable live proof",
+  "real_stack_integrity": {
+    "after_sha256": "e1546870d6d3ec85f35976779de0221c90a924883bd3c7f67c76437476d36880",
+    "baseline_sha256": "e1546870d6d3ec85f35976779de0221c90a924883bd3c7f67c76437476d36880",
+    "unchanged": true
+  },
+  "sanitization": {
+    "contains_credentials": false,
+    "contains_row_values": false,
+    "secret_scan_passed": true
+  },
+  "source_types_py_sha256": "109ba8d461b1ee90fc54683754e97dfa1e4977bb21f9b5799c1e854b03d709f2",
+  "static_focused_test": {
+    "node": "tests/stg00/test_bpi_source_deny_deadlines.py::test_date_array_round_trips_dates_through_sqlite",
+    "passed": true
+  },
+  "target_guard": {
+    "database_role": "disposable-only",
+    "host": "127.0.0.1",
+    "port": 5442,
+    "production_accessed": false
+  },
+  "teardown": {
+    "container_count": 0,
+    "exact_cleanup_only": true,
+    "network_count": 0,
+    "volume_count": 0
+  }
+}

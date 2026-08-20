@@ -1,0 +1,944 @@
+{
+  "analysis": {
+    "classifier": {
+      "direct_api_report": {
+        "code_revisions": {
+          "child_map": {
+            "001": [
+              "002"
+            ],
+            "002": []
+          },
+          "cycle": false,
+          "heads": [
+            "002"
+          ],
+          "multiple_heads": false,
+          "revisions": [
+            {
+              "down_revision": null,
+              "revision": "001",
+              "source_path": "/home/batata/projects/markee-worktrees/wp3-migrations/alembic/versions/001_initial_migration.py"
+            },
+            {
+              "down_revision": "001",
+              "revision": "002",
+              "source_path": "/home/batata/projects/markee-worktrees/wp3-migrations/alembic/versions/002_data_infrastructure.py"
+            }
+          ],
+          "roots": [
+            "001"
+          ]
+        },
+        "code_vs_model": {
+          "head_revision": "002",
+          "model_count": 25
+        },
+        "live": {
+          "alembic_version": null,
+          "extensions": [
+            [
+              "pg_trgm",
+              "1.6"
+            ]
+          ],
+          "fingerprint": "fabc912f3add512b325b31c8a815ed7c8df9f93f19e9bf9a4583d09f2e60470f",
+          "indexes": [
+            [
+              "app",
+              "subscriptions",
+              "ix_app_subscriptions_stripe_customer_id"
+            ],
+            [
+              "app",
+              "team_members",
+              "uq_team_members_team_user"
+            ],
+            [
+              "app",
+              "users",
+              "ix_app_users_email"
+            ],
+            [
+              "core",
+              "documents",
+              "ix_core_documents_file_hash"
+            ],
+            [
+              "core",
+              "documents",
+              "ix_core_documents_trademark_id"
+            ],
+            [
+              "core",
+              "goods_services",
+              "ix_core_goods_services_trademark_id"
+            ],
+            [
+              "core",
+              "holders",
+              "ix_core_holders_name"
+            ],
+            [
+              "core",
+              "holders",
+              "ix_core_holders_source_id"
+            ],
+            [
+              "core",
+              "nice_classes",
+              "nice_classes_class_number_key"
+            ],
+            [
+              "core",
+              "representatives",
+              "ix_core_representatives_name"
+            ],
+            [
+              "core",
+              "representatives",
+              "ix_core_representatives_source_id"
+            ],
+            [
+              "core",
+              "source_runs",
+              "ix_core_source_runs_source_id"
+            ],
+            [
+              "core",
+              "source_runs",
+              "ix_core_source_runs_status"
+            ],
+            [
+              "core",
+              "sources",
+              "sources_name_key"
+            ],
+            [
+              "core",
+              "trademark_versions",
+              "ix_core_trademark_versions_trademark_id"
+            ],
+            [
+              "core",
+              "trademark_versions",
+              "uq_versions_trademark_version"
+            ],
+            [
+              "core",
+              "trademarks",
+              "ix_core_trademarks_application_number"
+            ],
+            [
+              "core",
+              "trademarks",
+              "ix_core_trademarks_jurisdiction"
+            ],
+            [
+              "core",
+              "trademarks",
+              "ix_core_trademarks_source_id"
+            ],
+            [
+              "core",
+              "trademarks",
+              "ix_core_trademarks_update_date"
+            ],
+            [
+              "events",
+              "lifecycle_events",
+              "ix_events_lifecycle_events_deadline_date"
+            ],
+            [
+              "events",
+              "lifecycle_events",
+              "ix_events_lifecycle_events_event_type"
+            ],
+            [
+              "events",
+              "lifecycle_events",
+              "ix_events_lifecycle_events_trademark_id"
+            ],
+            [
+              "public",
+              "alerts",
+              "idx_alerts_composite_score"
+            ],
+            [
+              "public",
+              "alerts",
+              "idx_alerts_user_unread"
+            ],
+            [
+              "public",
+              "api_keys",
+              "api_keys_key_hash_key"
+            ],
+            [
+              "public",
+              "deadlines",
+              "idx_deadlines_due_date"
+            ],
+            [
+              "public",
+              "lifecycle_events",
+              "idx_lifecycle_events_trademark"
+            ],
+            [
+              "public",
+              "prospection_opportunities",
+              "idx_prospection_score"
+            ],
+            [
+              "public",
+              "team_members",
+              "uq_team_members_team_user"
+            ],
+            [
+              "public",
+              "trademarks",
+              "idx_trademarks_jurisdiction"
+            ],
+            [
+              "public",
+              "trademarks",
+              "idx_trademarks_wordmark"
+            ],
+            [
+              "public",
+              "trademarks",
+              "trademarks_source_id_key"
+            ],
+            [
+              "public",
+              "users",
+              "users_email_key"
+            ],
+            [
+              "raw",
+              "api_responses",
+              "ix_raw_api_responses_source_id"
+            ]
+          ],
+          "schemas": [
+            "app",
+            "core",
+            "events",
+            "public",
+            "raw"
+          ],
+          "tables": [
+            [
+              "app",
+              "alert_deliveries"
+            ],
+            [
+              "app",
+              "alerts"
+            ],
+            [
+              "app",
+              "client_portfolios"
+            ],
+            [
+              "app",
+              "deadlines"
+            ],
+            [
+              "app",
+              "prospection_opportunities"
+            ],
+            [
+              "app",
+              "review_queue"
+            ],
+            [
+              "app",
+              "subscriptions"
+            ],
+            [
+              "app",
+              "team_members"
+            ],
+            [
+              "app",
+              "teams"
+            ],
+            [
+              "app",
+              "users"
+            ],
+            [
+              "app",
+              "watchlist_items"
+            ],
+            [
+              "app",
+              "watchlists"
+            ],
+            [
+              "core",
+              "documents"
+            ],
+            [
+              "core",
+              "goods_services"
+            ],
+            [
+              "core",
+              "holders"
+            ],
+            [
+              "core",
+              "nice_classes"
+            ],
+            [
+              "core",
+              "representatives"
+            ],
+            [
+              "core",
+              "source_runs"
+            ],
+            [
+              "core",
+              "sources"
+            ],
+            [
+              "core",
+              "trademark_holders"
+            ],
+            [
+              "core",
+              "trademark_representatives"
+            ],
+            [
+              "core",
+              "trademark_versions"
+            ],
+            [
+              "core",
+              "trademarks"
+            ],
+            [
+              "events",
+              "lifecycle_events"
+            ],
+            [
+              "public",
+              "alembic_version"
+            ],
+            [
+              "public",
+              "alert_deliveries"
+            ],
+            [
+              "public",
+              "alerts"
+            ],
+            [
+              "public",
+              "api_keys"
+            ],
+            [
+              "public",
+              "client_portfolios"
+            ],
+            [
+              "public",
+              "deadlines"
+            ],
+            [
+              "public",
+              "lifecycle_events"
+            ],
+            [
+              "public",
+              "prospection_opportunities"
+            ],
+            [
+              "public",
+              "subscriptions"
+            ],
+            [
+              "public",
+              "team_members"
+            ],
+            [
+              "public",
+              "teams"
+            ],
+            [
+              "public",
+              "trademarks"
+            ],
+            [
+              "public",
+              "users"
+            ],
+            [
+              "public",
+              "watchlist_items"
+            ],
+            [
+              "public",
+              "watchlists"
+            ],
+            [
+              "raw",
+              "api_responses"
+            ]
+          ],
+          "target": "127.0.0.1:5441/markee_wp3_disposable as markee_wp3"
+        },
+        "live_not_in_model": [
+          "public.alert_deliveries",
+          "public.alerts",
+          "public.api_keys",
+          "public.client_portfolios",
+          "public.deadlines",
+          "public.lifecycle_events",
+          "public.prospection_opportunities",
+          "public.subscriptions",
+          "public.team_members",
+          "public.teams",
+          "public.trademarks",
+          "public.users",
+          "public.watchlist_items",
+          "public.watchlists"
+        ],
+        "live_vs_code": {
+          "alembic_version": null,
+          "schema_count": 5,
+          "table_count": 40
+        },
+        "model_not_in_live": [],
+        "model_tables": [
+          {
+            "has_partition": false,
+            "name": "app.alert_deliveries",
+            "schema": "app",
+            "table": "alert_deliveries"
+          },
+          {
+            "has_partition": false,
+            "name": "app.alerts",
+            "schema": "app",
+            "table": "alerts"
+          },
+          {
+            "has_partition": false,
+            "name": "app.client_portfolios",
+            "schema": "app",
+            "table": "client_portfolios"
+          },
+          {
+            "has_partition": false,
+            "name": "app.deadlines",
+            "schema": "app",
+            "table": "deadlines"
+          },
+          {
+            "has_partition": false,
+            "name": "app.prospection_opportunities",
+            "schema": "app",
+            "table": "prospection_opportunities"
+          },
+          {
+            "has_partition": false,
+            "name": "app.review_queue",
+            "schema": "app",
+            "table": "review_queue"
+          },
+          {
+            "has_partition": false,
+            "name": "app.subscriptions",
+            "schema": "app",
+            "table": "subscriptions"
+          },
+          {
+            "has_partition": false,
+            "name": "app.team_members",
+            "schema": "app",
+            "table": "team_members"
+          },
+          {
+            "has_partition": false,
+            "name": "app.teams",
+            "schema": "app",
+            "table": "teams"
+          },
+          {
+            "has_partition": false,
+            "name": "app.users",
+            "schema": "app",
+            "table": "users"
+          },
+          {
+            "has_partition": false,
+            "name": "app.watchlist_items",
+            "schema": "app",
+            "table": "watchlist_items"
+          },
+          {
+            "has_partition": false,
+            "name": "app.watchlists",
+            "schema": "app",
+            "table": "watchlists"
+          },
+          {
+            "has_partition": false,
+            "name": "core.documents",
+            "schema": "core",
+            "table": "documents"
+          },
+          {
+            "has_partition": false,
+            "name": "core.goods_services",
+            "schema": "core",
+            "table": "goods_services"
+          },
+          {
+            "has_partition": false,
+            "name": "core.holders",
+            "schema": "core",
+            "table": "holders"
+          },
+          {
+            "has_partition": false,
+            "name": "core.nice_classes",
+            "schema": "core",
+            "table": "nice_classes"
+          },
+          {
+            "has_partition": false,
+            "name": "core.representatives",
+            "schema": "core",
+            "table": "representatives"
+          },
+          {
+            "has_partition": false,
+            "name": "core.source_runs",
+            "schema": "core",
+            "table": "source_runs"
+          },
+          {
+            "has_partition": false,
+            "name": "core.sources",
+            "schema": "core",
+            "table": "sources"
+          },
+          {
+            "has_partition": false,
+            "name": "core.trademark_holders",
+            "schema": "core",
+            "table": "trademark_holders"
+          },
+          {
+            "has_partition": false,
+            "name": "core.trademark_representatives",
+            "schema": "core",
+            "table": "trademark_representatives"
+          },
+          {
+            "has_partition": false,
+            "name": "core.trademark_versions",
+            "schema": "core",
+            "table": "trademark_versions"
+          },
+          {
+            "has_partition": false,
+            "name": "core.trademarks",
+            "schema": "core",
+            "table": "trademarks"
+          },
+          {
+            "has_partition": false,
+            "name": "events.lifecycle_events",
+            "schema": "events",
+            "table": "lifecycle_events"
+          },
+          {
+            "has_partition": true,
+            "name": "raw.api_responses",
+            "schema": "raw",
+            "table": "api_responses"
+          }
+        ]
+      },
+      "normalized": {
+        "category": null,
+        "collisions": {
+          "overlapping_expected_objects": [
+            "app.alert_deliveries",
+            "app.alerts",
+            "app.client_portfolios",
+            "app.deadlines",
+            "app.prospection_opportunities",
+            "app.review_queue",
+            "app.subscriptions",
+            "app.team_members",
+            "app.teams",
+            "app.users",
+            "app.watchlist_items",
+            "app.watchlists",
+            "core.documents",
+            "core.goods_services",
+            "core.holders",
+            "core.nice_classes",
+            "core.representatives",
+            "core.source_runs",
+            "core.sources",
+            "core.trademark_holders",
+            "core.trademark_representatives",
+            "core.trademark_versions",
+            "core.trademarks",
+            "events.lifecycle_events",
+            "raw.api_responses"
+          ],
+          "same_table_name_wrong_schema": [
+            {
+              "expected": "app.alert_deliveries",
+              "observed_wrong_schema": [
+                "public.alert_deliveries"
+              ]
+            },
+            {
+              "expected": "app.alerts",
+              "observed_wrong_schema": [
+                "public.alerts"
+              ]
+            },
+            {
+              "expected": "app.client_portfolios",
+              "observed_wrong_schema": [
+                "public.client_portfolios"
+              ]
+            },
+            {
+              "expected": "app.deadlines",
+              "observed_wrong_schema": [
+                "public.deadlines"
+              ]
+            },
+            {
+              "expected": "app.prospection_opportunities",
+              "observed_wrong_schema": [
+                "public.prospection_opportunities"
+              ]
+            },
+            {
+              "expected": "app.subscriptions",
+              "observed_wrong_schema": [
+                "public.subscriptions"
+              ]
+            },
+            {
+              "expected": "app.team_members",
+              "observed_wrong_schema": [
+                "public.team_members"
+              ]
+            },
+            {
+              "expected": "app.teams",
+              "observed_wrong_schema": [
+                "public.teams"
+              ]
+            },
+            {
+              "expected": "app.users",
+              "observed_wrong_schema": [
+                "public.users"
+              ]
+            },
+            {
+              "expected": "app.watchlist_items",
+              "observed_wrong_schema": [
+                "public.watchlist_items"
+              ]
+            },
+            {
+              "expected": "app.watchlists",
+              "observed_wrong_schema": [
+                "public.watchlists"
+              ]
+            },
+            {
+              "expected": "core.trademarks",
+              "observed_wrong_schema": [
+                "public.trademarks"
+              ]
+            },
+            {
+              "expected": "events.lifecycle_events",
+              "observed_wrong_schema": [
+                "public.lifecycle_events"
+              ]
+            }
+          ]
+        },
+        "excess": [
+          "public.alert_deliveries",
+          "public.alerts",
+          "public.api_keys",
+          "public.client_portfolios",
+          "public.deadlines",
+          "public.lifecycle_events",
+          "public.prospection_opportunities",
+          "public.subscriptions",
+          "public.team_members",
+          "public.teams",
+          "public.trademarks",
+          "public.users",
+          "public.watchlist_items",
+          "public.watchlists"
+        ],
+        "missing": []
+      },
+      "verdict": "unstamped_existing_schema_collision_risk"
+    },
+    "gate_j1": {
+      "blocker": "unstamped overlapping schema collides with upgrade head",
+      "gate": "NO-GO until reconciliation/adoption revision is implemented and re-tested",
+      "label": "reconciliation/adoption revision preserving existing objects/data",
+      "options": {
+        "A": "baseline/stamp + additive migration",
+        "B": "reconciliation/adoption revision preserving existing objects/data",
+        "C": "destructive reset; production-rejected without explicit approval"
+      },
+      "recommendation": "B"
+    },
+    "post_attempt": {
+      "alembic_version": null,
+      "catalog_unchanged_from_pre": true
+    },
+    "revisions": {
+      "head": "002",
+      "heads": [
+        "002"
+      ],
+      "ordered": [
+        "001",
+        "002"
+      ],
+      "restored_alembic_version": null
+    },
+    "synthetic_row": {
+      "decision": "skip",
+      "reason": "classifier metadata is sufficient; no preservation row test is necessary"
+    },
+    "upgrade": {
+      "attempted": true,
+      "decision": "run_once",
+      "error_class": "duplicate_table",
+      "exit_code": 1,
+      "result": "failure",
+      "sanitized_message": "upgrade failed; values and credentials withheld",
+      "sqlstate": "42P07",
+      "target": "head"
+    }
+  },
+  "body_status": "complete",
+  "disposable": {
+    "after_cleanup": "0/0/0",
+    "before": "0/0/0"
+  },
+  "git_dirty_baseline": {
+    "unchanged": true
+  },
+  "guards": [
+    {
+      "operation": "container_initialization",
+      "result": "PASS"
+    },
+    {
+      "operation": "restore",
+      "result": "PASS"
+    },
+    {
+      "operation": "alembic_upgrade_head",
+      "result": "PASS"
+    }
+  ],
+  "limitations": [
+    "A classifica\u00e7\u00e3o de cat\u00e1logo cont\u00e9m apenas metadata, nunca valores de linhas.",
+    "A linha sint\u00e9tica foi omitida salvo necessidade comprovada pelo classificador."
+  ],
+  "orchestration_exit_code": 0,
+  "provenance": {
+    "derivative": {
+      "deterministic": true,
+      "mode_after": "600",
+      "mode_before": "600",
+      "path": "/home/batata/projects/markee-gate-artifacts/wp3/full-schema-live-pg16.sql",
+      "sha256_after": "506f0f4d74607882a0cf33eb0ad8eaf60ad8320717ce42308aedb702d79f5679",
+      "sha256_before": "506f0f4d74607882a0cf33eb0ad8eaf60ad8320717ce42308aedb702d79f5679",
+      "size_bytes_after": 46344,
+      "size_bytes_before": 46344,
+      "transformation": {
+        "all_other_bytes_preserved": true,
+        "removed_bytes": 29,
+        "removed_exact_byte_sequence": "SET transaction_timeout = 0;\\n",
+        "removed_occurrences": 1,
+        "restrict_unrestrict_preserved": true
+      }
+    },
+    "original": {
+      "immutable": true,
+      "mode_after": "600",
+      "mode_before": "600",
+      "path": "/home/batata/projects/markee-gate-artifacts/wp3/full-schema-live.sql",
+      "sha256_after": "8e4eeeddb9284582cb69e9ad84665d3424fad36dd0d5b4af44fbfa1ba1a83788",
+      "sha256_before": "8e4eeeddb9284582cb69e9ad84665d3424fad36dd0d5b4af44fbfa1ba1a83788",
+      "size_bytes_after": 46373,
+      "size_bytes_before": 46373
+    }
+  },
+  "real_stack": {
+    "after": {
+      "containers": [
+        {
+          "health": "none",
+          "name": "markee-app-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "none",
+          "name": "markee-beat-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "healthy",
+          "name": "markee-db-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "healthy",
+          "name": "markee-redis-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "none",
+          "name": "markee-worker-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        }
+      ],
+      "networks": [
+        {
+          "driver": "bridge",
+          "name": "markee_default",
+          "scope": "local"
+        }
+      ],
+      "volumes": [
+        {
+          "driver": "local",
+          "name": "markee_pgdata"
+        },
+        {
+          "driver": "local",
+          "name": "markee_redisdata"
+        }
+      ]
+    },
+    "before": {
+      "containers": [
+        {
+          "health": "none",
+          "name": "markee-app-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "none",
+          "name": "markee-beat-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "healthy",
+          "name": "markee-db-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "healthy",
+          "name": "markee-redis-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        },
+        {
+          "health": "none",
+          "name": "markee-worker-1",
+          "networks": [
+            "markee_default"
+          ],
+          "state": "running"
+        }
+      ],
+      "networks": [
+        {
+          "driver": "bridge",
+          "name": "markee_default",
+          "scope": "local"
+        }
+      ],
+      "volumes": [
+        {
+          "driver": "local",
+          "name": "markee_pgdata"
+        },
+        {
+          "driver": "local",
+          "name": "markee_redisdata"
+        }
+      ]
+    },
+    "healthy": true,
+    "unchanged": true
+  },
+  "restore": {
+    "attempted": true,
+    "client": "psql 18",
+    "exactly_once": true,
+    "exit_code": 0,
+    "succeeded": true,
+    "target_server": "PostgreSQL 16"
+  },
+  "status": "PASS",
+  "target": {
+    "container": "markee-wp3-disposable-db-1",
+    "database": "markee_wp3_disposable",
+    "host": "127.0.0.1",
+    "loopback_only": true,
+    "network": "markee-wp3-disposable_net",
+    "port": 5441,
+    "postgres_image": "postgres:16-alpine",
+    "psql": "/usr/lib/postgresql/18/bin/psql",
+    "user": "markee_wp3",
+    "volume": "markee-wp3-disposable_pgdata"
+  }
+}

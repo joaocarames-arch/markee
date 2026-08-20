@@ -1,0 +1,28 @@
+{
+  "timestamp_utc": "2026-07-24T23:33:06Z",
+  "actor": "Max",
+  "scope": "wp3-mechanical-cleanup",
+  "removed": {
+    "container_exact": "wp3-clone-anonymous-removed-prior",
+    "volume_exact": "bccfef36ff2936bf7235c47da37f0fc7dbeea270ac631113fcf7756023e5fce5"
+  },
+  "preserved_real_names": {
+    "containers_expected": ["markee-db-1", "markee-app-1", "markee-worker-1", "markee-beat-1", "markee-redis-1"],
+    "volumes_expected": ["markee_pgdata", "markee_redisdata"],
+    "networks_expected": ["markee_default"]
+  },
+  "current_counts": {
+    "containers_running": 5,
+    "volumes_markee": 2,
+    "networks_markee": 1,
+    "wp3_orphan_containers": 0,
+    "wp3_orphan_volumes": 0,
+    "wp3_orphan_networks": 0
+  },
+  "residual": {
+    "containers": [],
+    "volumes": [],
+    "networks": []
+  },
+  "cleanup_pass": true
+}

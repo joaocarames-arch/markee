@@ -1,0 +1,46 @@
+{
+  "fingerprint_unchanged": true,
+  "relfilenodes_unchanged": true,
+  "result": {
+    "contract_id": "markee-wp3-002-structure",
+    "contract_payload_sha256": "96fda452869da2d1d9107d1f2bc849c7363fb3b8b4f6381ebebc5721d84d7611",
+    "contract_version": 3,
+    "duration_s": 1.284,
+    "operations": [],
+    "operations_count": 0,
+    "reason": "already_002_noop",
+    "revision": "002",
+    "status": "already_adopted",
+    "structural_fingerprint_after": "32f6dafcc9d6289cbaa2da751fb9ad3e770e5c0d24350ea48fc11251ea01318a",
+    "structural_fingerprint_before": "32f6dafcc9d6289cbaa2da751fb9ad3e770e5c0d24350ea48fc11251ea01318a"
+  },
+  "txn_log_order": {
+    "advisory_before_first_ddl": true,
+    "alter_table_count": 0,
+    "alters_before_creates": true,
+    "analysis_ok": true,
+    "capture_ok": true,
+    "create_index_count": 0,
+    "create_table_count": 0,
+    "ddl_outside_window": 0,
+    "errors_for_pid": [],
+    "label": "idempotent",
+    "lock_table_count": 43,
+    "pid": "393",
+    "selects_between_stamp_and_commit": false,
+    "stamp_after_all_create_index": false,
+    "stamp_insert_count": 0,
+    "terminator": "COMMIT",
+    "trailing_after_terminator": [],
+    "verification_selects_between_last_ddl_and_stamp": false,
+    "window_counts": {
+      "ADVISORY_LOCK": 1,
+      "BEGIN": 1,
+      "COMMIT": 1,
+      "LOCK TABLE": 43,
+      "OTHER": 4,
+      "SELECT": 544
+    },
+    "window_statements": 594
+  }
+}

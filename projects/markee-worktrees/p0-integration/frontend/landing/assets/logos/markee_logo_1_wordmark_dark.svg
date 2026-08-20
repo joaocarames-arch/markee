@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120">
+  <rect width="400" height="120" fill="#08090a" rx="8"/>
+  <text x="200" y="78" font-family="'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="72" font-weight="600" fill="#ffffff" text-anchor="middle" letter-spacing="-1.5">markee</text>
+  <circle cx="252" cy="38" r="7" fill="#35d0e0"/>
+</svg>

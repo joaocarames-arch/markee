@@ -1,0 +1,47 @@
+ordered match: True
+first 3 expected keys: ['app.alert_deliveries.created_at.default', 'app.alert_deliveries.id.default', 'app.alerts.created_at.default']
+first 3 op keys: ['app.alert_deliveries.created_at.default', 'app.alert_deliveries.id.default', 'app.alerts.created_at.default']
+dry_run_ops == 100: True
+dry_run_skip == 0: True
+dry_run_blocked == 0: True
+
+--- patched_class.differences (the exact14 left after metadata reconciliation) ---
+count: 0
+
+--- summary ---
+{
+  "structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+  "fingerprint": "77964fe8423bee35b890f33a3568b6f6e541dfb9d6a08bfe5548f2e093c021c0",
+  "tables_observed": 40,
+  "extensions_observed": [
+    "pg_trgm"
+  ],
+  "alembic_version": "unmarked",
+  "diff_total": 100,
+  "diff_by_code": {
+    "column_default_mismatch": 67,
+    "column_nullability_mismatch": 33,
+    "check_mismatch": 0,
+    "index_unexpected": 0,
+    "unique_mismatch": 0
+  },
+  "classification_verdict": "unknown",
+  "classification_accepted": false,
+  "classification_reasons": [
+    "column_default_mismatch",
+    "column_nullability_mismatch"
+  ],
+  "metadata_catalogue_total": 100,
+  "metadata_catalogue_set_default": 67,
+  "metadata_catalogue_drop_not_null": 33,
+  "dry_run_ops": 100,
+  "dry_run_skip": 0,
+  "dry_run_blocked": 0,
+  "dry_run_ops_ordered_match_catalogue": true,
+  "additive_keys_after_metadata_patched": [],
+  "additive_keys_count_after_metadata_patched": 0,
+  "contract_version": 3,
+  "contract_payload_sha256_declared": "96fda452869da2d1d9107d1f2bc849c7363fb3b8b4f6381ebebc5721d84d7611",
+  "contract_payload_sha256_recomputed": "96fda452869da2d1d9107d1f2bc849c7363fb3b8b4f6381ebebc5721d84d7611",
+  "contract_payload_sha256_match": true
+}

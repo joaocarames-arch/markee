@@ -1,0 +1,55 @@
+{
+  "actor": "Max",
+  "cleanup_pass": true,
+  "current_counts": {
+    "markee_containers_running": 5,
+    "markee_networks": 1,
+    "markee_volumes": 2,
+    "wp3_orphan_containers": 0,
+    "wp3_orphan_networks": 0,
+    "wp3_orphan_volumes": 0
+  },
+  "historical_cleanup_path": "/home/batata/projects/markee-gate-artifacts/wp3/docker-cleanup.json",
+  "historical_cleanup_preserved": true,
+  "historical_cleanup_untouched": true,
+  "preserved_real_names": {
+    "containers_expected": [
+      "markee-app-1",
+      "markee-worker-1",
+      "markee-beat-1",
+      "markee-db-1",
+      "markee-redis-1"
+    ],
+    "networks_expected": [
+      "markee_default"
+    ],
+    "volumes_expected": [
+      "markee_pgdata",
+      "markee_redisdata"
+    ]
+  },
+  "real_stack_post_teardown_status": {
+    "markee-app-1": "Up 14 hours",
+    "markee-beat-1": "Up 14 hours",
+    "markee-db-1": "Up 14 hours (healthy)",
+    "markee-redis-1": "Up 14 hours (healthy)",
+    "markee-worker-1": "Up 14 hours"
+  },
+  "removed": {
+    "container_id": "ce58c817ad71db8c1e0a35dfad71a2511d1f45abe891c5e2e9b3c41f539f1e8e",
+    "container_name": "markee-wp3-disposable-db-1",
+    "host_port_forward": "127.0.0.1:5441->5432",
+    "image": "postgres:15-alpine",
+    "label": "markee-project=wp3-disposable",
+    "network_name": "markee-wp3-disposable_net",
+    "volume_name": "markee-wp3-disposable_pgdata"
+  },
+  "residual": {
+    "containers": [],
+    "networks": [],
+    "volumes": []
+  },
+  "scope": "wp3-primary-empty-db-proof-cleanup",
+  "session": "20260724_235236_ac431c",
+  "timestamp_utc": "2026-07-24T23:56:05Z"
+}

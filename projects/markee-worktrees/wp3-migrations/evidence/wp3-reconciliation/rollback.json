@@ -1,0 +1,122 @@
+{
+  "adopt_failure": {
+    "message": "static reconciliation operation failed",
+    "reason": "reconciliation_failed",
+    "type": "AdoptionError"
+  },
+  "fault_injection": {
+    "behaviour": "RAISE EXCEPTION 'WP3_DETERMINISTIC_FAULT'",
+    "event_trigger": "wp3_fault ON ddl_command_start TAG IN (CREATE INDEX)",
+    "expected_fail_point": "reconciliation op 4/14 (first CREATE INDEX), after 100 metadata ALTERs + 3 CREATE TABLEs in-txn"
+  },
+  "fault_removed": true,
+  "post_inventory": {
+    "alembic_version": null,
+    "extensions": [
+      [
+        "pg_trgm",
+        "1.6"
+      ]
+    ],
+    "fingerprint": "77964fe8423bee35b890f33a3568b6f6e541dfb9d6a08bfe5548f2e093c021c0",
+    "index_count": 27,
+    "rows_nonzero": {},
+    "rows_total": 0,
+    "schemas": [
+      "app",
+      "core",
+      "events",
+      "public",
+      "raw"
+    ],
+    "server_version": "PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+    "server_version_num": "160014",
+    "structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+    "table_count": 40,
+    "tag": "rollback-post",
+    "version_rows": [],
+    "version_table_exists": true
+  },
+  "pre_inventory": {
+    "alembic_version": null,
+    "extensions": [
+      [
+        "pg_trgm",
+        "1.6"
+      ]
+    ],
+    "fingerprint": "77964fe8423bee35b890f33a3568b6f6e541dfb9d6a08bfe5548f2e093c021c0",
+    "index_count": 27,
+    "rows_nonzero": {},
+    "rows_total": 0,
+    "schemas": [
+      "app",
+      "core",
+      "events",
+      "public",
+      "raw"
+    ],
+    "server_version": "PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+    "server_version_num": "160014",
+    "structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+    "table_count": 40,
+    "tag": "rollback-pre",
+    "version_rows": [],
+    "version_table_exists": true
+  },
+  "proof": {
+    "catalog_fingerprint_matches_original": true,
+    "no_stamp": true,
+    "observed_structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+    "original_structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+    "rows_total": 0,
+    "structural_fingerprint_matches_original": true,
+    "table_count_matches": true
+  },
+  "restore": {
+    "exit_code": 0,
+    "on_error_stop": true,
+    "single_transaction": true,
+    "stderr_lines": 0,
+    "stderr_sample": []
+  },
+  "txn_log_order": {
+    "advisory_before_first_ddl": true,
+    "alter_table_count": 100,
+    "alters_before_creates": true,
+    "analysis_ok": true,
+    "capture_ok": true,
+    "create_index_count": 1,
+    "create_table_count": 3,
+    "ddl_outside_window": 0,
+    "errors_for_pid": [
+      "WP3_DETERMINISTIC_FAULT"
+    ],
+    "label": "midplan-failure",
+    "lock_table_count": 40,
+    "pid": "131",
+    "selects_between_stamp_and_commit": false,
+    "stamp_after_all_create_index": false,
+    "stamp_insert_count": 0,
+    "terminator": "ROLLBACK",
+    "trailing_after_terminator": [],
+    "verification_selects_between_last_ddl_and_stamp": false,
+    "window_counts": {
+      "ADVISORY_LOCK": 1,
+      "ALTER TABLE": 100,
+      "BEGIN": 1,
+      "CREATE INDEX": 1,
+      "CREATE TABLE": 3,
+      "LOCK TABLE": 40,
+      "OTHER": 4,
+      "ROLLBACK": 1,
+      "SELECT": 508
+    },
+    "window_statements": 659
+  },
+  "up": {
+    "exit_code": 0,
+    "stderr_tail": [],
+    "stdout": "state=up healthy=true empty=true image=postgres:16-alpine"
+  }
+}

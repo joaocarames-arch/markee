@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>markee — Vigilância cinematográfica de marcas · INPI &amp; EUIPO</title>
+    <meta
+      name="description"
+      content="O markee observa os registos de marcas de Portugal e da Europa em permanência. Alertas de similaridade, gestão de prazos e prospeção de clientes para profissionais de PI."
+    />
+    <meta name="theme-color" content="#050505" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/static/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS (CDN, no build step) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      /* Tailwind theme extension — mirrors BRAND_MANUAL.md design tokens. */
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              accent: '#35d0e0',
+              'accent-hover': '#5edcf0',
+              'accent-pressed': '#25a8b8',
+              abyss: '#050505',
+              ink: '#08090a',
+              charcoal: '#111214',
+              surface: '#1a1c1f',
+              'txt-primary': '#e8e8e8',
+              'txt-secondary': '#8a8d93',
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Motion libraries -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script defer src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+    <!-- Three.js via import map (bare specifier for the module script) -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+        }
+      }
+    </script>
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+
+  <body class="bg-abyss text-txt-primary font-sans antialiased">
+    <!-- Cinematic intro veil (fades out once everything is ready) -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <img
+        class="preloader__wordmark"
+        src="/static/assets/brand-v2/logos/markee-wordmark-dark.svg"
+        alt=""
+        width="296"
+        height="48"
+      />
+      <span class="preloader__meta font-mono">A PREPARAR A VIGÍLIA</span>
+    </div>
+
+    <!-- Film grain overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- Custom cursor (desktop only) -->
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#main">Saltar para o conteúdo</a>
+
+    <!-- ========================== NAVIGATION ========================== -->
+    <header class="site-nav" id="siteNav">
+      <div class="site-nav__inner glass-pill">
+        <a class="site-nav__brand magnetic" href="/" aria-label="markee — página inicial">
+          <img
+            src="/static/assets/brand-v2/logos/markee-wordmark-dark.svg"
+            alt="markee"
+            class="site-nav__logo"
+            width="132"
+            height="32"
+          />
+        </a>
+
+        <nav class="site-nav__links" aria-label="Navegação principal">
+          <a class="site-nav__link magnetic" href="#funcionalidades">Funcionalidades</a>
+          <a class="site-nav__link magnetic" href="#motor">O Motor</a>
+          <a class="site-nav__link magnetic" href="#precos">Preços</a>
+        </nav>
+
+        <div class="site-nav__actions">
+          <a class="btn btn--primary btn--sm magnetic" href="/app">Entrar</a>
+          <button
+            class="site-nav__toggle"
+            id="navToggle"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="site-nav__mobile glass-card" id="mobileMenu" hidden>
+        <a class="site-nav__mobile-link" href="#funcionalidades">Funcionalidades</a>
+        <a class="site-nav__mobile-link" href="#motor">O Motor</a>
+        <a class="site-nav__mobile-link" href="#precos">Preços</a>
+        <a class="btn btn--primary site-nav__mobile-cta" href="/app">Entrar</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============================ HERO ============================ -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <!-- WebGL particle field (desktop) / gradient fallback (mobile) -->
+        <canvas class="hero__canvas" id="webglCanvas" aria-hidden="true"></canvas>
+        <div class="hero__fallback" aria-hidden="true"></div>
+        <div class="hero__vignette" aria-hidden="true"></div>
+
+        <div class="hero__content">
+          <p class="micro-label font-mono" data-hero-fade>
+            INPI · EUIPO — MONITORIZAÇÃO CONTÍNUA DE MARCAS
+          </p>
+
+          <h1 class="hero__title" id="hero-title" data-split-lines>
+            <span class="hero__line">A sua marca,</span>
+            <span class="hero__line">sob vigilância</span>
+            <span class="hero__line"><em class="hero__title-accent">absoluta.</em></span>
+          </h1>
+
+          <p class="hero__subtitle" data-hero-fade>
+            O markee observa os registos de Portugal e da Europa em permanência —
+            deteta conflitos, antecipa prazos e transforma vigilância em vantagem.
+          </p>
+
+          <div class="hero__ctas" data-hero-fade>
+            <a class="btn btn--primary btn--lg magnetic" href="/app">Começar gratuitamente</a>
+            <a class="btn btn--ghost btn--lg magnetic" href="#funcionalidades">Explorar funcionalidades</a>
+          </div>
+        </div>
+
+        <div class="hero__meta font-mono" aria-hidden="true" data-hero-fade>
+          <span class="hero__meta-item">38.7223° N, 9.1393° W — LISBOA</span>
+          <span class="hero__scroll-hint">
+            <span class="hero__scroll-line"></span>
+            DESLIZE
+          </span>
+          <span class="hero__meta-item">EST. 2026 — SEMPRE ATENTO</span>
+        </div>
+      </section>
+
+      <!-- ========================= TICKER STRIP ========================= -->
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track font-mono">
+          <span>INPI — PORTUGAL</span><i>◆</i>
+          <span>EUIPO — UNIÃO EUROPEIA</span><i>◆</i>
+          <span>BOLETIM DA PROPRIEDADE INDUSTRIAL</span><i>◆</i>
+          <span>45 CLASSES DE NICE</span><i>◆</i>
+          <span>ANÁLISE FONÉTICA PT</span><i>◆</i>
+          <span>ALERTAS EM TEMPO ÚTIL</span><i>◆</i>
+          <!-- Duplicate run for a seamless CSS loop -->
+          <span>INPI — PORTUGAL</span><i>◆</i>
+          <span>EUIPO — UNIÃO EUROPEIA</span><i>◆</i>
+          <span>BOLETIM DA PROPRIEDADE INDUSTRIAL</span><i>◆</i>
+          <span>45 CLASSES DE NICE</span><i>◆</i>
+          <span>ANÁLISE FONÉTICA PT</span><i>◆</i>
+          <span>ALERTAS EM TEMPO ÚTIL</span><i>◆</i>
+        </div>
+      </div>
+
+      <!-- ========================== MANIFESTO ========================== -->
+      <section class="manifesto" aria-label="Manifesto">
+        <p class="micro-label font-mono reveal">O NOSSO PONTO DE PARTIDA</p>
+        <h2 class="manifesto__text" data-split-words>
+          Uma marca é mais do que um nome. É território. E território defende-se —
+          com atenção permanente, não com sorte.
+        </h2>
+      </section>
+
+      <!-- ================= FEATURE SHOWCASE (horizontal) ================= -->
+      <section class="features" id="funcionalidades" aria-labelledby="features-title">
+        <div class="features__intro">
+          <p class="micro-label font-mono reveal">FUNCIONALIDADES</p>
+          <h2 class="section-title reveal" id="features-title">
+            Cinco instrumentos.<br />Uma única vigília.
+          </h2>
+        </div>
+
+        <div class="features__viewport" id="featuresViewport">
+          <div class="features__track" id="featuresTrack">
+            <!-- 01 -->
+            <article class="feature-panel">
+              <span class="feature-panel__index font-mono">01</span>
+              <div class="feature-panel__body">
+                <h3 class="feature-panel__title">Alertas de similaridade</h3>
+                <p class="feature-panel__desc">
+                  Cada novo pedido publicado é comparado com as suas marcas através de
+                  três lentes: semelhança textual, fonética afinada para português e
+                  sobreposição de classes de Nice.
+                </p>
+                <p class="feature-panel__meta font-mono">50% TEXTUAL · 30% FONÉTICA · 20% CLASSES</p>
+              </div>
+              <div class="feature-panel__visual" aria-hidden="true">
+                <div class="orbit-rings"><i></i><i></i><i></i><b></b></div>
+              </div>
+            </article>
+
+            <!-- 02 -->
+            <article class="feature-panel">
+              <span class="feature-panel__index font-mono">02</span>
+              <div class="feature-panel__body">
+                <h3 class="feature-panel__title">Ciclo de vida e prazos</h3>
+                <p class="feature-panel__desc">
+                  Renovações, períodos de oposição e períodos de graça calculados
+                  automaticamente. Cada data crítica aparece no seu radar muito antes
+                  de se tornar urgente.
+                </p>
+                <p class="feature-panel__meta font-mono">RENOVAÇÃO · OPOSIÇÃO · PERÍODO DE GRAÇA</p>
+              </div>
+              <div class="feature-panel__visual" aria-hidden="true">
+                <div class="timeline-glyph"><i></i><i></i><i></i><i></i></div>
+              </div>
+            </article>
+
+            <!-- 03 -->
+            <article class="feature-panel">
+              <span class="feature-panel__index font-mono">03</span>
+              <div class="feature-panel__body">
+                <h3 class="feature-panel__title">Leitura do Boletim BPI</h3>
+                <p class="feature-panel__desc">
+                  O Boletim da Propriedade Industrial é lido na íntegra todos os dias.
+                  Novos pedidos, despachos e publicações do INPI chegam-lhe já
+                  estruturados e pesquisáveis.
+                </p>
+                <p class="feature-panel__meta font-mono">LEITURA DIÁRIA · DADOS ESTRUTURADOS</p>
+              </div>
+              <div class="feature-panel__visual" aria-hidden="true">
+                <div class="scanlines-glyph"><i></i><i></i><i></i><i></i><i></i></div>
+              </div>
+            </article>
+
+            <!-- 04 -->
+            <article class="feature-panel">
+              <span class="feature-panel__index font-mono">04</span>
+              <div class="feature-panel__body">
+                <h3 class="feature-panel__title">Prospeção de clientes</h3>
+                <p class="feature-panel__desc">
+                  Para profissionais de PI: identifique empresas com atividade recente
+                  de marcas que ainda não têm representação — e chegue primeiro.
+                </p>
+                <p class="feature-panel__meta font-mono">OPORTUNIDADES · MULTI-CLIENTE</p>
+              </div>
+              <div class="feature-panel__visual" aria-hidden="true">
+                <div class="crosshair-glyph"><i></i><i></i><b></b></div>
+              </div>
+            </article>
+
+            <!-- 05 -->
+            <article class="feature-panel">
+              <span class="feature-panel__index font-mono">05</span>
+              <div class="feature-panel__body">
+                <h3 class="feature-panel__title">Alertas multi-canal</h3>
+                <p class="feature-panel__desc">
+                  Email cuidado ou mensagem instantânea no Telegram — cada alerta chega
+                  pelo canal que escolher, com o contexto necessário para agir de imediato.
+                </p>
+                <p class="feature-panel__meta font-mono">EMAIL · TELEGRAM</p>
+              </div>
+              <div class="feature-panel__visual" aria-hidden="true">
+                <div class="pulse-glyph"><i></i><i></i><i></i></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="features__progress" aria-hidden="true">
+          <div class="features__progress-bar" id="featuresProgress"></div>
+        </div>
+      </section>
+
+      <!-- =========================== STATS ============================ -->
+      <section class="stats" aria-label="Números do markee">
+        <div class="stats__grid">
+          <div class="stat reveal">
+            <span class="stat__value font-mono" data-count="2">0</span>
+            <span class="stat__label">registos oficiais<br />INPI · EUIPO</span>
+          </div>
+          <div class="stat reveal">
+            <span class="stat__value font-mono" data-count="45">0</span>
+            <span class="stat__label">classes de Nice<br />cobertas</span>
+          </div>
+          <div class="stat reveal">
+            <span class="stat__value font-mono">24/7</span>
+            <span class="stat__label">vigilância<br />contínua</span>
+          </div>
+          <div class="stat reveal">
+            <span class="stat__value font-mono">&le;24h</span>
+            <span class="stat__label">da publicação<br />ao alerta</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== INTERACTIVE SHOWCASE ==================== -->
+      <section class="engine" id="motor" aria-labelledby="engine-title">
+        <p class="micro-label font-mono reveal">O MOTOR EM AÇÃO</p>
+        <h2 class="section-title reveal" id="engine-title">
+          Veja como o markee<br />pensa uma colisão.
+        </h2>
+
+        <div class="engine__layout">
+          <!-- Accordion controls -->
+          <div class="engine__accordion" role="tablist" aria-label="Demonstração do motor" aria-orientation="vertical">
+            <button
+              class="engine__item is-active"
+              id="engineTab0"
+              role="tab"
+              aria-selected="true"
+              aria-controls="enginePanel0"
+              data-engine-tab="0"
+            >
+              <span class="engine__item-index font-mono">A</span>
+              <span class="engine__item-body">
+                <span class="engine__item-title">Deteção de similaridade</span>
+                <span class="engine__item-desc">
+                  Um pedido novo é decomposto e pontuado contra a sua watchlist em
+                  três dimensões independentes.
+                </span>
+              </span>
+            </button>
+
+            <button
+              class="engine__item"
+              id="engineTab1"
+              role="tab"
+              aria-selected="false"
+              aria-controls="enginePanel1"
+              data-engine-tab="1"
+              tabindex="-1"
+            >
+              <span class="engine__item-index font-mono">B</span>
+              <span class="engine__item-body">
+                <span class="engine__item-title">Prazos sob controlo</span>
+                <span class="engine__item-desc">
+                  Cada marca ganha uma linha temporal viva: renovações, oposições e
+                  períodos de graça, sempre à vista.
+                </span>
+              </span>
+            </button>
+
+            <button
+              class="engine__item"
+              id="engineTab2"
+              role="tab"
+              aria-selected="false"
+              aria-controls="enginePanel2"
+              data-engine-tab="2"
+              tabindex="-1"
+            >
+              <span class="engine__item-index font-mono">C</span>
+              <span class="engine__item-body">
+                <span class="engine__item-title">Alerta entregue</span>
+                <span class="engine__item-desc">
+                  O resultado chega onde estiver — caixa de correio ou Telegram — com
+                  tudo o que precisa para decidir.
+                </span>
+              </span>
+            </button>
+          </div>
+
+          <!-- Visual stage -->
+          <div class="engine__stage glass-card tilt-card">
+            <!-- Panel A: similarity readout -->
+            <div class="engine__panel is-active" id="enginePanel0" role="tabpanel" aria-labelledby="engineTab0">
+              <p class="micro-label font-mono">RELATÓRIO DE SIMILARIDADE</p>
+              <div class="sim-versus">
+                <span class="sim-versus__mark">NOVALUZ</span>
+                <span class="sim-versus__vs font-mono">vs</span>
+                <span class="sim-versus__mark sim-versus__mark--intruder">NOVA LUZZ</span>
+              </div>
+              <div class="sim-meters">
+                <div class="sim-meter" data-meter="92">
+                  <span class="sim-meter__label">Textual</span>
+                  <span class="sim-meter__track"><span class="sim-meter__fill"></span></span>
+                  <span class="sim-meter__value font-mono">92%</span>
+                </div>
+                <div class="sim-meter" data-meter="88">
+                  <span class="sim-meter__label">Fonética</span>
+                  <span class="sim-meter__track"><span class="sim-meter__fill"></span></span>
+                  <span class="sim-meter__value font-mono">88%</span>
+                </div>
+                <div class="sim-meter" data-meter="66">
+                  <span class="sim-meter__label">Classes</span>
+                  <span class="sim-meter__track"><span class="sim-meter__fill"></span></span>
+                  <span class="sim-meter__value font-mono">66%</span>
+                </div>
+              </div>
+              <div class="sim-verdict">
+                <span class="sim-verdict__score font-mono">87%</span>
+                <span class="sim-verdict__text">
+                  Similaridade global — risco elevado de confusão.
+                  Recomenda-se análise de oposição.
+                </span>
+              </div>
+            </div>
+
+            <!-- Panel B: lifecycle timeline -->
+            <div class="engine__panel" id="enginePanel1" role="tabpanel" aria-labelledby="engineTab1" hidden>
+              <p class="micro-label font-mono">LINHA TEMPORAL — NOVALUZ</p>
+              <ul class="lifecycle">
+                <li class="lifecycle__item lifecycle__item--ok">
+                  <span class="lifecycle__dot"></span>
+                  <span class="lifecycle__date font-mono">2026-03-14</span>
+                  <span class="lifecycle__event">Registo concedido — EUIPO</span>
+                </li>
+                <li class="lifecycle__item lifecycle__item--warn">
+                  <span class="lifecycle__dot"></span>
+                  <span class="lifecycle__date font-mono">2026-11-02</span>
+                  <span class="lifecycle__event">Prazo de oposição a pedido conflituante — faltam 101 dias</span>
+                </li>
+                <li class="lifecycle__item">
+                  <span class="lifecycle__dot"></span>
+                  <span class="lifecycle__date font-mono">2031-03-14</span>
+                  <span class="lifecycle__event">Renovação decenal — lembretes automáticos a 180, 90 e 30 dias</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Panel C: delivered alerts -->
+            <div class="engine__panel" id="enginePanel2" role="tabpanel" aria-labelledby="engineTab2" hidden>
+              <p class="micro-label font-mono">NOTIFICAÇÕES ENVIADAS</p>
+              <div class="alert-mock alert-mock--email">
+                <span class="alert-mock__channel font-mono">EMAIL</span>
+                <p class="alert-mock__title">
+                  Detetámos um novo pedido com 87% de similaridade à sua marca «NOVALUZ».
+                </p>
+                <p class="alert-mock__meta font-mono">EUIPO · CLASSES 9, 42 · HÁ 12 MIN</p>
+              </div>
+              <div class="alert-mock alert-mock--telegram">
+                <span class="alert-mock__channel font-mono">TELEGRAM</span>
+                <p class="alert-mock__title">
+                  NOVA LUZZ — pedido 019284756 publicado. Prazo de oposição termina a 2026-11-02.
+                </p>
+                <p class="alert-mock__meta font-mono">ENTREGUE · HÁ 12 MIN</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================== PRICING =========================== -->
+      <section class="pricing" id="precos" aria-labelledby="pricing-title">
+        <p class="micro-label font-mono reveal">PREÇOS</p>
+        <h2 class="section-title reveal" id="pricing-title">
+          Escolha a intensidade<br />da sua vigilância.
+        </h2>
+        <p class="pricing__note reveal">Sem contratos de permanência. Mude de plano quando quiser.</p>
+
+        <div class="pricing__grid">
+          <!-- Free -->
+          <article class="price-card glass-card tilt-card reveal">
+            <h3 class="price-card__tier">Free</h3>
+            <p class="price-card__amount"><span class="font-mono">€0</span><small>/mês</small></p>
+            <ul class="price-card__features">
+              <li>1 marca monitorizada</li>
+              <li>Cobertura EUIPO + INPI</li>
+              <li>Alertas de renovação</li>
+              <li>Notificações por email</li>
+            </ul>
+            <a class="btn btn--ghost btn--block magnetic" href="/app">Começar</a>
+          </article>
+
+          <!-- Individual -->
+          <article class="price-card glass-card tilt-card reveal">
+            <h3 class="price-card__tier">Individual</h3>
+            <p class="price-card__amount"><span class="font-mono">€5</span><small>/mês</small></p>
+            <ul class="price-card__features">
+              <li>5 marcas monitorizadas</li>
+              <li>Alertas de similaridade</li>
+              <li>Alertas de oposição</li>
+              <li>Notificações por email</li>
+            </ul>
+            <a class="btn btn--ghost btn--block magnetic" href="/app">Começar</a>
+          </article>
+
+          <!-- Pro (highlighted) -->
+          <article class="price-card price-card--featured glass-card tilt-card reveal">
+            <span class="price-card__badge font-mono">MAIS POPULAR</span>
+            <h3 class="price-card__tier">Pro</h3>
+            <p class="price-card__amount"><span class="font-mono">€29</span><small>/mês</small></p>
+            <ul class="price-card__features">
+              <li>100 marcas monitorizadas</li>
+              <li>Fonética afinada para PT</li>
+              <li>Alertas via Telegram</li>
+              <li>Analytics básico</li>
+            </ul>
+            <a class="btn btn--primary btn--block magnetic" href="/app">Começar</a>
+          </article>
+
+          <!-- Profissional -->
+          <article class="price-card glass-card tilt-card reveal">
+            <h3 class="price-card__tier">Profissional</h3>
+            <p class="price-card__amount"><span class="font-mono">€99</span><small>/mês</small></p>
+            <ul class="price-card__features">
+              <li>500 marcas monitorizadas</li>
+              <li>Prospeção de clientes</li>
+              <li>Gestão multi-cliente</li>
+              <li>Relatórios white-label</li>
+            </ul>
+            <a class="btn btn--ghost btn--block magnetic" href="/app">Começar</a>
+          </article>
+
+          <!-- Enterprise -->
+          <article class="price-card glass-card tilt-card reveal">
+            <h3 class="price-card__tier">Enterprise</h3>
+            <p class="price-card__amount"><span class="font-mono">€249</span><small>/mês</small></p>
+            <ul class="price-card__features">
+              <li>Marcas ilimitadas</li>
+              <li>API completa</li>
+              <li>SSO empresarial</li>
+              <li>Cobertura WIPO</li>
+            </ul>
+            <a class="btn btn--ghost btn--block magnetic" href="/app">Começar</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========================= FINAL CTA ========================= -->
+      <section class="final-cta" aria-labelledby="final-cta-title">
+        <div class="final-cta__glow" aria-hidden="true"></div>
+        <p class="micro-label font-mono reveal">O PRÓXIMO PASSO</p>
+        <h2 class="final-cta__title reveal" id="final-cta-title">
+          Enquanto lê isto,<br />alguém pode estar a registar<br />
+          <em>algo demasiado parecido.</em>
+        </h2>
+        <div class="final-cta__actions reveal">
+          <a class="btn btn--primary btn--lg magnetic" href="/app">Ativar vigilância gratuita</a>
+          <span class="final-cta__hint font-mono">SEM CARTÃO · CONFIGURAÇÃO EM 2 MINUTOS</span>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================== FOOTER =========================== -->
+    <footer class="site-footer" aria-label="Rodapé">
+      <div class="site-footer__top">
+        <div class="site-footer__col">
+          <p class="micro-label font-mono">PRODUTO</p>
+          <a href="#funcionalidades">Funcionalidades</a>
+          <a href="#motor">O Motor</a>
+          <a href="#precos">Preços</a>
+        </div>
+        <div class="site-footer__col">
+          <p class="micro-label font-mono">PLATAFORMA</p>
+          <a href="/app">Entrar</a>
+          <a href="/app">Criar conta</a>
+          <a href="/api/v1/health/" rel="nofollow">Estado do serviço</a>
+        </div>
+        <div class="site-footer__col">
+          <p class="micro-label font-mono">REGISTOS</p>
+          <a href="https://inpi.justica.gov.pt" target="_blank" rel="noopener noreferrer">INPI — Portugal</a>
+          <a href="https://euipo.europa.eu" target="_blank" rel="noopener noreferrer">EUIPO — Europa</a>
+        </div>
+      </div>
+
+      <div class="site-footer__wordmark" aria-hidden="true">
+        <span data-split-chars>markee</span>
+      </div>
+
+      <div class="site-footer__bottom font-mono">
+        <span>© 2026 MARKEE — TODOS OS DIREITOS RESERVADOS</span>
+        <span>FEITO EM LISBOA · VIGILANTE POR NATUREZA</span>
+      </div>
+    </footer>
+
+    <!-- Page behaviour: Lenis, GSAP/ScrollTrigger, Three.js, interactions -->
+    <script type="module" src="/static/script.js"></script>
+  </body>
+</html>

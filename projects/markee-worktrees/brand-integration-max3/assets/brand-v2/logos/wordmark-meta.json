@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "wordmark": "markee",
+  "glyphs": [
+    "m",
+    "a",
+    "r",
+    "k",
+    "e",
+    "e"
+  ],
+  "font_family": "Sora",
+  "font_file": "Sora-Bold.ttf",
+  "font_weight": 700,
+  "font_version": "2.000",
+  "font_source": "Google Fonts",
+  "font_source_url": "https://fonts.gstatic.com/s/sora/v17/xMQOuFFYT72X5wkB_18qmnndmSe1mX-K.ttf",
+  "font_license": "OFL-1.1",
+  "font_sha256": "a50f5d254fc0fb83125fceffb72a95d036b8ce964a77fb8cc42ecb9ce16b0427",
+  "units_per_em": 1000,
+  "cap_height": 730,
+  "x_height": 534,
+  "ascender": 970,
+  "descender": -290,
+  "target_x_height": 200,
+  "scale": 0.37453183520599254,
+  "padding": 20,
+  "view_box": [
+    0,
+    0,
+    1482,
+    240
+  ],
+  "advances": {
+    "m": 983,
+    "a": 594,
+    "r": 421,
+    "k": 639,
+    "e": 624
+  },
+  "kerning": {
+    "ke": -25,
+    "ee": -10
+  },
+  "positions": [
+    0,
+    983,
+    1577,
+    1998,
+    2612,
+    3226
+  ],
+  "side_bearings": {
+    "m": [
+      73,
+      63
+    ],
+    "a": [
+      31,
+      63
+    ],
+    "r": [
+      73,
+      10
+    ],
+    "k": [
+      73,
+      0
+    ],
+    "e": [
+      39,
+      33
+    ]
+  },
+  "variants": {
+    "markee-wordmark-dark.svg": [
+      "#E8E8E8",
+      "#35D0E0"
+    ],
+    "markee-wordmark-light.svg": [
+      "#08090A",
+      "#35D0E0"
+    ],
+    "markee-wordmark-mono-white.svg": [
+      "#FFFFFF",
+      "#FFFFFF"
+    ],
+    "markee-wordmark-mono-black.svg": [
+      "#08090A",
+      "#08090A"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "contract": {
+    "id": "markee-wp3-002-structure",
+    "payload_sha256": "96fda452869da2d1d9107d1f2bc849c7363fb3b8b4f6381ebebc5721d84d7611",
+    "version": 3
+  },
+  "drop_not_null": 33,
+  "dry_run_blocked": 0,
+  "dry_run_ops": 100,
+  "dry_run_skip": 0,
+  "fingerprint_unchanged": true,
+  "metadata_ops": 100,
+  "no_stamp_version_rows": [],
+  "normalized_preview": {
+    "accepted": true,
+    "differences": 0,
+    "verdict": "adoptable_restored"
+  },
+  "post_dry_run_fingerprint": "77964fe8423bee35b890f33a3568b6f6e541dfb9d6a08bfe5548f2e093c021c0",
+  "post_dry_run_structural_fingerprint": "4d6f6eb6462e6d60353a6b1439b9e907b21a254f2c997e7810174957ef2e545d",
+  "raw_classification": {
+    "accepted": false,
+    "differences": 100,
+    "verdict": "unknown"
+  },
+  "reconciliation_keys": [
+    "table:app.api_keys",
+    "partition:raw.api_responses_2026_07",
+    "partition:raw.api_responses_2026_08",
+    "index:app.alerts:user_id,is_dismissed,created_at",
+    "index:app.alerts:watchlist_id,similarity_score",
+    "index:app.deadlines:due_date,status",
+    "index:app.prospection_opportunities:opportunity_type,score",
+    "index:app.review_queue:status,created_at",
+    "index:core.holders:name:gin_trgm_ops",
+    "index:core.representatives:name:gin_trgm_ops",
+    "index:core.trademarks:word_mark:gin_trgm_ops",
+    "index:events.lifecycle_events:trademark_id,event_date",
+    "index:events.lifecycle_events:trademark_id,event_type",
+    "index:raw.api_responses:source_id,created_at_desc"
+  ],
+  "reconciliation_ops": 14,
+  "set_default": 67,
+  "sql_executed": 0,
+  "version_table_exists": true
+}

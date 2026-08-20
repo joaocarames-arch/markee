@@ -1,0 +1,200 @@
+# markee — Data Sources Configuration
+# Based on docs/SOURCES_INVENTORY.md (2026-07-24)
+# All sources: EUIPO REST API, EUTM Download, INPI BPI, TMview
+
+sources:
+  euipo_api:
+    name: "EUIPO Trademark Search API"
+    url: "https://dev.euipo.europa.eu/api/trademark-search/v1.1.0/"
+    auth_method: oauth2_client_credentials
+    auth_config:
+      token_url: "https://dev.euipo.europa.eu/api/oauth/token"
+      client_id_env: EUIPO_CLIENT_ID
+      client_secret_env: EUIPO_CLIENT_SECRET
+      token_cache_ttl: 3500  # seconds (~58 min, tokens last 1h)
+    rate_limit:
+      max_requests_per_minute: 1000
+      burst: 50
+      backoff_strategy: exponential
+      backoff_base_seconds: 1
+      backoff_max_seconds: 60
+    retry_policy:
+      max_retries: 3
+      retry_on_status: [429, 500, 502, 503, 504]
+      retry_on_timeout: true
+      timeout_seconds: 30
+    pagination:
+      page_size: 50
+      max_pages_per_poll: 20
+    query_language: RSQL
+    enabled: true
+    priority: 1
+    description: >
+      Primary source for trademark search, similarity detection, and
+      incremental polling. Covers EUTM + all TMview-participating offices
+      (including INPI Portugal). Enters mock mode when credentials are
+      not configured — safe for development.
+    use_cases:
+      - trademark_search
+      - similarity_detection
+      - incremental_polling
+      - nice_classification_lookup
+
+  eutm_download:
+    name: "EUTM Download (Bulk XML)"
+    url: "https://eutm.euipo.europa.eu/en/user-area"
+    auth_method: subscription_portal
+    auth_config:
+      portal_url: "https://euipo.europa.eu/"
+      registration_required: true
+      registration_cost: free
+    format: xml
+    xml_standard: TM-XML  # WIPO ST.66
+    update_frequency: daily
+    rate_limit:
+      max_requests_per_minute: null  # bulk download, not API-polled
+      burst: null
+      backoff_strategy: none
+    retry_policy:
+      max_retries: 2
+      retry_on_status: []
+      retry_on_timeout: true
+      timeout_seconds: 300  # large XML files
+    enabled: false  # Phase 2: historical backfill
+    priority: 3
+    description: >
+      Full EUTM register in TM-XML format. Subscription-based, free.
+      Use for historical backfill — load the full register once, then
+      use the REST API for incremental updates. No rate limits (files
+      are downloaded, not API-polled).
+    use_cases:
+      - historical_backfill
+      - full_text_indexing
+      - bulk_processing
+
+  inpi_bpi:
+    name: "INPI Boletim da Propriedade Industrial (PDF)"
+    url: "https://inpi.justica.gov.pt/en-gb/Industrial-Property-Bulletin"
+    auth_method: none
+    auth_config: {}
+    format: pdf
+    update_frequency: daily  # weekdays only
+    rate_limit:
+      max_requests_per_minute: 5  # be respectful, single daily PDF
+      burst: 1
+      backoff_strategy: fixed
+      backoff_base_seconds: 30
+    retry_policy:
+      max_retries: 5
+      retry_on_status: [429, 500, 502, 503, 504]
+      retry_on_timeout: true
+      timeout_seconds: 60
+    enabled: true
+    priority: 2
+    description: >
+      Authoritative source for Portuguese trademark lifecycle events.
+      Daily PDF bulletin published on weekdays. Contains: despachos
+      (grants/refusals), oposições, renovações, caducidades, transmissões.
+      Publication date starts the 2-month opposition window for PT marks.
+      Parsed via pymupdf + pdfplumber.
+    use_cases:
+      - lifecycle_events
+      - opposition_windows
+      - renewal_tracking
+      - expiry_detection
+    known_issues:
+      - "inpi.justica.gov.pt has intermittent availability"
+      - "No public API — PDF parsing is the only programmatic access"
+      - "BPI PDFs published on English subdomain (/en-gb/)"
+
+  inpi_search_portal:
+    name: "INPI Search Portal (Legacy HTML)"
+    url: "https://servicosonline.inpi.pt/pesquisas/main/marcas.jsp"
+    auth_method: none
+    auth_config: {}
+    format: html
+    rate_limit:
+      max_requests_per_minute: 10
+      burst: 2
+      backoff_strategy: fixed
+      backoff_base_seconds: 10
+    retry_policy:
+      max_retries: 3
+      retry_on_status: [429, 500, 502, 503, 504]
+      retry_on_timeout: true
+      timeout_seconds: 30
+    enabled: false  # fallback only
+    priority: 4
+    description: >
+      Legacy HTML search portal (2008-era). No API. Used only as fallback
+      for PT-specific phonetic search when EUIPO/TMview API is insufficient.
+      Requires Playwright for scraping. More stable than inpi.justica.gov.pt.
+    use_cases:
+      - phonetic_search_fallback
+      - manual_verification
+
+  tmview:
+    name: "TMview (via EUIPO API)"
+    url: "https://www.tmdn.org/tmview/"
+    auth_method: none  # accessed via EUIPO API, not directly
+    auth_config: {}
+    rate_limit:
+      max_requests_per_minute: null  # inherited from EUIPO API
+    retry_policy:
+      max_retries: null  # inherited from EUIPO API
+    enabled: true
+    priority: 1  # same as EUIPO API — same data source
+    description: >
+      TMview aggregates 54.8M+ trademarks from participating offices
+      worldwide. No public REST API of its own — accessed programmatically
+      via the EUIPO Trademark Search API, which queries the same database.
+      Covers all EU member state IP offices (including INPI Portugal),
+      EUIPO (EUTM), WIPO international registrations, and non-EU offices.
+    use_cases:
+      - multi_jurisdiction_search
+      - cross_office_similarity
+    related_tools:
+      - CESTO  # automated similarity search by EUIPN
+      - TMclass  # harmonised goods & services classification
+      - DesignView  # registered designs (sister tool)
+
+  wipo_api_catalog:
+    name: "WIPO API Catalog"
+    url: "https://apicatalog.wipo.int/en"
+    auth_method: varies  # 171 different office APIs
+    auth_config: {}
+    rate_limit:
+      max_requests_per_minute: null  # varies by office
+    retry_policy:
+      max_retries: null  # varies by office
+    enabled: false  # Phase 3
+    priority: 5
+    description: >
+      WIPO catalog of 171 IP office APIs worldwide. Useful for Phase 3
+      expansion beyond EU/PT coverage. Also provides Nice Classification
+      (nclpub.wipo.int) and Vienna Classification endpoints.
+    use_cases:
+      - international_expansion
+      - nice_classification
+      - vienna_classification
+
+# Polling schedule (Celery Beat)
+polling:
+  euipo_incremental:
+    task: poll_euipo
+    schedule: "every 6 hours"
+    source: euipo_api
+    query_field: updateDate
+    lookback_hours: 7  # 1h overlap to catch edge cases
+
+  bpi_daily:
+    task: parse_bpi
+    schedule: "30 9 * * 1-5"  # 9:30 Lisbon time, weekdays
+    source: inpi_bpi
+    description: "BPI is published on weekdays; parse after publication window"
+
+# Mock mode
+mock:
+  enabled_when: "EUIPO_CLIENT_ID is unset or empty"
+  behavior: "Return realistic but synthetic data for development"
+  applies_to: [euipo_api]

@@ -1,0 +1,5191 @@
+{
+  "contract_id": "markee-wp3-002-structure",
+  "contract_version": 3,
+  "format_version": 1,
+  "integrity": {
+    "algorithm": "sha256",
+    "payload_sha256": "96fda452869da2d1d9107d1f2bc849c7363fb3b8b4f6381ebebc5721d84d7611"
+  },
+  "payload": {
+    "adoptable_restored_profile": {
+      "allowed_extra_indexes": {
+        "app.subscriptions": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"stripe_customer_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "app.users": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"email\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":true}"
+        ],
+        "core.holders": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"name\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "core.representatives": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"name\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "core.trademarks": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"application_number\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"source_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "events.lifecycle_events": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"trademark_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "raw.api_responses": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"source_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ]
+      },
+      "allowed_missing_indexes": {
+        "app.alerts": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"user_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"is_dismissed\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"created_at\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"watchlist_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"similarity_score\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "app.deadlines": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"due_date\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"status\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "app.prospection_opportunities": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"opportunity_type\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"score\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "app.review_queue": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"status\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"created_at\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "core.holders": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"name\",\"nulls\":\"last\",\"opclass\":\"gin_trgm_ops\",\"sort\":\"asc\"}],\"method\":\"gin\",\"predicate\":null,\"unique\":false}"
+        ],
+        "core.representatives": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"name\",\"nulls\":\"last\",\"opclass\":\"gin_trgm_ops\",\"sort\":\"asc\"}],\"method\":\"gin\",\"predicate\":null,\"unique\":false}"
+        ],
+        "core.trademarks": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"word_mark\",\"nulls\":\"last\",\"opclass\":\"gin_trgm_ops\",\"sort\":\"asc\"}],\"method\":\"gin\",\"predicate\":null,\"unique\":false}"
+        ],
+        "events.lifecycle_events": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"trademark_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"event_date\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"trademark_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"event_type\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "raw.api_responses": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"source_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"created_at\",\"nulls\":\"first\",\"opclass\":null,\"sort\":\"desc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ]
+      },
+      "allowed_missing_partitions": {
+        "raw.api_responses_2026_07": {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_run_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "endpoint",
+              "nullable": false,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "request_params",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_status",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_headers",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_body",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_size_bytes",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "duration_ms",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "error_message",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": "now()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [],
+          "name": "api_responses_2026_07",
+          "parent_schema": "raw",
+          "parent_table": "api_responses",
+          "partition_bounds": "FOR VALUES FROM ('2026-07-01') TO ('2026-08-01')",
+          "partition_key": null,
+          "primary_key": [
+            "id",
+            "created_at"
+          ],
+          "schema": "raw",
+          "unique": []
+        },
+        "raw.api_responses_2026_08": {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_run_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "endpoint",
+              "nullable": false,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "request_params",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_status",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_headers",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_body",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_size_bytes",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "duration_ms",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "error_message",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": "now()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [],
+          "name": "api_responses_2026_08",
+          "parent_schema": "raw",
+          "parent_table": "api_responses",
+          "partition_bounds": "FOR VALUES FROM ('2026-08-01') TO ('2026-09-01')",
+          "partition_key": null,
+          "primary_key": [
+            "id",
+            "created_at"
+          ],
+          "schema": "raw",
+          "unique": []
+        }
+      },
+      "allowed_missing_tables": [
+        "app.api_keys"
+      ],
+      "reconciliation_operations": {
+        "app.api_keys": "create_empty_canonical_table_preserve_public_api_keys"
+      }
+    },
+    "canonical": {
+      "extensions": [
+        "pg_trgm"
+      ],
+      "schemas": [
+        "app",
+        "core",
+        "events",
+        "public",
+        "raw"
+      ],
+      "tables": [
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "alert_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "channel",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "recipient",
+              "nullable": false,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "status",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "error_message",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "sent_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "alert_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "alerts"
+            }
+          ],
+          "indexes": [],
+          "name": "alert_deliveries",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "user_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "watchlist_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "watchlist_item_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "alert_type",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "similarity_score",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "phonetic_score",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "class_overlap_score",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "title",
+              "nullable": false,
+              "type": "varchar(500)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "body",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "is_read",
+              "nullable": true,
+              "type": "boolean"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "is_dismissed",
+              "nullable": true,
+              "type": "boolean"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "sent_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "SET NULL",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            },
+            {
+              "columns": [
+                "user_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "users"
+            },
+            {
+              "columns": [
+                "watchlist_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "SET NULL",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "watchlists"
+            },
+            {
+              "columns": [
+                "watchlist_item_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "SET NULL",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "watchlist_items"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"user_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"is_dismissed\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"created_at\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"watchlist_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"similarity_score\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "alerts",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "user_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "key_hash",
+              "nullable": false,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "name",
+              "nullable": true,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "scopes",
+              "nullable": true,
+              "type": "varchar(100)[]"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "last_used_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "expires_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "is_active",
+              "nullable": true,
+              "type": "boolean"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "user_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "users"
+            }
+          ],
+          "indexes": [],
+          "name": "api_keys",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": [
+            [
+              "key_hash"
+            ]
+          ]
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "team_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "client_name",
+              "nullable": false,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "client_email",
+              "nullable": true,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "notes",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "team_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "teams"
+            }
+          ],
+          "indexes": [],
+          "name": "client_portfolios",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "deadline_type",
+              "nullable": false,
+              "type": "varchar(100)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "due_date",
+              "nullable": false,
+              "type": "date"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "description",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "status",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "alert_dates",
+              "nullable": true,
+              "type": "date[]"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "updated_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"due_date\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"status\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "deadlines",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "opportunity_type",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "holder_name",
+              "nullable": true,
+              "type": "varchar(500)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "holder_type",
+              "nullable": true,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "holder_district",
+              "nullable": true,
+              "type": "varchar(100)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "holder_cae",
+              "nullable": true,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "nice_classes",
+              "nullable": true,
+              "type": "integer[]"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "expiry_date",
+              "nullable": true,
+              "type": "date"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "score",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "is_exported",
+              "nullable": true,
+              "type": "boolean"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "exported_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "updated_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"opportunity_type\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"score\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "prospection_opportunities",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source",
+              "nullable": false,
+              "type": "varchar(32)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "item_type",
+              "nullable": false,
+              "type": "varchar(64)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "payload",
+              "nullable": false,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "reason",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "confidence_score",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": "'pending'",
+              "generated": null,
+              "identity": null,
+              "name": "status",
+              "nullable": false,
+              "type": "varchar(16)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "document_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "resolved_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "resolved_by",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "resolved_by"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "SET NULL",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "users"
+            },
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "SET NULL",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"status\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"created_at\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "review_queue",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "user_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "stripe_customer_id",
+              "nullable": true,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "stripe_subscription_id",
+              "nullable": true,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "plan_type",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "status",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "current_period_start",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "current_period_end",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "max_marks",
+              "nullable": false,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "max_users",
+              "nullable": false,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "max_clients",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "features",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "updated_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "user_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "users"
+            }
+          ],
+          "indexes": [],
+          "name": "subscriptions",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "team_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "user_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "role",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "team_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "teams"
+            },
+            {
+              "columns": [
+                "user_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "users"
+            }
+          ],
+          "indexes": [],
+          "name": "team_members",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": [
+            [
+              "team_id",
+              "user_id"
+            ]
+          ]
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "name",
+              "nullable": false,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "owner_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "owner_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": null,
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "users"
+            }
+          ],
+          "indexes": [],
+          "name": "teams",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "email",
+              "nullable": false,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "hashed_password",
+              "nullable": false,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "full_name",
+              "nullable": true,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "company_name",
+              "nullable": true,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "telegram_chat_id",
+              "nullable": true,
+              "type": "varchar(64)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "is_active",
+              "nullable": true,
+              "type": "boolean"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "is_superuser",
+              "nullable": true,
+              "type": "boolean"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "updated_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [],
+          "name": "users",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": [
+            [
+              "email"
+            ]
+          ]
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "watchlist_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "mark_text",
+              "nullable": false,
+              "type": "varchar(500)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "nice_classes",
+              "nullable": true,
+              "type": "integer[]"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "notes",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "watchlist_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "watchlists"
+            }
+          ],
+          "indexes": [],
+          "name": "watchlist_items",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "user_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "team_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "client_portfolio_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "name",
+              "nullable": false,
+              "type": "varchar(255)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "similarity_threshold",
+              "nullable": false,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "phonetic_weight",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "class_weight",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "nice_classes_filter",
+              "nullable": true,
+              "type": "integer[]"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "jurisdictions",
+              "nullable": true,
+              "type": "varchar[]"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "is_active",
+              "nullable": true,
+              "type": "boolean"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "updated_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "client_portfolio_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "SET NULL",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "client_portfolios"
+            },
+            {
+              "columns": [
+                "team_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "SET NULL",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "teams"
+            },
+            {
+              "columns": [
+                "user_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "app",
+              "target_table": "users"
+            }
+          ],
+          "indexes": [],
+          "name": "watchlists",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "app",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "document_type",
+              "nullable": false,
+              "type": "varchar(64)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_url",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "storage_path",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "file_hash",
+              "nullable": true,
+              "type": "varchar(64)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "publication_date",
+              "nullable": true,
+              "type": "date"
+            },
+            {
+              "default": "'pt'",
+              "generated": null,
+              "identity": null,
+              "name": "language",
+              "nullable": true,
+              "type": "varchar(8)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "metadata",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": null,
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"file_hash\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"trademark_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "documents",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "core",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "nice_class_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "term",
+              "nullable": false,
+              "type": "text"
+            },
+            {
+              "default": "'pt'",
+              "generated": null,
+              "identity": null,
+              "name": "language",
+              "nullable": false,
+              "type": "varchar(8)"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "nice_class_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": null,
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "nice_classes"
+            },
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"trademark_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "goods_services",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "core",
+          "unique": []
+        },
+        {
+          "checks": [
+            "type IN ('natural', 'legal')"
+          ],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_id",
+              "nullable": false,
+              "type": "varchar(64)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "name",
+              "nullable": false,
+              "type": "varchar(512)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "address",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "country",
+              "nullable": true,
+              "type": "varchar(2)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "type",
+              "nullable": true,
+              "type": "varchar(32)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "raw_data",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "confidence_score",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "updated_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"name\",\"nulls\":\"last\",\"opclass\":\"gin_trgm_ops\",\"sort\":\"asc\"}],\"method\":\"gin\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"source_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "holders",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "core",
+          "unique": []
+        },
+        {
+          "checks": [
+            "class_number >= 1 AND class_number <= 45"
+          ],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "class_number",
+              "nullable": false,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "description_pt",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "description_en",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [],
+          "name": "nice_classes",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "core",
+          "unique": [
+            [
+              "class_number"
+            ]
+          ]
+        },
+        {
+          "checks": [
+            "type IN ('natural', 'legal', 'association')"
+          ],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_id",
+              "nullable": false,
+              "type": "varchar(64)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "name",
+              "nullable": false,
+              "type": "varchar(512)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "address",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "country",
+              "nullable": true,
+              "type": "varchar(2)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "type",
+              "nullable": true,
+              "type": "varchar(32)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "raw_data",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "confidence_score",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "updated_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"name\",\"nulls\":\"last\",\"opclass\":\"gin_trgm_ops\",\"sort\":\"asc\"}],\"method\":\"gin\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"source_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "representatives",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "core",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "run_type",
+              "nullable": false,
+              "type": "varchar(32)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "status",
+              "nullable": false,
+              "type": "varchar(16)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "started_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "completed_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "0",
+              "generated": null,
+              "identity": null,
+              "name": "items_processed",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": "0",
+              "generated": null,
+              "identity": null,
+              "name": "items_new",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": "0",
+              "generated": null,
+              "identity": null,
+              "name": "items_updated",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": "0",
+              "generated": null,
+              "identity": null,
+              "name": "items_failed",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "error_message",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "cursor_value",
+              "nullable": true,
+              "type": "varchar(128)"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "source_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": null,
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "sources"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"source_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"status\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "source_runs",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "core",
+          "unique": []
+        },
+        {
+          "checks": [
+            "priority >= 1"
+          ],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "name",
+              "nullable": false,
+              "type": "varchar(64)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_type",
+              "nullable": false,
+              "type": "varchar(32)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "base_url",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "auth_method",
+              "nullable": true,
+              "type": "varchar(32)"
+            },
+            {
+              "default": "true",
+              "generated": null,
+              "identity": null,
+              "name": "is_enabled",
+              "nullable": false,
+              "type": "boolean"
+            },
+            {
+              "default": "1",
+              "generated": null,
+              "identity": null,
+              "name": "priority",
+              "nullable": false,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "config_snapshot",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [],
+          "name": "sources",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "core",
+          "unique": [
+            [
+              "name"
+            ]
+          ]
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "holder_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": "'applicant'",
+              "generated": null,
+              "identity": null,
+              "name": "role",
+              "nullable": false,
+              "type": "varchar(32)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "since_date",
+              "nullable": true,
+              "type": "date"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "holder_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "holders"
+            },
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            }
+          ],
+          "indexes": [],
+          "name": "trademark_holders",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "trademark_id",
+            "holder_id",
+            "role"
+          ],
+          "schema": "core",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "representative_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": "'representative'",
+              "generated": null,
+              "identity": null,
+              "name": "role",
+              "nullable": false,
+              "type": "varchar(32)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "since_date",
+              "nullable": true,
+              "type": "date"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "representative_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "representatives"
+            },
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            }
+          ],
+          "indexes": [],
+          "name": "trademark_representatives",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "trademark_id",
+            "representative_id"
+          ],
+          "schema": "core",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "version_number",
+              "nullable": false,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "snapshot",
+              "nullable": false,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "diff_from_previous",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "change_source",
+              "nullable": false,
+              "type": "varchar(64)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "change_type",
+              "nullable": false,
+              "type": "varchar(32)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "raw_response_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"trademark_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "trademark_versions",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "core",
+          "unique": [
+            [
+              "trademark_id",
+              "version_number"
+            ]
+          ]
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_id",
+              "nullable": false,
+              "type": "varchar(100)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "application_number",
+              "nullable": true,
+              "type": "varchar(100)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "application_date",
+              "nullable": true,
+              "type": "date"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "registration_number",
+              "nullable": true,
+              "type": "varchar(100)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "registration_date",
+              "nullable": true,
+              "type": "date"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "word_mark",
+              "nullable": true,
+              "type": "varchar(500)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "figurative_mark_url",
+              "nullable": true,
+              "type": "varchar(500)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "status",
+              "nullable": true,
+              "type": "varchar(100)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "renewal_status",
+              "nullable": true,
+              "type": "varchar(100)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "nice_classes",
+              "nullable": true,
+              "type": "integer[]"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "applicants",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "representatives",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "goods_services",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "jurisdiction",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "raw_data",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "updated_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "update_date",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "confidence_score",
+              "nullable": true,
+              "type": "float"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "ingest_source_id",
+              "nullable": true,
+              "type": "uuid"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "ingest_source_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "SET NULL",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "sources"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"jurisdiction\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"update_date\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"word_mark\",\"nulls\":\"last\",\"opclass\":\"gin_trgm_ops\",\"sort\":\"asc\"}],\"method\":\"gin\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "trademarks",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "core",
+          "unique": [
+            [
+              "source_id"
+            ]
+          ]
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "trademark_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "event_type",
+              "nullable": false,
+              "type": "varchar(100)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "event_date",
+              "nullable": false,
+              "type": "date"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "description",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source",
+              "nullable": false,
+              "type": "varchar(50)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "raw_data",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": "NOW()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": true,
+              "type": "timestamp with time zone"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "deadline_date",
+              "nullable": true,
+              "type": "date"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_reference",
+              "nullable": true,
+              "type": "varchar(128)"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "page_number",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_excerpt",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "confidence_score",
+              "nullable": true,
+              "type": "float"
+            }
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "trademark_id"
+              ],
+              "deferrable": false,
+              "initially": null,
+              "ondelete": "CASCADE",
+              "onupdate": null,
+              "target_columns": [
+                "id"
+              ],
+              "target_schema": "core",
+              "target_table": "trademarks"
+            }
+          ],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"deadline_date\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"event_type\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"trademark_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"event_date\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"trademark_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"event_type\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "lifecycle_events",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": null,
+          "primary_key": [
+            "id"
+          ],
+          "schema": "events",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_run_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "endpoint",
+              "nullable": false,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "request_params",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_status",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_headers",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_body",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_size_bytes",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "duration_ms",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "error_message",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": "now()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [
+            "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"source_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"created_at\",\"nulls\":\"first\",\"opclass\":null,\"sort\":\"desc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+          ],
+          "name": "api_responses",
+          "parent_schema": null,
+          "parent_table": null,
+          "partition_bounds": null,
+          "partition_key": "RANGE (created_at)",
+          "primary_key": [
+            "id",
+            "created_at"
+          ],
+          "schema": "raw",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_run_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "endpoint",
+              "nullable": false,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "request_params",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_status",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_headers",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_body",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_size_bytes",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "duration_ms",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "error_message",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": "now()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [],
+          "name": "api_responses_2026_07",
+          "parent_schema": "raw",
+          "parent_table": "api_responses",
+          "partition_bounds": "FOR VALUES FROM ('2026-07-01') TO ('2026-08-01')",
+          "partition_key": null,
+          "primary_key": [
+            "id",
+            "created_at"
+          ],
+          "schema": "raw",
+          "unique": []
+        },
+        {
+          "checks": [],
+          "columns": [
+            {
+              "default": "gen_random_uuid()",
+              "generated": null,
+              "identity": null,
+              "name": "id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_id",
+              "nullable": false,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "source_run_id",
+              "nullable": true,
+              "type": "uuid"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "endpoint",
+              "nullable": false,
+              "type": "text"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "request_params",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_status",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_headers",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_body",
+              "nullable": true,
+              "type": "jsonb"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "response_size_bytes",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "duration_ms",
+              "nullable": true,
+              "type": "integer"
+            },
+            {
+              "default": null,
+              "generated": null,
+              "identity": null,
+              "name": "error_message",
+              "nullable": true,
+              "type": "text"
+            },
+            {
+              "default": "now()",
+              "generated": null,
+              "identity": null,
+              "name": "created_at",
+              "nullable": false,
+              "type": "timestamp with time zone"
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [],
+          "name": "api_responses_2026_08",
+          "parent_schema": "raw",
+          "parent_table": "api_responses",
+          "partition_bounds": "FOR VALUES FROM ('2026-08-01') TO ('2026-09-01')",
+          "partition_key": null,
+          "primary_key": [
+            "id",
+            "created_at"
+          ],
+          "schema": "raw",
+          "unique": []
+        }
+      ]
+    },
+    "extensions": {
+      "optional": [
+        "vector"
+      ],
+      "required": [
+        "pg_trgm"
+      ]
+    },
+    "legacy_public_tables": {
+      "public.alert_deliveries": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "alert_id",
+            "nullable": true,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "channel",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "recipient",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "status",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "error_message",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "sent_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "alert_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "alerts"
+          }
+        ],
+        "indexes": [],
+        "name": "alert_deliveries",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      },
+      "public.alerts": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "user_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "watchlist_id",
+            "nullable": true,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "watchlist_item_id",
+            "nullable": true,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "trademark_id",
+            "nullable": true,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "alert_type",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "similarity_score",
+            "nullable": true,
+            "type": "float"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "phonetic_score",
+            "nullable": true,
+            "type": "float"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "class_overlap_score",
+            "nullable": true,
+            "type": "float"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "title",
+            "nullable": false,
+            "type": "varchar(500)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "body",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "is_read",
+            "nullable": true,
+            "type": "boolean"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "is_dismissed",
+            "nullable": true,
+            "type": "boolean"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "sent_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "trademark_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "SET NULL",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "trademarks"
+          },
+          {
+            "columns": [
+              "user_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "users"
+          },
+          {
+            "columns": [
+              "watchlist_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "SET NULL",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "watchlists"
+          },
+          {
+            "columns": [
+              "watchlist_item_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "SET NULL",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "watchlist_items"
+          }
+        ],
+        "indexes": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"user_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"is_dismissed\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"created_at\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}",
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"watchlist_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"similarity_score\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "name": "alerts",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      },
+      "public.api_keys": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "user_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "key_hash",
+            "nullable": false,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "name",
+            "nullable": true,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "scopes",
+            "nullable": true,
+            "type": "varchar(100)[]"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "last_used_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "expires_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "is_active",
+            "nullable": true,
+            "type": "boolean"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "user_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "users"
+          }
+        ],
+        "indexes": [],
+        "name": "api_keys",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": [
+          [
+            "key_hash"
+          ]
+        ]
+      },
+      "public.client_portfolios": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "team_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "client_name",
+            "nullable": false,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "client_email",
+            "nullable": true,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "notes",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "team_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "teams"
+          }
+        ],
+        "indexes": [],
+        "name": "client_portfolios",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      },
+      "public.deadlines": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "trademark_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "deadline_type",
+            "nullable": false,
+            "type": "varchar(100)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "due_date",
+            "nullable": false,
+            "type": "date"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "description",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "status",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "alert_dates",
+            "nullable": true,
+            "type": "date[]"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "trademark_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "trademarks"
+          }
+        ],
+        "indexes": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"due_date\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"status\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "name": "deadlines",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      },
+      "public.lifecycle_events": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "trademark_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "event_type",
+            "nullable": false,
+            "type": "varchar(100)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "event_date",
+            "nullable": false,
+            "type": "date"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "description",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "source",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "raw_data",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "trademark_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "trademarks"
+          }
+        ],
+        "indexes": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"trademark_id\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"event_date\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "name": "lifecycle_events",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      },
+      "public.prospection_opportunities": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "trademark_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "opportunity_type",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "holder_name",
+            "nullable": true,
+            "type": "varchar(500)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "holder_type",
+            "nullable": true,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "holder_district",
+            "nullable": true,
+            "type": "varchar(100)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "holder_cae",
+            "nullable": true,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "nice_classes",
+            "nullable": true,
+            "type": "integer[]"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "expiry_date",
+            "nullable": true,
+            "type": "date"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "score",
+            "nullable": true,
+            "type": "float"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "is_exported",
+            "nullable": true,
+            "type": "boolean"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "exported_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "trademark_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "trademarks"
+          }
+        ],
+        "indexes": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"opportunity_type\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"},{\"collation\":null,\"expr\":\"score\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "name": "prospection_opportunities",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      },
+      "public.subscriptions": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "user_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "stripe_customer_id",
+            "nullable": true,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "stripe_subscription_id",
+            "nullable": true,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "plan_type",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "status",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "current_period_start",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "current_period_end",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "max_marks",
+            "nullable": false,
+            "type": "integer"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "max_users",
+            "nullable": false,
+            "type": "integer"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "max_clients",
+            "nullable": true,
+            "type": "integer"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "features",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "user_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "users"
+          }
+        ],
+        "indexes": [],
+        "name": "subscriptions",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      },
+      "public.team_members": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "team_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "user_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "role",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "team_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "teams"
+          },
+          {
+            "columns": [
+              "user_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "users"
+          }
+        ],
+        "indexes": [],
+        "name": "team_members",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": [
+          [
+            "team_id",
+            "user_id"
+          ]
+        ]
+      },
+      "public.teams": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "name",
+            "nullable": false,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "owner_id",
+            "nullable": true,
+            "type": "uuid"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "owner_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": null,
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "users"
+          }
+        ],
+        "indexes": [],
+        "name": "teams",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      },
+      "public.trademarks": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "source_id",
+            "nullable": false,
+            "type": "varchar(100)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "application_number",
+            "nullable": true,
+            "type": "varchar(100)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "application_date",
+            "nullable": true,
+            "type": "date"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "registration_number",
+            "nullable": true,
+            "type": "varchar(100)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "registration_date",
+            "nullable": true,
+            "type": "date"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "word_mark",
+            "nullable": true,
+            "type": "varchar(500)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "figurative_mark_url",
+            "nullable": true,
+            "type": "varchar(500)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "status",
+            "nullable": true,
+            "type": "varchar(100)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "renewal_status",
+            "nullable": true,
+            "type": "varchar(100)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "nice_classes",
+            "nullable": true,
+            "type": "integer[]"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "applicants",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "representatives",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "goods_services",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "jurisdiction",
+            "nullable": false,
+            "type": "varchar(50)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "raw_data",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [],
+        "indexes": [
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"word_mark\",\"nulls\":\"last\",\"opclass\":\"gin_trgm_ops\",\"sort\":\"asc\"}],\"method\":\"gin\",\"predicate\":null,\"unique\":false}",
+          "{\"include\":[],\"keys\":[{\"collation\":null,\"expr\":\"jurisdiction\",\"nulls\":\"last\",\"opclass\":null,\"sort\":\"asc\"}],\"method\":\"btree\",\"predicate\":null,\"unique\":false}"
+        ],
+        "name": "trademarks",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": [
+          [
+            "source_id"
+          ]
+        ]
+      },
+      "public.users": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "email",
+            "nullable": false,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "hashed_password",
+            "nullable": false,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "full_name",
+            "nullable": true,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "company_name",
+            "nullable": true,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "telegram_chat_id",
+            "nullable": true,
+            "type": "varchar(64)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "is_active",
+            "nullable": true,
+            "type": "boolean"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "is_superuser",
+            "nullable": true,
+            "type": "boolean"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [],
+        "indexes": [],
+        "name": "users",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": [
+          [
+            "email"
+          ]
+        ]
+      },
+      "public.watchlist_items": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "watchlist_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "mark_text",
+            "nullable": false,
+            "type": "varchar(500)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "nice_classes",
+            "nullable": true,
+            "type": "integer[]"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "notes",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "watchlist_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "watchlists"
+          }
+        ],
+        "indexes": [],
+        "name": "watchlist_items",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      },
+      "public.watchlists": {
+        "checks": [],
+        "columns": [
+          {
+            "default": "gen_random_uuid()",
+            "generated": null,
+            "identity": null,
+            "name": "id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "user_id",
+            "nullable": false,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "team_id",
+            "nullable": true,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "client_portfolio_id",
+            "nullable": true,
+            "type": "uuid"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "name",
+            "nullable": false,
+            "type": "varchar(255)"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "similarity_threshold",
+            "nullable": false,
+            "type": "integer"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "phonetic_weight",
+            "nullable": true,
+            "type": "float"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "class_weight",
+            "nullable": true,
+            "type": "float"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "nice_classes_filter",
+            "nullable": true,
+            "type": "integer[]"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "jurisdictions",
+            "nullable": true,
+            "type": "varchar[]"
+          },
+          {
+            "default": null,
+            "generated": null,
+            "identity": null,
+            "name": "is_active",
+            "nullable": true,
+            "type": "boolean"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          },
+          {
+            "default": "NOW()",
+            "generated": null,
+            "identity": null,
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp with time zone"
+          }
+        ],
+        "foreign_keys": [
+          {
+            "columns": [
+              "client_portfolio_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "SET NULL",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "client_portfolios"
+          },
+          {
+            "columns": [
+              "team_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "SET NULL",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "teams"
+          },
+          {
+            "columns": [
+              "user_id"
+            ],
+            "deferrable": false,
+            "initially": null,
+            "ondelete": "CASCADE",
+            "onupdate": null,
+            "target_columns": [
+              "id"
+            ],
+            "target_schema": "public",
+            "target_table": "users"
+          }
+        ],
+        "indexes": [],
+        "name": "watchlists",
+        "parent_schema": null,
+        "parent_table": null,
+        "partition_bounds": null,
+        "partition_key": null,
+        "primary_key": [
+          "id"
+        ],
+        "schema": "public",
+        "unique": []
+      }
+    },
+    "provenance": {
+      "canonical_revision": "002",
+      "derivation": "empty_database_alembic_upgrade_001_to_002_static_review",
+      "migration_sha256": {
+        "001_initial_migration.py": "300a5feb1e45e1cabc29379e81eaa3032607ffc6372b91d9d444788147860673",
+        "002_data_infrastructure.py": "ffb0e8d1fd696ddc4324453b85e5b6c658a8c22a7ffb7ffa0e2df1e37bf4acd8"
+      }
+    }
+  }
+}

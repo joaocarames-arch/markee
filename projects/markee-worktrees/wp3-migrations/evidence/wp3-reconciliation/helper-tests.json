@@ -1,0 +1,31 @@
+{
+  "artifact": {
+    "counts": {
+      "adoption_plus_reconcile_suites": {
+        "failed": 0,
+        "passed": 118,
+        "total": 118
+      },
+      "all_tests_wp3": {
+        "failed": 0,
+        "passed": 358,
+        "total": 358
+      },
+      "frozen_design_tests": {
+        "failed": 0,
+        "passed": 4,
+        "total": 4
+      }
+    },
+    "date": "2026-07-25",
+    "path": "/tmp/markee-wp3-combined-offline-final.json",
+    "sha256": "907c106bcf26183056557c6eacd9dc08dd0255ff04e0a9da847248bfd7e5540a",
+    "status": "PASS"
+  },
+  "note": "Offline gates already PASS per Forja directive; broad offline discovery not rerun in this live-proof session.",
+  "stated_pass": {
+    "critical": "4/4",
+    "focused": "118/118",
+    "wp3": "358/358"
+  }
+}
