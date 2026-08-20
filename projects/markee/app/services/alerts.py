@@ -28,9 +28,9 @@ EMAIL_TEMPLATE_HTML = """
 <head><meta charset="UTF-8"><title>{{ title }}</title></head>
 <body style="font-family: Arial, sans-serif; background:#08090a; color:#e8e8e8; padding:20px;">
   <div style="max-width:600px; margin:auto; background:#111214; border-radius:10px; padding:24px;">
-    <h2 style="color:#6ee7a8;">{{ title }}</h2>
+    <h2 style="color:#a7c957;">{{ title }}</h2>
     <p>{{ body }}</p>
-    <hr style="border-color:#6ee7a8; margin:20px 0;">
+    <hr style="border-color:#a7c957; margin:20px 0;">
     <p style="font-size:12px; color:#8a8d93;">Enviado por markee — Monitorização de marcas</p>
   </div>
 </body>

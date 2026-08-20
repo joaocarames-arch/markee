@@ -3,7 +3,7 @@
 The wordmarks are the source of truth for the visual identity:
 
 * Sora Bold (OFL 1.1) rendered as ``<path>`` only.
-* Last ``e`` glyph uses ``#6EE7A8`` in the chromatic variants.
+* Last ``e`` glyph uses ``#A7C957`` in the chromatic variants.
 * No ``<text>``, no ``<image>``, no external ``href`` / ``xlink:href``.
 * viewBox ``0 0 1481.95 240.00`` (per BRAND_MANUAL.md §2).
 * SHA256 of every Brand v2 asset must match the committed canonical manifest.
@@ -135,12 +135,12 @@ def test_wordmark_svg_is_well_formed_and_clean(filename, expected_main_fill):
 def test_dark_and_light_wordmarks_end_in_green_accent():
     """Chromatic wordmarks keep only the final ``e`` accented.
 
-    The dark asset uses the bright brand green; the light asset uses a deeper
+    The dark asset uses the light olive brand green; the light asset uses a deeper
     green so the final glyph remains readable on white.
     """
     expected = {
-        "markee-wordmark-dark.svg": "#6EE7A8",
-        "markee-wordmark-light.svg": "#0A7F57",
+        "markee-wordmark-dark.svg": "#A7C957",
+        "markee-wordmark-light.svg": "#5F7F2A",
     }
     for filename, expected_fill in expected.items():
         path = H.BRAND_V2_LOGOS / filename
@@ -190,7 +190,7 @@ def test_mono_wordmarks_have_no_green_accent():
         root = _parse_svg(path)
         fills = {f.upper() for f in _fills(root)}
         assert (
-            "#6EE7A8" not in fills
+            "#A7C957" not in fills
         ), f"green accent leaked into mono wordmark {filename}"
 
 
@@ -242,15 +242,15 @@ def test_tokens_css_contains_no_amber_color():
     css = H.BRAND_V2_TOKENS_CSS.read_text(encoding="utf-8")
     assert "#f5a623" not in css.lower(), "amber hex #f5a623 leaked into tokens"
     assert "amber" not in css.lower(), "'amber' string leaked into tokens"
-    assert "#0a7f57" in css.lower(), "accent-pressed token missing"
-    assert "#6ee7a8" in css.lower(), "accent token missing"
+    assert "#5f7f2a" in css.lower(), "accent-pressed token missing"
+    assert "#a7c957" in css.lower(), "accent token missing"
 
 
 def test_tokens_json_keeps_accents_consistent():
     """The DTCG JSON must mark warning as a no-color value."""
     tokens = json.loads(H.BRAND_V2_TOKENS_JSON.read_text(encoding="utf-8"))
-    assert tokens["color"]["accent"]["$value"].lower() == "#6ee7a8"
-    assert tokens["color"]["accent-pressed"]["$value"].lower() == "#0a7f57"
+    assert tokens["color"]["accent"]["$value"].lower() == "#a7c957"
+    assert tokens["color"]["accent-pressed"]["$value"].lower() == "#5f7f2a"
     assert tokens["color"]["warning"]["$value"] == "no-color"
 
 

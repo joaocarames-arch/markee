@@ -21,7 +21,7 @@ def test_dark_wordmark_is_deterministic_lowercase_lettering_only():
     assert root.attrib["viewBox"] == "0 0 1481.95 240.00"
     assert len(paths) == 6, "wordmark needs one canonical outline per glyph"
     assert {path.attrib.get("fill", "").upper() for path in paths[:-1]} == {"#E8E8E8"}
-    assert paths[-1].attrib.get("fill", "").upper() == "#6EE7A8"
+    assert paths[-1].attrib.get("fill", "").upper() == "#A7C957"
 
     forbidden = {"text", "circle", "line", "polygon", "polyline", "rect", "image", "use"}
     local_tags = {element.tag.rsplit("}", 1)[-1] for element in root.iter()}
@@ -34,7 +34,7 @@ def test_active_frontend_uses_green_demo_and_cache_busted_stylesheet():
     landing_css = H.read_text(H.LANDING_CSS).lower()
     dashboard_css = H.read_text(H.DASHBOARD_CSS).lower()
 
-    assert 'href="/static/styles.css?v=theme-green-20260820"' in html
+    assert 'href="/static/styles.css?v=theme-olive-20260820"' in html
     rule = re.search(r"\.sim-versus__mark--intruder\s*\{([^}]*)\}", landing_css)
     assert rule and "color: var(--color-accent)" in rule.group(1)
     for body in (html.lower(), landing_css, dashboard_css):

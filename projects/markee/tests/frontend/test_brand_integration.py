@@ -25,7 +25,7 @@ def test_landing_html_branding_token_count():
     legacy file (Brand v2 ink is ``#08090A``).
     """
     body = H.read_text(H.LANDING_CSS)
-    assert "--color-accent: #6ee7a8" in body, "accent token wrong or missing"
+    assert "--color-accent: #a7c957" in body, "accent token wrong or missing"
     assert "--color-bg-primary: #08090a" in body, "ink token wrong or missing"
     assert "--color-bg-secondary: #111214" in body, "charcoal token wrong or missing"
     assert "--color-bg-surface: #1a1c1f" in body, "surface token wrong or missing"
@@ -37,7 +37,7 @@ def test_landing_html_wordmark_src_matches_brand_v2():
     """The header logo must point at the canonical Brand v2 file."""
     body = H.read_text(H.LANDING_HTML)
     match = re.search(
-        r'src="(/assets/brand-v2/logos/markee-wordmark-\w+\.svg)\?v=theme-green-20260820"',
+        r'src="(/assets/brand-v2/logos/markee-wordmark-\w+\.svg)\?v=theme-olive-20260820"',
         body,
     )
     assert match, "landing nav does not point at /assets/brand-v2/logos/"
@@ -74,7 +74,7 @@ def test_dashboard_html_branding_tokens_match_canonical():
     (no divergent hard-coded hexes).
     """
     css = H.read_text(H.DASHBOARD_CSS)
-    assert "--color-accent: #6ee7a8" in css
+    assert "--color-accent: #a7c957" in css
     assert "--color-bg-primary: #08090a" in css
     assert "--color-bg-secondary: #111214" in css
     assert "--color-bg-surface: #1a1c1f" in css
@@ -116,7 +116,7 @@ def test_dashboard_api_base_contract_is_declared_once_and_used():
 def test_dashboard_renders_accessible_canonical_wordmark_asset():
     """Sidebar and auth render the canonical chromatic wordmark asset."""
     body = H.read_text(H.DASHBOARD_JS)
-    asset = "/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-green-20260820"
+    asset = "/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-olive-20260820"
     wordmark_tags = re.findall(r"<img\b[^>]*class=\"dashboard-wordmark\"[^>]*>", body)
 
     assert len(wordmark_tags) == 2, "sidebar and auth must each render the wordmark"
@@ -144,7 +144,7 @@ def test_dashboard_wordmark_asset_encodes_canonical_paths_without_symbol():
     paths = root.findall(".//svg:path", namespace)
     assert len(paths) == 6
     assert {p.attrib.get("fill", "").upper() for p in paths[:-1]} == {"#E8E8E8"}
-    assert paths[-1].attrib.get("fill", "").upper() == "#6EE7A8"
+    assert paths[-1].attrib.get("fill", "").upper() == "#A7C957"
     assert not root.findall(".//svg:text", namespace), "text rendering would change logo proportions"
     assert not root.findall(".//svg:circle", namespace), "radar/symbol circles are forbidden"
     assert not root.findall(".//svg:line", namespace), "pictogram lines are forbidden"

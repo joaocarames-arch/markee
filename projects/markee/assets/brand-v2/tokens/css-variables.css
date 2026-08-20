@@ -10,9 +10,9 @@
   --color-surface: #1A1C1F;
   --color-text-primary: #E8E8E8;
   --color-text-secondary: #8A8D93;
-  --color-accent: #6ee7a8;
-  --color-accent-hover: #86efac;
-  --color-accent-pressed: #0a7f57;
+  --color-accent: #a7c957;
+  --color-accent-hover: #b8d76a;
+  --color-accent-pressed: #5f7f2a;
   --color-danger: #E05252;
   --color-success: #4ADE80;
   /* warning: sem cor própria. Estado comunicado por ícone + texto sobre ink/charcoal/surface, com texto primário. Zero âmbar. */
@@ -43,7 +43,7 @@
   --logo-clearspace: 1x x-height;
   --logo-min-height: 24px;
   --logo-min-height-lower-limit: 16px;
-  --logo-accent: #6ee7a8;
+  --logo-accent: #a7c957;
 
   /* typography (UI) */
   --font-ui-sans: Inter, system-ui, sans-serif;

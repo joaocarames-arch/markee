@@ -369,7 +369,7 @@ function renderShell(path) {
     <div class="shell">
       <aside class="sidebar${state.sidebarOpen ? ' open' : ''}" id="sidebar" aria-label="Navegação principal">
         <div class="sidebar-brand">
-          <img class="dashboard-wordmark" src="/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-green-20260820" alt="markee" />
+          <img class="dashboard-wordmark" src="/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-olive-20260820" alt="markee" />
         </div>
         <nav class="sidebar-nav" aria-label="Menu">
           ${navHtml}
@@ -456,7 +456,7 @@ function renderAuth() {
   root.innerHTML = `
     <div class="auth-wrap">
       <div class="glass-card auth-card">
-        <div class="auth-brand"><img class="dashboard-wordmark" src="/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-green-20260820" alt="markee" /></div>
+        <div class="auth-brand"><img class="dashboard-wordmark" src="/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-olive-20260820" alt="markee" /></div>
         <p class="auth-sub">Monitorização profissional de marcas</p>
 
         <div class="auth-toggle" role="tablist" aria-label="Modo de autenticação">

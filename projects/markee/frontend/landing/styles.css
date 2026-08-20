@@ -11,9 +11,9 @@
 :root,
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --color-accent: #6ee7a8;
-  --color-accent-hover: #86efac;
-  --color-accent-pressed: #0a7f57;
+  --color-accent: #a7c957;
+  --color-accent-hover: #b8d76a;
+  --color-accent-pressed: #5f7f2a;
   --color-bg-primary: #08090a;
   --color-bg-secondary: #111214;
   --color-bg-surface: #1a1c1f;
@@ -23,7 +23,7 @@
   --color-border: rgba(255, 255, 255, 0.08);
   --color-danger: #e05252;
   --color-success: #4ade80;
-  --selection-bg: rgba(110, 231, 168, 0.35);
+  --selection-bg: rgba(167, 201, 87, 0.35);
   --selection-text: #09090b;
   --glass-card-bg: rgba(255, 255, 255, 0.05);
   --glass-pill-bg: rgba(8, 9, 10, 0.55);
@@ -39,10 +39,10 @@
 
 :root[data-theme='light'] {
   color-scheme: light;
-  --color-accent: #0a7f57;
-  --color-accent-hover: #066042;
-  --color-accent-pressed: #04452f;
-  --color-bg-primary: #fbfbfc;
+  --color-accent: #5f7f2a;
+  --color-accent-hover: #4D661F;
+  --color-accent-pressed: #3F531A;
+  --color-bg-primary: #fbfcf7;
   --color-bg-secondary: #ffffff;
   --color-bg-surface: #f4f6f5;
   --color-text-primary: #27272a;
@@ -50,8 +50,8 @@
   --color-text-secondary: #52525b;
   --color-border: rgba(9, 9, 11, 0.1);
   --color-danger: #b42318;
-  --color-success: #0a7f57;
-  --selection-bg: rgba(10, 127, 87, 0.18);
+  --color-success: #5f7f2a;
+  --selection-bg: rgba(95, 127, 42, 0.18);
   --selection-text: #09090b;
   --glass-card-bg: rgba(255, 255, 255, 0.82);
   --glass-pill-bg: rgba(255, 255, 255, 0.76);
@@ -59,7 +59,7 @@
   --mobile-menu-bg: rgba(255, 255, 255, 0.96);
   --subtle-panel-bg: rgba(9, 9, 11, 0.04);
   --hover-surface-bg: rgba(9, 9, 11, 0.035);
-  --hero-soft-radial: rgba(10, 127, 87, 0.08);
+  --hero-soft-radial: rgba(95, 127, 42, 0.08);
   --shadow-sm: 0 1px 2px rgba(9, 9, 11, 0.08);
   --shadow-md: 0 8px 24px rgba(9, 9, 11, 0.1);
   --shadow-lg: 0 18px 48px rgba(9, 9, 11, 0.12);
@@ -1330,11 +1330,11 @@ body.no-js .manifesto__text .w {
 }
 
 .price-card:hover {
-  border-color: rgba(110, 231, 168, 0.35);
+  border-color: rgba(167, 201, 87, 0.35);
 }
 
 .price-card--featured {
-  border-color: rgba(110, 231, 168, 0.5);
+  border-color: rgba(167, 201, 87, 0.5);
   background: var(--glass-card-bg);
 }
 
@@ -1584,7 +1584,7 @@ body.no-js .manifesto__text .w {
 .language-switcher__option:hover,
 .language-switcher__option.is-active,
 .language-switcher__option[aria-pressed='true'] {
-  background: rgba(110, 231, 168, 0.16);
+  background: rgba(167, 201, 87, 0.16);
   color: var(--color-text-strong);
 }
 

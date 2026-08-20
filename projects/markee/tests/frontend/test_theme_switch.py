@@ -24,11 +24,11 @@ from . import _helpers as H
 
 SVG_NS = "http://www.w3.org/2000/svg"
 
-# The one credible tech green, in its two working values. The bright brand
+# The credible light olive green, in its two working values. The bright brand
 # green carries the logo and the dark theme; the deep green is the light
-# theme's interactive colour because #6EE7A8 on white is unreadable.
-BRAND_GREEN = "#6ee7a8"
-DEEP_GREEN = "#0a7f57"
+# theme's interactive colour because #A7C957 on white is unreadable.
+BRAND_GREEN = "#a7c957"
+DEEP_GREEN = "#5f7f2a"
 
 # Every spelling of the retired cyan accent, including its rgba() form.
 LEGACY_CYAN = re.compile(
@@ -206,7 +206,7 @@ def test_light_theme_uses_white_or_off_white_surfaces_and_zinc_text():
     css = H.read_text(H.LANDING_CSS)
     light = css.split(":root[data-theme='light']", 1)[-1].split("}", 1)[0]
 
-    assert "--color-bg-primary: #fbfbfc" in light, "light page must be off-white"
+    assert "--color-bg-primary: #fbfcf7" in light, "light page must be off-white"
     assert "--color-bg-secondary: #ffffff" in light, "raised blocks must be white"
     assert "--color-text-primary: #27272a" in light, "body text must be zinc"
     assert "--color-text-strong: #09090b" in light, "headings must be near-black"
@@ -288,7 +288,7 @@ def test_brand_tokens_declare_the_green_accent():
 
 def test_wordmarks_carry_the_green_accent_readable_on_their_background():
     """Both chromatic wordmarks keep six glyphs with only the last ``e``
-    accented. The dark variant uses the bright brand green; the light
+    accented. The dark variant uses the light olive brand green; the light
     variant uses the deep green so the letter survives on white.
     """
     expected = {

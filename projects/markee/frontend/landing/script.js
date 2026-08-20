@@ -281,8 +281,8 @@ const i18n = {
 const LANG_STORAGE_KEY = 'markee-language';
 const THEME_STORAGE_KEY = 'markee-theme';
 const THEME_META = {
-  dark: { chrome: '#08090a', logo: '/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-green-20260820' },
-  light: { chrome: '#fbfbfc', logo: '/assets/brand-v2/logos/markee-wordmark-light.svg?v=theme-green-20260820' },
+  dark: { chrome: '#08090a', logo: '/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-olive-20260820' },
+  light: { chrome: '#fbfcf7', logo: '/assets/brand-v2/logos/markee-wordmark-light.svg?v=theme-olive-20260820' },
 };
 const themeListeners = [];
 
@@ -1098,7 +1098,7 @@ async function initWebGL() {
       uTime: { value: 0 },
       uMouse: { value: new THREE.Vector2(0, 0) },
       uPixelRatio: { value: pixelRatio },
-      uColor: { value: new THREE.Color(0x6ee7a8) },
+      uColor: { value: new THREE.Color(0xa7c957) },
     },
     transparent: true,
     depthWrite: false,
@@ -1108,7 +1108,7 @@ async function initWebGL() {
   });
 
   onThemeChange((theme) => {
-    material.uniforms.uColor.value.set(theme === 'light' ? 0x0a7f57 : 0x6ee7a8);
+    material.uniforms.uColor.value.set(theme === 'light' ? 0x5f7f2a : 0xa7c957);
     material.blending = theme === 'light' ? THREE.NormalBlending : THREE.AdditiveBlending;
     material.needsUpdate = true;
   });

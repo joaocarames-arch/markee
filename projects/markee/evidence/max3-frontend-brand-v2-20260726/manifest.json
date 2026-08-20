@@ -28,14 +28,14 @@
     "README.md": "89f7606c99ac2cda98180866dfd03a55f233b369df2232864af70551f5bdca69",
     "docs/BRAND_MANUAL.md": "f84e9f6af56faafe7382b8c85e56d1a7c88f830323292c0a21a33ffa8e45da8e",
     "docs/DESIGN.md": "2d2dc5d78253d32615f6f56a0c0529a2d55e494e7484e668685f02cfea11ebd7",
-    "logos/markee-brand-sheet.svg": "f9233d2ec97eea2b459d42c3cfbcc2d30faa4e9f8df609b9502e32e3d0f9df7b",
-    "logos/markee-wordmark-dark.svg": "d146a880877cbbbc0b661b7e458ee26c78ebd0dadff8756c0912f21675f6b1e0",
-    "logos/markee-wordmark-light.svg": "4c6a2127e48ebf5e11d2082657a04171eb5d54f462607e2819cb4ed41b1bb55e",
+    "logos/markee-brand-sheet.svg": "5366994ae6e775f01cd20470fac17361a26a986657035a93a3a6cce2a7441872",
+    "logos/markee-wordmark-dark.svg": "fe23afe23bb281dab7caad42c8154011dec2a43ee6329b1ceb96e30c77f10948",
+    "logos/markee-wordmark-light.svg": "b5e283c3f3e5d9a15b267f9764f584ed314413825c981bee97c35f72d0d18e15",
     "logos/markee-wordmark-mono-black.svg": "abc82fbd2ee65053a83763fa3f780ef0197a72a2bfdf80992d3f93bef6442ab1",
     "logos/markee-wordmark-mono-white.svg": "322ede3d1255c4adf634905a377352945216eadf4b64c7697eaf8ee6b01659c5",
     "logos/wordmark-meta.json": "a9686e946493ee0565cb3889fff81ed07154c83bc666b521a6b644c9a015e48e",
-    "tokens/css-variables.css": "78942f5b2ba3cec8d1913fc2b0db796443923eb2486e9262db5943656c624bce",
-    "tokens/tokens.json": "b558d3ae47620f2ade16469fa498de7da342dec3095bfe7b2ec92a059958c056"
+    "tokens/css-variables.css": "4e4c27e53385ed52d76b9ca7a55f417b19c0825fd955a5ae804bb4099f09ade6",
+    "tokens/tokens.json": "648d8453c73a7baeb6970ab94bbb0ad52678875f983411d0018ad5959fac67f1"
   },
   "json_parse": "PASS",
   "git_whitespace_exception": {
