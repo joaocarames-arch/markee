@@ -25,6 +25,302 @@ if (reducedMotion) {
   document.body.classList.add('reduced-motion');
 }
 
+
+/* ==========================================================================
+   Language switching — Portuguese default, English optional
+   ========================================================================== */
+
+const i18n = {
+  "pt": {
+    "meta.title": "markee — Monitorização de marcas · INPI &amp; EUIPO",
+    "meta.description": "O markee observa os registos de marcas de Portugal e da Europa em permanência. Alertas de similaridade, gestão de prazos e prospeção de clientes para profissionais de PI.",
+    "preloader.meta": "A PREPARAR A VIGÍLIA",
+    "skip.content": "Saltar para o conteúdo",
+    "nav.features": "Funcionalidades",
+    "nav.engine": "O Motor",
+    "nav.pricing": "Preços",
+    "nav.login": "Entrar",
+    "nav.create": "Criar conta",
+    "nav.service_status": "Estado do serviço",
+    "hero.eyebrow": "INPI · EUIPO — MONITORIZAÇÃO CONTÍNUA DE MARCAS",
+    "hero.title": "A sua marca, sob vigilância absoluta.",
+    "hero.title.line1": "A sua marca,",
+    "hero.title.line2": "sob vigilância",
+    "hero.title.line3": "<em class=\"hero__title-accent\">absoluta.</em>",
+    "hero.subtitle": "O markee observa os registos de Portugal e da Europa em permanência —             deteta conflitos, antecipa prazos e transforma vigilância em vantagem.",
+    "hero.cta.primary": "Entrar",
+    "hero.cta.secondary": "Explorar funcionalidades",
+    "hero.meta.location": "38.7223° N, 9.1393° W — LISBOA",
+    "hero.meta.scroll": "DESLIZE",
+    "hero.meta.est": "EST. 2026 — SEMPRE ATENTO",
+    "ticker.inpi": "INPI — PORTUGAL",
+    "ticker.euipo": "EUIPO — UNIÃO EUROPEIA",
+    "ticker.bpi": "BOLETIM DA PROPRIEDADE INDUSTRIAL",
+    "ticker.nice": "45 CLASSES DE NICE",
+    "ticker.phonetic": "ANÁLISE FONÉTICA PT",
+    "ticker.alerts": "ALERTAS EM TEMPO ÚTIL",
+    "manifesto.eyebrow": "O NOSSO PONTO DE PARTIDA",
+    "manifesto.text": "Uma marca é mais do que um nome. É território. E território defende-se —           com atenção permanente, não com sorte.",
+    "features.eyebrow": "FUNCIONALIDADES",
+    "features.title": "Cinco instrumentos.<br />Uma única vigília.",
+    "feature.sim.title": "Alertas de similaridade",
+    "feature.sim.desc": "Cada novo pedido publicado é comparado com as suas marcas através de                   três lentes: semelhança textual, fonética afinada para português e                   sobreposição de classes de Nice.",
+    "feature.sim.meta": "50% TEXTUAL · 30% FONÉTICA · 20% CLASSES",
+    "feature.life.title": "Ciclo de vida e prazos",
+    "feature.life.desc": "Renovações, períodos de oposição e períodos de graça calculados                   automaticamente. Cada data crítica aparece no calendário com                   bastante antecedência.",
+    "feature.life.meta": "RENOVAÇÃO · OPOSIÇÃO · PERÍODO DE GRAÇA",
+    "feature.structured.title": "Leitura estruturada de pedidos",
+    "feature.structured.desc": "Os pedidos publicados são indexados em formato estruturado para                   apoiar a pesquisa e a comparação de marcas.",
+    "feature.structured.meta": "PEDIDOS PUBLICADOS · DADOS ESTRUTURADOS",
+    "feature.prospect.title": "Prospeção de clientes",
+    "feature.prospect.desc": "Para profissionais de PI: identifique empresas com atividade recente                   de marcas que ainda não têm representação — e chegue primeiro.",
+    "feature.prospect.meta": "OPORTUNIDADES · MULTI-CLIENTE",
+    "feature.email.title": "Alertas por email",
+    "feature.email.desc": "Cada alerta chega por email com o contexto necessário para agir                   de imediato.",
+    "stats.label": "Números do markee",
+    "stats.official": "registos oficiais<br />INPI · EUIPO",
+    "stats.classes": "classes de Nice<br />cobertas",
+    "stats.weights": "pesos do motor<br />textual · fonética · classes",
+    "stats.pt": "fonética afinada<br />para português",
+    "engine.eyebrow": "O MOTOR EM AÇÃO",
+    "engine.title": "Veja como o markee<br />pensa uma colisão.",
+    "engine.aria": "Demonstração do motor",
+    "engine.sim.title": "Deteção de similaridade",
+    "engine.sim.desc": "Um pedido novo é decomposto e pontuado contra a sua watchlist em                   três dimensões independentes.",
+    "engine.deadlines.title": "Prazos sob controlo",
+    "engine.deadlines.desc": "Cada marca ganha uma linha temporal viva: renovações, oposições e                   períodos de graça, sempre à vista.",
+    "engine.alert.title": "Alerta entregue",
+    "engine.alert.desc": "O resultado chega onde estiver — caixa de correio — com                   o que decide.",
+    "engine.report": "RELATÓRIO DE SIMILARIDADE",
+    "engine.your_mark": "A sua marca",
+    "engine.new_application": "Pedido novo",
+    "engine.textual": "Textual",
+    "engine.phonetic": "Fonética",
+    "engine.classes": "Classes",
+    "engine.verdict": "Similaridade global — risco elevado de confusão.                   Recomenda-se análise de oposição.",
+    "engine.timeline.label": "LINHA TEMPORAL — A sua marca",
+    "engine.timeline.registered": "Registo concedido — EUIPO",
+    "engine.timeline.opposition": "Prazo de oposição a pedido conflituante — faltam 101 dias",
+    "engine.timeline.renewal": "Renovação decenal — lembretes automáticos a 180, 90 e 30 dias",
+    "engine.sent": "NOTIFICAÇÕES ENVIADAS",
+    "engine.email_one": "Detetámos um novo pedido com 87% de similaridade à sua marca «A sua marca».",
+    "engine.email_meta": "EUIPO · CLASSES 9, 42 · HÁ 12 MIN",
+    "engine.email_two": "Pedido novo com 87% de similaridade publicado. Prazo de oposição previsto a 2026-11-02.",
+    "pricing.eyebrow": "PREÇOS",
+    "pricing.title": "Escolha a intensidade<br />da sua vigilância.",
+    "pricing.note": "Sem contratos de permanência. Mude de plano quando quiser.",
+    "pricing.per_month": "/mês",
+    "pricing.free.1": "1 marca monitorizada",
+    "pricing.free.2": "Cobertura EUIPO + INPI",
+    "pricing.free.3": "Alertas de renovação",
+    "pricing.email": "Notificações por email",
+    "pricing.start": "Começar",
+    "pricing.ind.1": "5 marcas monitorizadas",
+    "pricing.ind.2": "Alertas de similaridade",
+    "pricing.ind.3": "Alertas de oposição",
+    "pricing.pro.1": "100 marcas monitorizadas",
+    "pricing.pro.2": "Fonética afinada para PT",
+    "pricing.pro.3": "Analytics básico",
+    "pricing.prof.1": "500 marcas monitorizadas",
+    "pricing.prof.2": "Prospeção de clientes",
+    "pricing.prof.3": "Gestão multi-cliente",
+    "pricing.prof.4": "Relatórios white-label",
+    "pricing.ent.1": "Marcas ilimitadas",
+    "pricing.ent.2": "API completa",
+    "pricing.ent.3": "SSO empresarial",
+    "final.eyebrow": "O PRÓXIMO PASSO",
+    "final.title": "Enquanto lê isto,<br />alguém pode estar a registar<br />           <em>algo demasiado parecido.</em>",
+    "final.hint": "PLANO TRIAL DISPONÍVEL PARA TESTAR A FUNCIONALIDADE",
+    "footer.aria": "Rodapé",
+    "footer.product": "PRODUTO",
+    "footer.platform": "PLATAFORMA",
+    "footer.registers": "REGISTOS",
+    "footer.euipo": "EUIPO — Europa",
+    "footer.rights": "© 2026 MARKEE — TODOS OS DIREITOS RESERVADOS",
+    "footer.made": "FEITO EM LISBOA · VIGILANTE POR NATUREZA",
+    "language.aria": "Escolher idioma",
+    "nav.aria": "Navegação principal",
+    "nav.open_menu": "Abrir menu",
+    "nav.close_menu": "Fechar menu"
+  },
+  "en": {
+    "meta.title": "markee — Trademark monitoring · INPI &amp; EUIPO",
+    "meta.description": "markee keeps permanent watch over Portuguese and European trademark registers. Similarity alerts, deadline management and client prospecting for IP professionals.",
+    "preloader.meta": "PREPARING THE WATCH",
+    "skip.content": "Skip to content",
+    "nav.features": "Features",
+    "nav.engine": "The Engine",
+    "nav.pricing": "Pricing",
+    "nav.login": "Log in",
+    "nav.create": "Create account",
+    "nav.service_status": "Service status",
+    "hero.eyebrow": "INPI · EUIPO — CONTINUOUS TRADEMARK MONITORING",
+    "hero.title": "Your brand, under absolute watch.",
+    "hero.title.line1": "Your brand,",
+    "hero.title.line2": "under",
+    "hero.title.line3": "<em class=\"hero__title-accent\">absolute watch.</em>",
+    "hero.subtitle": "markee keeps permanent watch over Portuguese and European registers — detecting conflicts, anticipating deadlines and turning monitoring into advantage.",
+    "hero.cta.primary": "Log in",
+    "hero.cta.secondary": "Explore features",
+    "hero.meta.location": "38.7223° N, 9.1393° W — LISBON",
+    "hero.meta.scroll": "SCROLL",
+    "hero.meta.est": "EST. 2026 — ALWAYS WATCHING",
+    "ticker.inpi": "INPI — PORTUGAL",
+    "ticker.euipo": "EUIPO — EUROPEAN UNION",
+    "ticker.bpi": "INDUSTRIAL PROPERTY BULLETIN",
+    "ticker.nice": "45 NICE CLASSES",
+    "ticker.phonetic": "PT PHONETIC ANALYSIS",
+    "ticker.alerts": "TIMELY ALERTS",
+    "manifesto.eyebrow": "OUR STARTING POINT",
+    "manifesto.text": "A trademark is more than a name. It is territory. And territory is defended — with permanent attention, not luck.",
+    "features.eyebrow": "FEATURES",
+    "features.title": "Five instruments.<br />One watch.",
+    "feature.sim.title": "Similarity alerts",
+    "feature.sim.desc": "Every newly published application is compared with your marks through three lenses: textual similarity, Portuguese-tuned phonetics and Nice-class overlap.",
+    "feature.sim.meta": "50% TEXTUAL · 30% PHONETIC · 20% CLASSES",
+    "feature.life.title": "Lifecycle and deadlines",
+    "feature.life.desc": "Renewals, opposition periods and grace periods calculated automatically. Every critical date appears in the calendar well in advance.",
+    "feature.life.meta": "RENEWAL · OPPOSITION · GRACE PERIOD",
+    "feature.structured.title": "Structured application reading",
+    "feature.structured.desc": "Published applications are indexed in structured form to support trademark search and comparison.",
+    "feature.structured.meta": "PUBLISHED APPLICATIONS · STRUCTURED DATA",
+    "feature.prospect.title": "Client prospecting",
+    "feature.prospect.desc": "For IP professionals: identify companies with recent trademark activity that are not yet represented — and get there first.",
+    "feature.prospect.meta": "OPPORTUNITIES · MULTI-CLIENT",
+    "feature.email.title": "Email alerts",
+    "feature.email.desc": "Every alert arrives by email with the context needed to act immediately.",
+    "stats.label": "markee numbers",
+    "stats.official": "official registers<br />INPI · EUIPO",
+    "stats.classes": "Nice classes<br />covered",
+    "stats.weights": "engine weights<br />textual · phonetic · classes",
+    "stats.pt": "phonetics tuned<br />for Portuguese",
+    "engine.eyebrow": "THE ENGINE IN ACTION",
+    "engine.title": "See how markee<br />reads a collision.",
+    "engine.aria": "Engine demonstration",
+    "engine.sim.title": "Similarity detection",
+    "engine.sim.desc": "A new application is decomposed and scored against your watchlist across three independent dimensions.",
+    "engine.deadlines.title": "Deadlines under control",
+    "engine.deadlines.desc": "Every mark gets a living timeline: renewals, oppositions and grace periods, always visible.",
+    "engine.alert.title": "Alert delivered",
+    "engine.alert.desc": "The result reaches you where you work — inbox included — with what matters.",
+    "engine.report": "SIMILARITY REPORT",
+    "engine.your_mark": "Your mark",
+    "engine.new_application": "New application",
+    "engine.textual": "Textual",
+    "engine.phonetic": "Phonetic",
+    "engine.classes": "Classes",
+    "engine.verdict": "Overall similarity — high risk of confusion. Opposition analysis recommended.",
+    "engine.timeline.label": "TIMELINE — Your mark",
+    "engine.timeline.registered": "Registration granted — EUIPO",
+    "engine.timeline.opposition": "Opposition deadline for conflicting application — 101 days left",
+    "engine.timeline.renewal": "Ten-year renewal — automatic reminders at 180, 90 and 30 days",
+    "engine.sent": "NOTIFICATIONS SENT",
+    "engine.email_one": "We detected a new application with 87% similarity to your mark “Your mark”.",
+    "engine.email_meta": "EUIPO · CLASSES 9, 42 · 12 MIN AGO",
+    "engine.email_two": "New application published with 87% similarity. Expected opposition deadline: 2026-11-02.",
+    "pricing.eyebrow": "PRICING",
+    "pricing.title": "Choose the intensity<br />of your watch.",
+    "pricing.note": "No lock-in contracts. Change plan whenever you want.",
+    "pricing.per_month": "/month",
+    "pricing.free.1": "1 monitored mark",
+    "pricing.free.2": "EUIPO + INPI coverage",
+    "pricing.free.3": "Renewal alerts",
+    "pricing.email": "Email notifications",
+    "pricing.start": "Start",
+    "pricing.ind.1": "5 monitored marks",
+    "pricing.ind.2": "Similarity alerts",
+    "pricing.ind.3": "Opposition alerts",
+    "pricing.pro.1": "100 monitored marks",
+    "pricing.pro.2": "PT-tuned phonetics",
+    "pricing.pro.3": "Basic analytics",
+    "pricing.prof.1": "500 monitored marks",
+    "pricing.prof.2": "Client prospecting",
+    "pricing.prof.3": "Multi-client management",
+    "pricing.prof.4": "White-label reports",
+    "pricing.ent.1": "Unlimited marks",
+    "pricing.ent.2": "Full API",
+    "pricing.ent.3": "Enterprise SSO",
+    "final.eyebrow": "THE NEXT STEP",
+    "final.title": "While you read this,<br />someone may be filing<br /><em>something far too similar.</em>",
+    "final.hint": "TRIAL PLAN AVAILABLE TO TEST THE FEATURE",
+    "footer.aria": "Footer",
+    "footer.product": "PRODUCT",
+    "footer.platform": "PLATFORM",
+    "footer.registers": "REGISTERS",
+    "footer.euipo": "EUIPO — Europe",
+    "footer.rights": "© 2026 MARKEE — ALL RIGHTS RESERVED",
+    "footer.made": "Made in Lisbon · watchful by nature",
+    "language.aria": "Choose language",
+    "nav.aria": "Main navigation",
+    "nav.open_menu": "Open menu",
+    "nav.close_menu": "Close menu"
+  }
+};
+const LANG_STORAGE_KEY = 'markee-language';
+
+function getStoredLanguage() {
+  try {
+    return localStorage.getItem('markee-language');
+  } catch (error) {
+    return null;
+  }
+}
+
+function setStoredLanguage(language) {
+  try {
+    localStorage.setItem('markee-language', language);
+  } catch (error) {
+    // Private browsing or locked-down storage should not break the site.
+  }
+}
+
+function applyLanguage(language) {
+  const lang = language === 'en' ? 'en' : 'pt';
+  const dictionary = i18n[lang];
+  document.documentElement.lang = lang === 'en' ? 'en' : 'pt-PT';
+
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.dataset.i18n;
+    const value = dictionary[key];
+    if (typeof value !== 'string') {
+      return;
+    }
+    const attr = el.dataset.i18nAttr;
+    if (attr) {
+      el.setAttribute(attr, value);
+    } else {
+      el.innerHTML = value;
+    }
+  });
+
+  document.title = dictionary['meta.title'];
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.setAttribute('content', dictionary['meta.description']);
+  }
+
+  document.querySelectorAll('[data-lang-option]').forEach((button) => {
+    const active = button.dataset.langOption === lang;
+    button.setAttribute('aria-pressed', String(active));
+    button.classList.toggle('is-active', active);
+  });
+}
+
+function initLanguageSwitch() {
+  const initial = getStoredLanguage() || document.documentElement.dataset.defaultLang || 'pt';
+  applyLanguage(initial);
+  document.querySelectorAll('[data-lang-option]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const language = button.dataset.langOption === 'en' ? 'en' : 'pt';
+      setStoredLanguage(language);
+      applyLanguage(language);
+      if (hasGsap) {
+        ScrollTrigger.refresh();
+      }
+    });
+  });
+}
+
 /* ==========================================================================
    Text splitting helpers
    ========================================================================== */
@@ -184,7 +480,7 @@ function initNav() {
       menuOpen = open;
       menu.hidden = !open;
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+      toggle.setAttribute('aria-label', open ? i18n[document.documentElement.lang === 'en' ? 'en' : 'pt']['nav.close_menu'] : i18n[document.documentElement.lang === 'en' ? 'en' : 'pt']['nav.open_menu']);
     };
 
     toggle.addEventListener('click', () => setMenu(menu.hidden));
@@ -744,6 +1040,7 @@ async function initWebGL() {
    ========================================================================== */
 
 function boot() {
+  initLanguageSwitch();
   splitHeroLines();
   const manifesto = document.querySelector('[data-split-words]');
   if (manifesto && !reducedMotion && hasGsap) {
