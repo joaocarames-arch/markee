@@ -65,8 +65,8 @@ def test_mobile_menu_hidden_state_is_owned_locally_and_toggleable():
     css = H.read_text(H.LANDING_CSS)
     script = H.read_text(H.LANDING_JS)
 
-    menu = re.search(r'<div class="site-nav__mobile[^"]*" id="mobileMenu"([^>]*)>', html)
-    assert menu and re.search(r"\bhidden\b", menu.group(1)), (
+    menu = re.search(r'<div\b[^>]*id="mobileMenu"[^>]*>|<div\b[^>]*class="site-nav__mobile[^"]*"[^>]*>', html)
+    assert menu and re.search(r"\bhidden\b", menu.group(0)), (
         "mobile menu must be hidden in the initial DOM"
     )
     assert re.search(r"\.site-nav__mobile\[hidden\]\s*\{[^}]*display:\s*none\s*!important", css), (

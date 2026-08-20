@@ -63,7 +63,7 @@ _IS_DEV = settings.ENVIRONMENT == "development"
 
 app = FastAPI(
     title="markee",
-    description="API de monitorização de marcas (INPI e EUIPO)",
+    description="API for EU trademark search, monitoring and professional assessment",
     version="0.1.0",
     lifespan=lifespan,
     # API schema/docs are development-only surfaces.

@@ -82,11 +82,11 @@ def test_dashboard_html_branding_tokens_match_canonical():
 
 
 def test_dashboard_html_lang_and_aria():
-    """The dashboard keeps PT-PT, accessibility and auth subtitle styling."""
+    """The dashboard keeps English, accessibility and auth subtitle styling."""
     body = H.read_text(H.DASHBOARD_HTML)
     app_js = H.read_text(H.DASHBOARD_JS)
     css = H.read_text(H.DASHBOARD_CSS)
-    assert 'lang="pt-PT"' in body
+    assert 'lang="en"' in body
     assert 'aria-live' in body
     assert re.search(
         r'<div class="auth-brand">.*?</div>\s*<p class="auth-sub">',

@@ -28,14 +28,12 @@ SimilarityBand = Literal["low", "medium", "high"]
 
 # ── Canonical legal disclaimer (single source of truth) ─────────────────────
 DISCLAIMERS: list[str] = [
-    "Esta avaliação é gerada automaticamente e tem caráter meramente "
-    "informativo; não constitui aconselhamento jurídico nem garante o registo "
-    "da marca.",
-    "A análise de anterioridades pode estar incompleta ou desatualizada e "
-    "depende da disponibilidade das bases de dados do EUIPO e do INPI no "
-    "momento da consulta.",
-    "Para uma decisão de registo, recomenda-se a validação por um Agente "
-    "Oficial da Propriedade Industrial ou advogado especializado.",
+    "This automated assessment is for information only; it is not legal "
+    "advice and does not guarantee trademark registration.",
+    "Earlier-right analysis may be incomplete or outdated and depends on "
+    "the availability of EUIPO and INPI data at the time of the check.",
+    "Professional review by a qualified trademark professional is recommended "
+    "before making filing or commercial decisions.",
 ]
 
 
@@ -44,19 +42,19 @@ DISCLAIMERS: list[str] = [
 # accent-folded tokens of the business description (whole-token match) or, for
 # multi-word keywords, as a substring of the folded text.
 NICE_CLASS_TITLES: dict[int, str] = {
-    3: "Cosméticos e produtos de higiene",
-    5: "Produtos farmacêuticos",
-    9: "Software, aparelhos e equipamento informático",
-    25: "Vestuário, calçado e chapelaria",
-    29: "Alimentos de origem animal e conservas",
-    30: "Café, chá, padaria e produtos alimentares",
-    35: "Publicidade, gestão de negócios e comércio eletrónico",
-    36: "Serviços financeiros e de seguros",
-    41: "Educação, formação e entretenimento",
-    42: "Serviços científicos e tecnológicos; I&D; SaaS",
-    43: "Serviços de restauração e alojamento",
-    44: "Serviços médicos, de saúde e de beleza",
-    45: "Serviços jurídicos e de segurança",
+    3: "Cosmetics and hygiene products",
+    5: "Pharmaceutical products",
+    9: "Software, devices and IT equipment",
+    25: "Clothing, footwear and headgear",
+    29: "Food of animal origin and preserves",
+    30: "Coffee, tea, bakery and food products",
+    35: "Advertising, business management and e-commerce",
+    36: "Financial and insurance services",
+    41: "Education, training and entertainment",
+    42: "Scientific and technological services; R&D; SaaS",
+    43: "Restaurant and accommodation services",
+    44: "Medical, health and beauty services",
+    45: "Legal and security services",
 }
 
 _CLASS_KEYWORDS: dict[int, tuple[str, ...]] = {
@@ -328,7 +326,7 @@ def assess_distinctiveness(
         return DistinctivenessResult(
             level="not_met",
             score=0.0,
-            rationale="A marca indicada está vazia ou não contém carateres válidos.",
+            rationale="The supplied mark is empty or contains no valid characters.",
         )
 
     generic = [t for t in tokens if t in _GENERIC_TERMS]
@@ -353,21 +351,21 @@ def assess_distinctiveness(
     if score >= 70.0:
         level: DistinctivenessLevel = "fully_met"
         rationale = (
-            "A marca apresenta caráter distintivo suficiente para diferenciar "
-            "os produtos/serviços na perspetiva do consumidor."
+            "The mark has sufficient distinctive character to distinguish "
+            "the goods/services from the consumer perspective."
         )
     elif score >= 40.0:
         level = "partially_met"
         rationale = (
-            "A marca contém elementos genéricos ou descritivos que podem "
-            "reduzir o seu caráter distintivo; pondere reforçar a componente "
-            "distintiva."
+            "The mark contains generic or descriptive elements that may "
+            "reduce its distinctive character; consider strengthening the "
+            "distinctive component."
         )
     else:
         level = "not_met"
         rationale = (
-            "A marca é maioritariamente genérica ou descritiva da atividade, o "
-            "que dificulta o registo por falta de caráter distintivo."
+            "The mark is mostly generic or descriptive of the activity, "
+            "which makes registration difficult for lack of distinctive character."
         )
 
     return DistinctivenessResult(level=level, score=round(score, 1), rationale=rationale)
@@ -407,10 +405,10 @@ def recommend_nice_classes(
         if matched:
             recs[class_number] = ClassRecommendation(
                 class_number=class_number,
-                title_pt=NICE_CLASS_TITLES.get(class_number, f"Classe {class_number}"),
+                title_pt=NICE_CLASS_TITLES.get(class_number, f"Class {class_number}"),
                 reason=(
-                    "Sugerida pela descrição da atividade "
-                    f"(termo «{matched[0]}»)."
+                    "Suggested from the activity description "
+                    f"(term “{matched[0]}”)."
                 ),
             )
 
@@ -418,11 +416,11 @@ def recommend_nice_classes(
         if not 1 <= class_number <= 45:
             continue
         if class_number in recs:
-            recs[class_number].reason += " Também indicada pelo requerente."
+            recs[class_number].reason += " Also indicated by the applicant."
         else:
             recs[class_number] = ClassRecommendation(
                 class_number=class_number,
-                title_pt=NICE_CLASS_TITLES.get(class_number, f"Classe {class_number}"),
+                title_pt=NICE_CLASS_TITLES.get(class_number, f"Class {class_number}"),
                 reason="Indicada pelo requerente.",
             )
 
@@ -431,8 +429,8 @@ def recommend_nice_classes(
             class_number=_DEFAULT_CLASS,
             title_pt=NICE_CLASS_TITLES[_DEFAULT_CLASS],
             reason=(
-                "Classe genérica de negócio recomendada por defeito na ausência "
-                "de descrição específica."
+                "Generic business class recommended by default in the absence "
+                "of a specific description."
             ),
         )
 
@@ -469,22 +467,22 @@ def assess_opposition_risk(
     if identical_match or has_high or distinctiveness_level == "not_met":
         level: RiskLevel = "high"
         rationale = (
-            "Existe uma marca idêntica ou muito semelhante, ou a marca tem "
-            "baixo caráter distintivo, o que aumenta o risco de oposição ou de "
-            "recusa pelo instituto."
+            "An identical or very similar mark exists, or the mark has "
+            "low distinctive character, increasing the risk of opposition or "
+            "refusal by the office."
         )
     elif has_medium or distinctiveness_level == "partially_met":
         level = "medium"
         rationale = (
-            "Foram identificadas semelhanças moderadas com marcas anteriores; "
-            "existe algum risco de oposição consoante a sobreposição de "
-            "classes e de mercado."
+            "Moderate similarities with earlier marks were identified; "
+            "there is some opposition risk depending on the overlap of "
+            "classes and market context."
         )
     else:
         level = "low"
         rationale = (
-            "Não foram identificadas anterioridades relevantes; o risco de "
-            "oposição é baixo devido à distintividade da marca."
+            "No relevant earlier rights were identified; the risk of "
+            "opposition is low due to the mark’s distinctiveness."
         )
 
     return OppositionRisk(level=level, rationale=rationale)
@@ -495,12 +493,12 @@ def determine_verdict(
     risk_level: RiskLevel,
     identical_match: bool,
 ) -> tuple[Verdict, str]:
-    """Combine distinctiveness and risk into an overall verdict + PT label."""
+    """Combine distinctiveness and risk into an overall verdict + English label."""
     if identical_match or distinctiveness_level == "not_met" or risk_level == "high":
-        return "not_recommended", "Registo não recomendado"
+        return "not_recommended", "Registration not recommended"
     if risk_level == "medium" or distinctiveness_level == "partially_met":
-        return "eligible_with_risk", "Elegível com reservas"
-    return "eligible", "Elegível para registo"
+        return "eligible_with_risk", "Eligible with reservations"
+    return "eligible", "Eligible for filing"
 
 
 def _build_recommendations(
@@ -517,37 +515,37 @@ def _build_recommendations(
     class_list = ", ".join(str(c.class_number) for c in recommended_classes)
     if class_list:
         recs.append(
-            f"Considere registar a marca nas classes de Nice {class_list}, de "
+            f"Consider filing the trademark in Nice classes {class_list}, de "
             "acordo com a atividade descrita."
         )
 
     if distinctiveness.level != "fully_met":
         recs.append(
-            "Reforce a componente distintiva da marca (por exemplo, um elemento "
-            "verbal inventado ou um elemento figurativo) para reduzir o risco de "
-            "recusa."
+            "Strengthen the mark’s distinctive component (for example, an "
+            "invented word element or figurative element) to reduce the risk of "
+            "refusal."
         )
 
     if identical_match:
         recs.append(
-            "Foi encontrada uma marca idêntica; recomenda-se uma análise "
-            "jurídica aprofundada antes de avançar com o pedido."
+            "An identical mark was found; a detailed legal analysis is "
+            "recommended before proceeding with the application."
         )
     elif risk_level in {"medium", "high"}:
         recs.append(
-            "Existem marcas semelhantes anteriores; avalie a sobreposição de "
-            "classes e de mercado para estimar o risco de confusão."
+            "Similar earlier marks exist; assess the overlap of "
+            "classes and market context to estimate confusion risk."
         )
     else:
         recs.append(
-            "Em média, apenas cerca de 5% dos pedidos enfrentam oposição; o "
-            "registo é recomendável, sobretudo se já opera sob esta marca."
+            "On average, only around 5% of applications face opposition; "
+            "filing may be appropriate, especially if you already trade under this mark."
         )
 
     if provenance == "unavailable":
         recs.append(
-            "A pesquisa de anterioridades não pôde ser concluída neste momento; "
-            "repita a verificação para uma análise completa antes de decidir."
+            "The earlier-right search could not be completed at this time; "
+            "repeat the check for a complete analysis before deciding."
         )
 
     return recs

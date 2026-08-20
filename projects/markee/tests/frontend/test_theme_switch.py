@@ -58,7 +58,7 @@ def test_landing_html_declares_a_default_theme_on_the_root_element():
     assert 'data-theme="dark"' in root.group(0), (
         "the served <html> must declare the default theme"
     )
-    assert 'lang="pt-PT"' in root.group(0), "Portuguese must remain the default"
+    assert 'lang="en"' in root.group(0), "English must be the default"
 
 
 def test_landing_head_bootstraps_the_theme_before_first_paint():
@@ -158,7 +158,7 @@ def test_theme_switch_keeps_the_browser_chrome_in_sync():
     html = H.read_text(H.LANDING_HTML)
     js = H.read_text(H.LANDING_JS)
 
-    assert '<meta name="theme-color"' in html
+    assert re.search(r'<meta[^>]+name="theme-color"|<meta[^>]+content="#08090a"[^>]+name="theme-color"', html)
     apply_theme = js.split("function applyTheme", 1)[-1].split("\nfunction ", 1)[0]
     assert 'meta[name="theme-color"]' in apply_theme
     assert "aria-checked" in apply_theme, "the switch state must follow the theme"
@@ -316,9 +316,10 @@ def test_landing_and_dashboard_paint_the_green_accent():
 
 def test_favicon_referenced_by_the_landing_uses_the_green_accent():
     html = H.read_text(H.LANDING_HTML)
-    href = re.search(r'<link rel="icon" href="([^"]+)"', html)
+    href = re.search(r'<link[^>]+rel="icon"[^>]+href="([^"]+)"|<link[^>]+href="([^"]+)"[^>]+rel="icon"', html)
     assert href, "landing declares no favicon"
 
-    favicon = H.REPO_ROOT / href.group(1).lstrip("/")
-    assert favicon.is_file(), f"favicon {href.group(1)} is not served from disk"
+    favicon_href = next(group for group in href.groups() if group)
+    favicon = H.REPO_ROOT / favicon_href.lstrip("/")
+    assert favicon.is_file(), f"favicon {favicon_href} is not served from disk"
     assert BRAND_GREEN in favicon.read_text(encoding="utf-8").lower()

@@ -156,9 +156,9 @@ def test_dashboard_js_keeps_functional_watch_activation_aria_label():
     """
     body = H.read_text(H.DASHBOARD_JS)
     assert (
-        'aria-label="Ativar vigilância' in body
-        or "aria-label='Ativar vigilância" in body
-    ), "functional 'Ativar vigilância' aria-label missing on watchlist toggle"
+        'aria-label="Enable watchlist' in body
+        or "aria-label='Enable watchlist" in body
+    ), "functional 'Enable watchlist' aria-label missing on watchlist toggle"
 
 
 def test_landing_html_does_not_reference_telegram():

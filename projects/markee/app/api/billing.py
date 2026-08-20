@@ -84,7 +84,7 @@ async def create_checkout(
     """
     if payload.plan not in PLAN_LIMITS:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="Plano inválido"
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid plan"
         )
 
     result = await db.execute(
@@ -131,7 +131,7 @@ async def stripe_webhook(
     event = await billing_service.handle_webhook(payload, sig_header)
     if not event:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="Webhook inválido"
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid webhook"
         )
 
     data = event.get("object", {})

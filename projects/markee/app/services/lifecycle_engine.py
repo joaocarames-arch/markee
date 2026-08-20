@@ -75,14 +75,14 @@ class LifecycleEngine:
             DeadlineRule(
                 rule_type="renewal",
                 due_date=renewal_date,
-                description=f"Renovação do registo — vence em {renewal_date.isoformat()}",
+                description=f"Registration renewal — due on {renewal_date.isoformat()}",
                 alert_dates=self.get_alert_schedule(renewal_date),
             ),
             DeadlineRule(
                 rule_type="grace_period",
                 due_date=grace_end,
                 description=(
-                    f"Fim do período de graça para renovação — {grace_end.isoformat()}"
+                    f"End of renewal grace period — {grace_end.isoformat()}"
                 ),
                 alert_dates=self.get_alert_schedule(grace_end),
             ),
@@ -110,7 +110,7 @@ class LifecycleEngine:
             rule_type="opposition",
             due_date=due,
             description=(
-                f"Prazo para apresentação de oposição ({jurisdiction}) — {due.isoformat()}"
+                f"Opposition filing deadline ({jurisdiction}) — {due.isoformat()}"
             ),
             alert_dates=self.get_alert_schedule(due),
         )
@@ -131,7 +131,7 @@ class LifecycleEngine:
         return DeadlineRule(
             rule_type="response_refusal",
             due_date=due,
-            description=f"Prazo para resposta à recusa provisória — {due.isoformat()}",
+            description=f"Provisional refusal response deadline — {due.isoformat()}",
             alert_dates=self.get_alert_schedule(due),
         )
 
