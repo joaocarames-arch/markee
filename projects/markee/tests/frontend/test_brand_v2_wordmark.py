@@ -3,7 +3,7 @@
 The wordmarks are the source of truth for the visual identity:
 
 * Sora Bold (OFL 1.1) rendered as ``<path>`` only.
-* Last ``e`` glyph uses ``#35D0E0`` in the chromatic variants.
+* Last ``e`` glyph uses ``#6EE7A8`` in the chromatic variants.
 * No ``<text>``, no ``<image>``, no external ``href`` / ``xlink:href``.
 * viewBox ``0 0 1481.95 240.00`` (per BRAND_MANUAL.md §2).
 * SHA256 of every Brand v2 asset must match the committed canonical manifest.
@@ -132,13 +132,17 @@ def test_wordmark_svg_is_well_formed_and_clean(filename, expected_main_fill):
     ), f"main fill {expected_main_fill} missing from {filename}"
 
 
-def test_dark_and_light_wordmarks_end_in_cyan_accent():
-    """Per BRAND_MANUAL.md §5 the chromatic variants dark + light must
-    have the *last* ``e`` painted in ``#35D0E0``. The canonical SVG keeps
-    six ``<path>`` elements (one per glyph: m, a, r, k, e, e); the last
-    one is the accent.
+def test_dark_and_light_wordmarks_end_in_green_accent():
+    """Chromatic wordmarks keep only the final ``e`` accented.
+
+    The dark asset uses the bright brand green; the light asset uses a deeper
+    green so the final glyph remains readable on white.
     """
-    for filename in ("markee-wordmark-dark.svg", "markee-wordmark-light.svg"):
+    expected = {
+        "markee-wordmark-dark.svg": "#6EE7A8",
+        "markee-wordmark-light.svg": "#0A7F57",
+    }
+    for filename, expected_fill in expected.items():
         path = H.BRAND_V2_LOGOS / filename
         root = _parse_svg(path)
         paths = root.findall(f".//{{{SVG_NS}}}path")
@@ -146,8 +150,8 @@ def test_dark_and_light_wordmarks_end_in_cyan_accent():
         assert len(paths) == 6, f"unexpected glyph count in {filename}: {len(paths)}"
         last_fill = paths[-1].attrib.get("fill", "").strip().upper()
         assert (
-            last_fill == "#35D0E0"
-        ), f"last glyph in {filename} must be #35D0E0, got {last_fill!r}"
+            last_fill == expected_fill
+        ), f"last glyph in {filename} must be {expected_fill}, got {last_fill!r}"
 
 
 def test_wordmark_glyph_offsets_are_flattened_matrix_transforms():
@@ -177,8 +181,8 @@ def test_wordmark_glyph_offsets_are_flattened_matrix_transforms():
         assert actual == expected, f"glyph spacing drift in {filename}: {actual}"
 
 
-def test_mono_wordmarks_have_no_cyan_accent():
-    """The two mono variants never paint a glyph in cyan — the accent is
+def test_mono_wordmarks_have_no_green_accent():
+    """The two mono variants never paint a glyph in green — the accent is
     forbidden in 1-tinta applications per BRAND_MANUAL.md §9.1.
     """
     for filename in ("markee-wordmark-mono-white.svg", "markee-wordmark-mono-black.svg"):
@@ -186,8 +190,8 @@ def test_mono_wordmarks_have_no_cyan_accent():
         root = _parse_svg(path)
         fills = {f.upper() for f in _fills(root)}
         assert (
-            "#35D0E0" not in fills
-        ), f"cyan accent leaked into mono wordmark {filename}"
+            "#6EE7A8" not in fills
+        ), f"green accent leaked into mono wordmark {filename}"
 
 
 def test_mono_white_wordmark_is_all_white():
@@ -238,15 +242,15 @@ def test_tokens_css_contains_no_amber_color():
     css = H.BRAND_V2_TOKENS_CSS.read_text(encoding="utf-8")
     assert "#f5a623" not in css.lower(), "amber hex #f5a623 leaked into tokens"
     assert "amber" not in css.lower(), "'amber' string leaked into tokens"
-    assert "#25a8b8" in css.lower(), "accent-pressed token missing"
-    assert "#35d0e0" in css.lower(), "accent token missing"
+    assert "#0a7f57" in css.lower(), "accent-pressed token missing"
+    assert "#6ee7a8" in css.lower(), "accent token missing"
 
 
 def test_tokens_json_keeps_accents_consistent():
     """The DTCG JSON must mark warning as a no-color value."""
     tokens = json.loads(H.BRAND_V2_TOKENS_JSON.read_text(encoding="utf-8"))
-    assert tokens["color"]["accent"]["$value"].lower() == "#35d0e0"
-    assert tokens["color"]["accent-pressed"]["$value"].lower() == "#25a8b8"
+    assert tokens["color"]["accent"]["$value"].lower() == "#6ee7a8"
+    assert tokens["color"]["accent-pressed"]["$value"].lower() == "#0a7f57"
     assert tokens["color"]["warning"]["$value"] == "no-color"
 
 

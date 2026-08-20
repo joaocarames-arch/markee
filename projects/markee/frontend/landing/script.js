@@ -150,7 +150,9 @@ const i18n = {
     "language.aria": "Escolher idioma",
     "nav.aria": "Navegação principal",
     "nav.open_menu": "Abrir menu",
-    "nav.close_menu": "Fechar menu"
+    "nav.close_menu": "Fechar menu",
+    "theme.aria": "Alternar tema claro/escuro",
+    "theme.label": "Tema"
   },
   "en": {
     "meta.title": "markee — Trademark monitoring · INPI & EUIPO",
@@ -271,10 +273,18 @@ const i18n = {
     "language.aria": "Choose language",
     "nav.aria": "Main navigation",
     "nav.open_menu": "Open menu",
-    "nav.close_menu": "Close menu"
+    "nav.close_menu": "Close menu",
+    "theme.aria": "Toggle light/dark theme",
+    "theme.label": "Theme"
   }
 };
 const LANG_STORAGE_KEY = 'markee-language';
+const THEME_STORAGE_KEY = 'markee-theme';
+const THEME_META = {
+  dark: { chrome: '#08090a', logo: '/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-green-20260820' },
+  light: { chrome: '#fbfbfc', logo: '/assets/brand-v2/logos/markee-wordmark-light.svg?v=theme-green-20260820' },
+};
+const themeListeners = [];
 
 function getStoredLanguage() {
   try {
@@ -348,6 +358,72 @@ function initLanguageSwitch() {
       setStoredLanguage(language);
       applyLanguage(language);
       refreshSplitText();
+      if (hasGsap) {
+        ScrollTrigger.refresh();
+      }
+    });
+  });
+}
+
+function getStoredTheme() {
+  try {
+    return localStorage.getItem('markee-theme');
+  } catch (error) {
+    return null;
+  }
+}
+
+function setStoredTheme(theme) {
+  try {
+    localStorage.setItem('markee-theme', theme);
+  } catch (error) {
+    // Locked-down storage should not break the switch.
+  }
+}
+
+function getSystemTheme() {
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+}
+
+function onThemeChange(callback) {
+  themeListeners.push(callback);
+}
+
+function applyTheme(theme) {
+  const next = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  const meta = THEME_META[next];
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) {
+    themeColor.setAttribute('content', meta.chrome);
+  }
+  document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+    const active = next === 'light';
+    button.setAttribute('aria-checked', String(active));
+  });
+  document.querySelectorAll('.site-nav__logo, .dashboard-wordmark').forEach((logo) => {
+    logo.setAttribute('src', meta.logo);
+  });
+  themeListeners.forEach((callback) => callback(next));
+}
+
+function initThemeSwitch() {
+  const systemQuery = window.matchMedia('(prefers-color-scheme: light)');
+  const stored = getStoredTheme();
+  applyTheme(stored === 'light' || stored === 'dark' ? stored : getSystemTheme());
+
+  systemQuery.addEventListener('change', () => {
+    if (!getStoredTheme()) {
+      applyTheme(getSystemTheme());
+    }
+  });
+
+  document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      const next = current === 'light' ? 'dark' : 'light';
+      setStoredTheme(next);
+      applyTheme(next);
       if (hasGsap) {
         ScrollTrigger.refresh();
       }
@@ -1022,11 +1098,19 @@ async function initWebGL() {
       uTime: { value: 0 },
       uMouse: { value: new THREE.Vector2(0, 0) },
       uPixelRatio: { value: pixelRatio },
-      uColor: { value: new THREE.Color(0x35d0e0) },
+      uColor: { value: new THREE.Color(0x6ee7a8) },
     },
     transparent: true,
     depthWrite: false,
-    blending: THREE.AdditiveBlending,
+    blending: document.documentElement.getAttribute('data-theme') === 'light'
+      ? THREE.NormalBlending
+      : THREE.AdditiveBlending,
+  });
+
+  onThemeChange((theme) => {
+    material.uniforms.uColor.value.set(theme === 'light' ? 0x0a7f57 : 0x6ee7a8);
+    material.blending = theme === 'light' ? THREE.NormalBlending : THREE.AdditiveBlending;
+    material.needsUpdate = true;
   });
 
   scene.add(new THREE.Points(geometry, material));
@@ -1098,6 +1182,7 @@ async function initWebGL() {
 
 function boot() {
   initLanguageSwitch();
+  initThemeSwitch();
   splitHeroLines();
   const manifesto = document.querySelector('[data-split-words]');
   if (manifesto && !reducedMotion && hasGsap) {

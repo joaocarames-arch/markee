@@ -23,10 +23,37 @@ DASHBOARD_JS = REPO_ROOT / "frontend" / "dashboard" / "app.js"
 BRAND_V2_LOGOS = REPO_ROOT / "assets" / "brand-v2" / "logos"
 BRAND_V2_TOKENS_CSS = REPO_ROOT / "assets" / "brand-v2" / "tokens" / "css-variables.css"
 BRAND_V2_TOKENS_JSON = REPO_ROOT / "assets" / "brand-v2" / "tokens" / "tokens.json"
+LEGACY_FAVICONS = (
+    REPO_ROOT / "assets" / "logos" / "markee_logo_1_favicon_16.svg",
+    REPO_ROOT / "assets" / "logos" / "markee_logo_1_favicon_32.svg",
+)
+ALERTS_SERVICE = REPO_ROOT / "app" / "services" / "alerts.py"
 
 # Files we consider production surface for the brand integration audit.
 LANDING_SOURCE_FILES = (LANDING_HTML, LANDING_CSS, LANDING_JS)
 DASHBOARD_SOURCE_FILES = (DASHBOARD_HTML, DASHBOARD_CSS, DASHBOARD_JS)
+
+# Every file that paints the accent on a surface a visitor can actually
+# reach: the two apps FastAPI serves, the canonical Brand v2 tokens and
+# wordmarks, the favicon referenced from the landing <head>, and the HTML
+# email template. Drafts, candidates, evidence bundles and the unmounted
+# ``frontend/landing/assets/logos`` duplicates are historical records and
+# stay untouched.
+ACTIVE_BRAND_SURFACES = (
+    LANDING_SOURCE_FILES
+    + DASHBOARD_SOURCE_FILES
+    + (
+        BRAND_V2_TOKENS_CSS,
+        BRAND_V2_TOKENS_JSON,
+        BRAND_V2_LOGOS / "markee-wordmark-dark.svg",
+        BRAND_V2_LOGOS / "markee-wordmark-light.svg",
+        BRAND_V2_LOGOS / "markee-wordmark-mono-white.svg",
+        BRAND_V2_LOGOS / "markee-wordmark-mono-black.svg",
+        BRAND_V2_LOGOS / "markee-brand-sheet.svg",
+        ALERTS_SERVICE,
+    )
+    + LEGACY_FAVICONS
+)
 
 
 def read_text(path: Path) -> str:

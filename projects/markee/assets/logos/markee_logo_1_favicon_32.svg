@@ -2,5 +2,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
   <rect width="32" height="32" fill="#08090a" rx="4"/>
   <text x="16" y="22" font-family="'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">m</text>
-  <circle cx="22" cy="9" r="3" fill="#35d0e0"/>
+  <circle cx="22" cy="9" r="3" fill="#6ee7a8"/>
 </svg>

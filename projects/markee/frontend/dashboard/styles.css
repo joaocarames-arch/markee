@@ -1,13 +1,13 @@
 /* ==========================================================================
    markee dashboard — styles.css
-   Dark-mode, glassmorphism, ciano accent. Mobile-first responsive.
+   Dark-mode, glassmorphism, verde accent. Mobile-first responsive.
    ========================================================================== */
 
 :root {
   /* Colors */
-  --color-accent: #35d0e0;
-  --color-accent-hover: #5edcf0;
-  --color-accent-pressed: #25a8b8;
+  --color-accent: #6ee7a8;
+  --color-accent-hover: #86efac;
+  --color-accent-pressed: #0a7f57;
   --color-bg-primary: #08090a;
   --color-bg-secondary: #111214;
   --color-bg-surface: #1a1c1f;
@@ -70,8 +70,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   background-image:
-    radial-gradient(900px circle at 12% -8%, rgba(53, 208, 224, 0.08), transparent 45%),
-    radial-gradient(700px circle at 100% 0%, rgba(53, 208, 224, 0.05), transparent 40%);
+    radial-gradient(900px circle at 12% -8%, rgba(110, 231, 168, 0.08), transparent 45%),
+    radial-gradient(700px circle at 100% 0%, rgba(110, 231, 168, 0.05), transparent 40%);
   background-attachment: fixed;
 }
 
@@ -229,9 +229,9 @@ textarea:focus-visible,
   color: var(--color-text-secondary);
   white-space: nowrap;
 }
-.badge-accent { color: var(--color-accent); border-color: rgba(53, 208, 224, 0.35); background: rgba(53, 208, 224, 0.1); }
+.badge-accent { color: var(--color-accent); border-color: rgba(110, 231, 168, 0.35); background: rgba(110, 231, 168, 0.1); }
 .badge-success { color: var(--color-success); border-color: rgba(74, 222, 128, 0.3); background: rgba(74, 222, 128, 0.1); }
-.badge-warning { color: var(--color-accent); border-color: rgba(53, 208, 224, 0.35); background: rgba(53, 208, 224, 0.1); }
+.badge-warning { color: var(--color-accent); border-color: rgba(110, 231, 168, 0.35); background: rgba(110, 231, 168, 0.1); }
 .badge-danger { color: var(--color-danger); border-color: rgba(224, 82, 82, 0.3); background: rgba(224, 82, 82, 0.1); }
 .badge-neutral { color: var(--color-text-secondary); }
 
@@ -242,8 +242,8 @@ textarea:focus-visible,
   font-family: var(--font-mono);
   font-size: 12px;
   border-radius: var(--radius-sm);
-  background: rgba(53, 208, 224, 0.08);
-  border: 1px solid rgba(53, 208, 224, 0.2);
+  background: rgba(110, 231, 168, 0.08);
+  border: 1px solid rgba(110, 231, 168, 0.2);
   color: var(--color-accent);
 }
 
@@ -348,7 +348,7 @@ textarea:focus-visible,
 .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
 .nav-item:hover { background: rgba(255, 255, 255, 0.05); color: var(--color-text-primary); }
 .nav-item.active {
-  background: rgba(53, 208, 224, 0.12);
+  background: rgba(110, 231, 168, 0.12);
   color: var(--color-accent);
 }
 .nav-item.active svg { color: var(--color-accent); }
@@ -470,7 +470,7 @@ textarea:focus-visible,
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(53, 208, 224, 0.1);
+  background: rgba(110, 231, 168, 0.1);
   color: var(--color-accent);
 }
 .stat-value {
@@ -543,7 +543,7 @@ textarea:focus-visible,
 
 /* Alert cards */
 .alert-card { position: relative; }
-.alert-card.unread { border-color: rgba(53, 208, 224, 0.3); }
+.alert-card.unread { border-color: rgba(110, 231, 168, 0.3); }
 .alert-card.unread::before {
   content: '';
   position: absolute;
@@ -565,7 +565,7 @@ textarea:focus-visible,
   border-radius: var(--radius-full);
 }
 .countdown.danger { background: rgba(224, 82, 82, 0.12); color: var(--color-danger); }
-.countdown.warning { background: rgba(53, 208, 224, 0.1); color: var(--color-accent); }
+.countdown.warning { background: rgba(110, 231, 168, 0.1); color: var(--color-accent); }
 .countdown.ok { background: rgba(74, 222, 128, 0.1); color: var(--color-success); }
 
 /* Watchlist expanded items */
@@ -791,7 +791,7 @@ textarea:focus-visible,
   background: var(--color-text-secondary);
   transition: transform 0.15s ease, background 0.15s ease;
 }
-.toggle-switch input:checked + .toggle-slider { background: rgba(53, 208, 224, 0.25); border-color: var(--color-accent); }
+.toggle-switch input:checked + .toggle-slider { background: rgba(110, 231, 168, 0.25); border-color: var(--color-accent); }
 .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); background: var(--color-accent); }
 
 /* --------------------------------------------------------------------------
