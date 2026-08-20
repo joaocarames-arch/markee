@@ -191,7 +191,7 @@ def test_dashboard_html_uses_hash_router():
     # The dashboard does NOT load styles.css / app.js via absolute path;
     # siblings are resolved by StaticFiles(html=True).
     assert '<link rel="stylesheet" href="styles.css?v=logo-unified-20260820"' in body
-    assert '<script src="app.js?v=logo-unified-20260820" defer' in body
+    assert '<script src="app.js?v=logo-matrix-20260820" defer' in body
     assert 'lang="pt-PT"' in body, "dashboard must keep lang=pt-PT"
 
 
