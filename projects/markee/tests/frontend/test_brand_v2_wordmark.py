@@ -141,16 +141,40 @@ def test_dark_and_light_wordmarks_end_in_cyan_accent():
     for filename in ("markee-wordmark-dark.svg", "markee-wordmark-light.svg"):
         path = H.BRAND_V2_LOGOS / filename
         root = _parse_svg(path)
-        groups = root.findall(f".//{{{SVG_NS}}}g")
-        assert groups, f"no <g> in {filename}"
-        head = groups[0]
-        paths = head.findall(f"{{{SVG_NS}}}path")
+        paths = root.findall(f".//{{{SVG_NS}}}path")
         # Six glyphs: m, a, r, k, e, e.
         assert len(paths) == 6, f"unexpected glyph count in {filename}: {len(paths)}"
         last_fill = paths[-1].attrib.get("fill", "").strip().upper()
         assert (
             last_fill == "#35D0E0"
         ), f"last glyph in {filename} must be #35D0E0, got {last_fill!r}"
+
+
+def test_wordmark_glyph_offsets_are_flattened_matrix_transforms():
+    """Glyph offsets must be flattened so browsers cannot double-scale spacing.
+
+    The earlier nested transform version bunched the homepage logo because the
+    offsets were interpreted inconsistently. Matrix transforms make each glyph's
+    final position explicit.
+    """
+    expected = [
+        "matrix(0.37453183520599254 0 0 -0.37453183520599254 20.00 220)",
+        "matrix(0.37453183520599254 0 0 -0.37453183520599254 388.16 220)",
+        "matrix(0.37453183520599254 0 0 -0.37453183520599254 610.64 220)",
+        "matrix(0.37453183520599254 0 0 -0.37453183520599254 768.31 220)",
+        "matrix(0.37453183520599254 0 0 -0.37453183520599254 1007.64 220)",
+        "matrix(0.37453183520599254 0 0 -0.37453183520599254 1241.35 220)",
+    ]
+    for filename in (
+        "markee-wordmark-dark.svg",
+        "markee-wordmark-light.svg",
+        "markee-wordmark-mono-white.svg",
+        "markee-wordmark-mono-black.svg",
+    ):
+        root = _parse_svg(H.BRAND_V2_LOGOS / filename)
+        paths = root.findall(f".//{{{SVG_NS}}}path")
+        actual = [path.attrib.get("transform") for path in paths]
+        assert actual == expected, f"glyph spacing drift in {filename}: {actual}"
 
 
 def test_mono_wordmarks_have_no_cyan_accent():
@@ -170,8 +194,7 @@ def test_mono_white_wordmark_is_all_white():
     """The mono-white wordmark uses #FFFFFF for every glyph."""
     path = H.BRAND_V2_LOGOS / "markee-wordmark-mono-white.svg"
     root = _parse_svg(path)
-    groups = root.findall(f".//{{{SVG_NS}}}g")
-    paths = groups[0].findall(f"{{{SVG_NS}}}path")
+    paths = root.findall(f".//{{{SVG_NS}}}path")
     fills = {p.attrib.get("fill", "").strip().upper() for p in paths}
     assert fills == {"#FFFFFF"}, f"mono-white wordmark fills must be only #FFFFFF, got {fills}"
 
@@ -180,8 +203,7 @@ def test_mono_black_wordmark_is_all_ink():
     """The mono-black wordmark uses #08090A (ink) for every glyph."""
     path = H.BRAND_V2_LOGOS / "markee-wordmark-mono-black.svg"
     root = _parse_svg(path)
-    groups = root.findall(f".//{{{SVG_NS}}}g")
-    paths = groups[0].findall(f"{{{SVG_NS}}}path")
+    paths = root.findall(f".//{{{SVG_NS}}}path")
     fills = {p.attrib.get("fill", "").strip().upper() for p in paths}
     assert fills == {"#08090A"}, f"mono-black wordmark fills must be only #08090A, got {fills}"
 

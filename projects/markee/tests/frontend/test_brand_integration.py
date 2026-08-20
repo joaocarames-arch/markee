@@ -37,7 +37,7 @@ def test_landing_html_wordmark_src_matches_brand_v2():
     """The header logo must point at the canonical Brand v2 file."""
     body = H.read_text(H.LANDING_HTML)
     match = re.search(
-        r'src="(/assets/brand-v2/logos/markee-wordmark-\w+\.svg)\?v=brand-v2-unified-20260820"',
+        r'src="(/assets/brand-v2/logos/markee-wordmark-\w+\.svg)\?v=brand-v2-matrix-20260820"',
         body,
     )
     assert match, "landing nav does not point at /assets/brand-v2/logos/"
@@ -116,7 +116,7 @@ def test_dashboard_api_base_contract_is_declared_once_and_used():
 def test_dashboard_renders_accessible_canonical_wordmark_asset():
     """Sidebar and auth render the canonical chromatic wordmark asset."""
     body = H.read_text(H.DASHBOARD_JS)
-    asset = "/assets/brand-v2/logos/markee-wordmark-dark.svg?v=brand-v2-unified-20260820"
+    asset = "/assets/brand-v2/logos/markee-wordmark-dark.svg?v=brand-v2-matrix-20260820"
     wordmark_tags = re.findall(r"<img\b[^>]*class=\"dashboard-wordmark\"[^>]*>", body)
 
     assert len(wordmark_tags) == 2, "sidebar and auth must each render the wordmark"
