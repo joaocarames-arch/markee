@@ -37,7 +37,7 @@ def test_landing_html_wordmark_src_matches_brand_v2():
     """The header logo must point at the canonical Brand v2 file."""
     body = H.read_text(H.LANDING_HTML)
     match = re.search(
-        r'src="(/assets/brand-v2/logos/markee-wordmark-\w+\.svg)\?v=brand-v2-live-hotfix-20260726"',
+        r'src="(/assets/brand-v2/logos/markee-wordmark-\w+\.svg)\?v=brand-v2-unified-20260820"',
         body,
     )
     assert match, "landing nav does not point at /assets/brand-v2/logos/"
@@ -116,7 +116,7 @@ def test_dashboard_api_base_contract_is_declared_once_and_used():
 def test_dashboard_renders_accessible_canonical_wordmark_asset():
     """Sidebar and auth render the canonical chromatic wordmark asset."""
     body = H.read_text(H.DASHBOARD_JS)
-    asset = "/assets/brand-v2/logos/markee-wordmark-dark.svg?v=brand-v2-live-hotfix-20260726"
+    asset = "/assets/brand-v2/logos/markee-wordmark-dark.svg?v=brand-v2-unified-20260820"
     wordmark_tags = re.findall(r"<img\b[^>]*class=\"dashboard-wordmark\"[^>]*>", body)
 
     assert len(wordmark_tags) == 2, "sidebar and auth must each render the wordmark"
@@ -133,20 +133,19 @@ def test_dashboard_renders_accessible_canonical_wordmark_asset():
     )
 
 
-def test_dashboard_wordmark_asset_encodes_lowercase_markee_without_symbol():
-    """The rendered asset is deterministic text, with only the final e in cyan."""
+def test_dashboard_wordmark_asset_encodes_canonical_paths_without_symbol():
+    """The rendered asset is deterministic paths, with only the final e in cyan."""
     import xml.etree.ElementTree as ET
 
     asset = H.BRAND_V2_LOGOS / "markee-wordmark-dark.svg"
     root = ET.fromstring(asset.read_text(encoding="utf-8"))
     namespace = {"svg": "http://www.w3.org/2000/svg"}
-    text = root.find("./svg:text", namespace)
-    assert text is not None
-    spans = text.findall("./svg:tspan", namespace)
-
-    assert [span.text for span in spans] == ["marke", "e"]
-    assert text.attrib["fill"].upper() == "#E8E8E8"
-    assert spans[-1].attrib["fill"].upper() == "#35D0E0"
+    assert root.attrib.get("viewBox") == "0 0 1481.95 240.00"
+    paths = root.findall(".//svg:path", namespace)
+    assert len(paths) == 6
+    assert {p.attrib.get("fill", "").upper() for p in paths[:-1]} == {"#E8E8E8"}
+    assert paths[-1].attrib.get("fill", "").upper() == "#35D0E0"
+    assert not root.findall(".//svg:text", namespace), "text rendering would change logo proportions"
     assert not root.findall(".//svg:circle", namespace), "radar/symbol circles are forbidden"
     assert not root.findall(".//svg:line", namespace), "pictogram lines are forbidden"
     assert not root.findall(".//svg:polygon", namespace), "pictograms are forbidden"

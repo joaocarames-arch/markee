@@ -98,22 +98,15 @@ def test_canonical_sha256_matches_committed_manifest():
     ],
 )
 def test_wordmark_svg_is_well_formed_and_clean(filename, expected_main_fill):
-    """Each wordmark SVG must be well-formed XML, declare the canonical
-    viewBox, contain only ``<path>`` / ``<g>`` nodes and use the expected
-    main fill.
+    """Each wordmark SVG must be well-formed XML, declare the same
+    canonical viewBox, contain only ``<path>`` / ``<g>`` nodes and use the
+    expected main fill.
     """
     path = H.BRAND_V2_LOGOS / filename
     assert path.is_file(), f"wordmark missing: {filename}"
     root = _parse_svg(path)
 
     assert root.tag == f"{{{SVG_NS}}}svg", "root must be <svg>"
-
-    if filename == "markee-wordmark-dark.svg":
-        assert root.attrib.get("viewBox") == "0 0 600 128"
-        text = root.find(f"{{{SVG_NS}}}text")
-        assert text is not None
-        assert "".join(text.itertext()) == "markee"
-        return
 
     # viewBox from BRAND_MANUAL.md §2 (with the actual computed value).
     vb = root.attrib.get("viewBox")
@@ -148,13 +141,6 @@ def test_dark_and_light_wordmarks_end_in_cyan_accent():
     for filename in ("markee-wordmark-dark.svg", "markee-wordmark-light.svg"):
         path = H.BRAND_V2_LOGOS / filename
         root = _parse_svg(path)
-        if filename == "markee-wordmark-dark.svg":
-            text = root.find(f"{{{SVG_NS}}}text")
-            assert text is not None
-            spans = text.findall(f"{{{SVG_NS}}}tspan")
-            assert [span.text for span in spans] == ["marke", "e"]
-            assert spans[-1].attrib.get("fill", "").strip().upper() == "#35D0E0"
-            continue
         groups = root.findall(f".//{{{SVG_NS}}}g")
         assert groups, f"no <g> in {filename}"
         head = groups[0]
@@ -246,11 +232,9 @@ def test_brand_v2_logos_have_six_glyphs_only():
     """Sanity: every chromatic wordmark encodes exactly six glyphs
     (m, a, r, k, e, e). Drift here signals silent edits to the SVG.
     """
-    dark = _parse_svg(H.BRAND_V2_LOGOS / "markee-wordmark-dark.svg")
-    text = dark.find(f"{{{SVG_NS}}}text")
-    assert text is not None
-    assert "".join(text.itertext()) == "markee"
-
     pattern = re.compile(r"<path\b", re.IGNORECASE)
+    dark = (H.BRAND_V2_LOGOS / "markee-wordmark-dark.svg").read_text(encoding="utf-8")
+    assert len(pattern.findall(dark)) == 6, "markee-wordmark-dark.svg glyph count drift"
+
     light = (H.BRAND_V2_LOGOS / "markee-wordmark-light.svg").read_text(encoding="utf-8")
     assert len(pattern.findall(light)) == 6, "markee-wordmark-light.svg glyph count drift"

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 from pathlib import Path
 
 
@@ -55,6 +56,19 @@ def slugify(name: str) -> str:
 def assert_file_exists(path: Path, label: str) -> None:
     """Assert that a tracked file is present on disk."""
     assert path.is_file(), f"missing required file: {label} ({path})"
+
+
+def is_git_tracked(path: Path) -> bool:
+    """Return whether ``path`` is tracked in the project git index."""
+    rel = path.resolve().relative_to(REPO_ROOT)
+    result = subprocess.run(
+        ["git", "ls-files", "--error-unmatch", rel.as_posix()],
+        cwd=REPO_ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.returncode == 0
 
 
 def load_tokens() -> dict:

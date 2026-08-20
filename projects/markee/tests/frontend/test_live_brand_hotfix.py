@@ -11,41 +11,19 @@ SVG_NS = "http://www.w3.org/2000/svg"
 
 
 def test_dark_wordmark_is_deterministic_lowercase_lettering_only():
-    """The live wordmark must spell only ``markee`` without overlapping glyphs."""
+    """The live wordmark must use the canonical outline proportions."""
     root = ET.fromstring(
         (H.BRAND_V2_LOGOS / "markee-wordmark-dark.svg").read_text(encoding="utf-8")
     )
     namespace = {"svg": SVG_NS}
-    text_nodes = root.findall("./svg:text", namespace)
+    paths = root.findall(".//svg:path", namespace)
 
-    assert root.attrib["viewBox"] == "0 0 600 128"
-    assert root.attrib["preserveAspectRatio"] == "xMinYMid meet"
-    assert root.attrib["role"] == "img"
-    assert len(text_nodes) == 1, "wordmark needs one deterministic lettering run"
+    assert root.attrib["viewBox"] == "0 0 1481.95 240.00"
+    assert len(paths) == 6, "wordmark needs one canonical outline per glyph"
+    assert {path.attrib.get("fill", "").upper() for path in paths[:-1]} == {"#E8E8E8"}
+    assert paths[-1].attrib.get("fill", "").upper() == "#35D0E0"
 
-    text = text_nodes[0]
-    spans = text.findall("./svg:tspan", namespace)
-    assert "".join(text.itertext()) == "markee"
-    assert [span.text for span in spans] == ["marke", "e"]
-    assert text.attrib["font-family"] == "Inter, Arial, Helvetica, sans-serif"
-    assert text.attrib["fill"].upper() == "#E8E8E8"
-    assert spans[0].attrib.get("fill", "#E8E8E8").upper() == "#E8E8E8"
-    assert spans[1].attrib["fill"].upper() == "#35D0E0"
-
-    first_x = float(spans[0].attrib["x"])
-    first_width = float(spans[0].attrib["textLength"])
-    last_x = float(spans[1].attrib["x"])
-    last_width = float(spans[1].attrib["textLength"])
-    view_width = float(root.attrib["viewBox"].split()[2])
-    font_size = float(text.attrib["font-size"])
-    baseline = float(text.attrib["y"])
-    view_height = float(root.attrib["viewBox"].split()[3])
-
-    assert first_x + first_width <= last_x, "lettering runs overlap"
-    assert last_x + last_width <= view_width, "last e is clipped horizontally"
-    assert 0 <= baseline - font_size and baseline <= view_height, "lettering is clipped vertically"
-
-    forbidden = {"path", "circle", "line", "polygon", "polyline", "rect", "image", "use"}
+    forbidden = {"text", "circle", "line", "polygon", "polyline", "rect", "image", "use"}
     local_tags = {element.tag.rsplit("}", 1)[-1] for element in root.iter()}
     assert not (local_tags & forbidden), "wordmark must not contain an icon or pictogram"
 
@@ -56,7 +34,7 @@ def test_active_frontend_uses_cyan_demo_and_cache_busted_stylesheet():
     landing_css = H.read_text(H.LANDING_CSS).lower()
     dashboard_css = H.read_text(H.DASHBOARD_CSS).lower()
 
-    assert 'href="/static/styles.css?v=i18n-complete-20260820"' in html
+    assert 'href="/static/styles.css?v=logo-unified-20260820"' in html
     rule = re.search(r"\.sim-versus__mark--intruder\s*\{([^}]*)\}", landing_css)
     assert rule and "color: var(--color-accent)" in rule.group(1)
     for body in (html.lower(), landing_css, dashboard_css):

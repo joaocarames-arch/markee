@@ -365,8 +365,9 @@ body.has-cursor button {
 }
 
 .site-nav__logo {
-  height: 26px;
-  width: auto;
+  display: block;
+  width: 132px;
+  height: auto;
 }
 
 .site-nav__links {
