@@ -49,6 +49,12 @@
 /* --------------------------------------------------------------------------
    Base
    -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: auto; /* Lenis owns scrolling; native smooth would fight it */
 }
@@ -308,6 +314,12 @@ body.has-cursor button {
 
 .btn--block {
   width: 100%;
+  max-width: 100%;
+}
+
+.price-card .btn {
+  align-self: stretch;
+  max-width: 100%;
 }
 
 /* --------------------------------------------------------------------------
