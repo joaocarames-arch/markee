@@ -16,7 +16,7 @@ The tests below therefore assert:
   login screen is at ``/app/#/login``).
 * All Brand v2 wordmark assets used in HTML must resolve to a file that
   exists on disk and is committed.
-* The dashboard HTML keeps ``<html lang="pt-PT">`` and a single root
+* The dashboard HTML keeps ``<html lang="en">`` and a single root
   element where the hash router mounts.
 """
 from __future__ import annotations
@@ -107,7 +107,7 @@ def test_landing_does_not_link_to_dashboard_login_path():
 
 
 def test_landing_login_ctas_use_hash_login_route():
-    """Primary login CTAs in the landing page must point to
+    """Authentication CTAs in the landing page must point to
     ``/app/#/login`` so that the hash router takes over. A bare
     ``/app`` fallback is acceptable for footer / utility links, but any
     anchor whose visible text reads as an authentication CTA (e.g.
@@ -127,11 +127,11 @@ def test_landing_login_ctas_use_hash_login_route():
     # exempted. Intended login CTAs must equal the normalized destination;
     # prefix lookalikes such as ``#/login-evil`` are not valid routes.
     auth_ctas = _auth_cta_targets(body)
-    assert auth_ctas, "landing must contain at least one intended login CTA"
     for text, href in auth_ctas:
         assert href == DASHBOARD_LOGIN, (
             f"auth CTA {text!r} targets {href!r}, expected exactly {DASHBOARD_LOGIN!r}"
         )
+    assert 'href="/app/#/assessment"' in body, "primary trademark-check CTA must enter the assessment flow"
 
 
 # ---------------------------------------------------------------------------
@@ -192,7 +192,7 @@ def test_dashboard_html_uses_hash_router():
     # siblings are resolved by StaticFiles(html=True).
     assert '<link rel="stylesheet" href="styles.css?v=theme-olive-20260820"' in body
     assert '<script src="app.js?v=theme-olive-20260820" defer' in body
-    assert 'lang="pt-PT"' in body, "dashboard must keep lang=pt-PT"
+    assert 'lang="en"' in body, "dashboard must keep lang=en"
 
 
 # ---------------------------------------------------------------------------

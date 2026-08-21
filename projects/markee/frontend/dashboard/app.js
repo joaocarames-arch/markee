@@ -1,7 +1,7 @@
 /* ==========================================================================
    markee dashboard — app.js
    Vanilla SPA: hash routing, JWT auth, fetch helper, and all views.
-   All comments in English; all user-facing text in European Portuguese.
+   All comments and newly exposed user-facing text are in English.
    ========================================================================== */
 'use strict';
 
@@ -13,34 +13,34 @@ const TOKEN_KEY = 'markee_token';
 
 const ROUTES = ['/dashboard', '/assessment', '/search', '/watchlists', '/alerts', '/deadlines', '/settings', '/login'];
 
-// Nav items (path, PT label, inline SVG path markup)
+// Nav items (path, English label, inline SVG path markup)
 const NAV_ITEMS = [
-  { path: '/dashboard', label: 'Painel', icon: 'grid' },
-  { path: '/assessment', label: 'Verificação', icon: 'shield' },
-  { path: '/search', label: 'Pesquisa', icon: 'search' },
-  { path: '/watchlists', label: 'Vigilâncias', icon: 'eye' },
+  { path: '/dashboard', label: 'Dashboard', icon: 'grid' },
+  { path: '/assessment', label: 'Trademark check', icon: 'shield' },
+  { path: '/search', label: 'Search', icon: 'search' },
+  { path: '/watchlists', label: 'Watchlists', icon: 'eye' },
   { path: '/alerts', label: 'Alertas', icon: 'bell' },
-  { path: '/deadlines', label: 'Prazos', icon: 'clock' },
-  { path: '/settings', label: 'Definições', icon: 'cog' },
+  { path: '/deadlines', label: 'Deadlines', icon: 'clock' },
+  { path: '/settings', label: 'Settings', icon: 'cog' },
 ];
 
 // Page titles per route
 const PAGE_TITLES = {
-  '/dashboard': 'Painel',
-  '/assessment': 'Verificação de marca',
-  '/search': 'Pesquisa de marcas',
-  '/watchlists': 'Vigilâncias',
+  '/dashboard': 'Dashboard',
+  '/assessment': 'Trademark check',
+  '/search': 'Trademark search',
+  '/watchlists': 'Watchlists',
   '/alerts': 'Alertas',
-  '/deadlines': 'Prazos',
-  '/settings': 'Definições',
+  '/deadlines': 'Deadlines',
+  '/settings': 'Settings',
 };
 
-// Plan display metadata (PT labels + monthly price in EUR)
+// Plan display metadata (English labels + monthly price in EUR)
 const PLAN_META = {
   free: { label: 'Free', price: 0 },
   individual: { label: 'Individual', price: 5 },
   pro: { label: 'Pro', price: 29 },
-  profissional: { label: 'Profissional', price: 99 },
+  profissional: { label: 'Professional', price: 99 },
   enterprise: { label: 'Enterprise', price: 249 },
 };
 const PLAN_ORDER = ['free', 'individual', 'pro', 'profissional', 'enterprise'];
@@ -113,13 +113,13 @@ function clearToken() {
   }
 }
 
-/** Format an ISO date/datetime string into PT-PT "DD mmm YYYY". */
-const ptDateFmt = new Intl.DateTimeFormat('pt-PT', { day: '2-digit', month: 'short', year: 'numeric' });
+/** Format an ISO date/datetime string into English "DD mmm YYYY". */
+const dateFmt = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 function formatDate(value) {
   if (!value) return '—';
   const d = new Date(value);
   if (Number.isNaN(d.getTime())) return '—';
-  return ptDateFmt.format(d);
+  return dateFmt.format(d);
 }
 
 /** Whole-day difference between due date and today (positive = future). */
@@ -139,61 +139,61 @@ function countdown(dateStr) {
   if (d === null) return { text: '—', level: 'ok' };
   if (d < 0) {
     const n = Math.abs(d);
-    return { text: n === 1 ? 'Há 1 dia · Vencido' : `Há ${n} dias · Vencido`, level: 'danger' };
+    return { text: n === 1 ? '1 day ago · Overdue' : `${n} days ago · Overdue`, level: 'danger' };
   }
-  if (d === 0) return { text: 'Hoje', level: 'danger' };
-  if (d === 1) return { text: 'Amanhã', level: 'warning' };
+  if (d === 0) return { text: 'Today', level: 'danger' };
+  if (d === 1) return { text: 'Tomorrow', level: 'warning' };
   const level = d <= 30 ? 'warning' : 'ok';
-  return { text: `Em ${d} dias`, level };
+  return { text: `In ${d} days`, level };
 }
 
 /** PT label for a trademark status value + badge color class. */
 function statusLabel(status) {
-  if (!status) return { text: 'Desconhecido', cls: 'badge-neutral' };
+  if (!status) return { text: 'Unknown', cls: 'badge-neutral' };
   const key = String(status).toLowerCase();
   const map = {
-    registered: { text: 'Registada', cls: 'badge-success' },
-    registada: { text: 'Registada', cls: 'badge-success' },
-    pending: { text: 'Pendente', cls: 'badge-warning' },
-    filed: { text: 'Submetida', cls: 'badge-warning' },
-    published: { text: 'Publicada', cls: 'badge-accent' },
-    opposition: { text: 'Oposição', cls: 'badge-warning' },
-    expired: { text: 'Expirada', cls: 'badge-danger' },
-    refused: { text: 'Recusada', cls: 'badge-danger' },
-    withdrawn: { text: 'Retirada', cls: 'badge-neutral' },
-    rejected: { text: 'Rejeitada', cls: 'badge-danger' },
+    registered: { text: 'Registered', cls: 'badge-success' },
+    registada: { text: 'Registered', cls: 'badge-success' },
+    pending: { text: 'Pending', cls: 'badge-warning' },
+    filed: { text: 'Filed', cls: 'badge-warning' },
+    published: { text: 'Published', cls: 'badge-accent' },
+    opposition: { text: 'Opposition', cls: 'badge-warning' },
+    expired: { text: 'Expired', cls: 'badge-danger' },
+    refused: { text: 'Refused', cls: 'badge-danger' },
+    withdrawn: { text: 'Withdrawn', cls: 'badge-neutral' },
+    rejected: { text: 'Rejected', cls: 'badge-danger' },
   };
   return map[key] || { text: status, cls: 'badge-neutral' };
 }
 
 /** PT label + badge color for an alert type. */
 function alertTypeLabel(type) {
-  if (!type) return { text: 'Alerta', cls: 'badge-neutral' };
+  if (!type) return { text: 'Alert', cls: 'badge-neutral' };
   const key = String(type).toLowerCase();
   const map = {
-    similarity: { text: 'Semelhança', cls: 'badge-accent' },
-    opposition: { text: 'Oposição', cls: 'badge-warning' },
-    renewal: { text: 'Renovação', cls: 'badge-warning' },
-    expiry: { text: 'Expiração', cls: 'badge-danger' },
-    deadline: { text: 'Prazo', cls: 'badge-warning' },
-    new_filing: { text: 'Novo pedido', cls: 'badge-accent' },
-    system: { text: 'Sistema', cls: 'badge-neutral' },
+    similarity: { text: 'Similarity', cls: 'badge-accent' },
+    opposition: { text: 'Opposition', cls: 'badge-warning' },
+    renewal: { text: 'Renewal', cls: 'badge-warning' },
+    expiry: { text: 'Expiry', cls: 'badge-danger' },
+    deadline: { text: 'Deadline', cls: 'badge-warning' },
+    new_filing: { text: 'New filing', cls: 'badge-accent' },
+    system: { text: 'System', cls: 'badge-neutral' },
   };
   return map[key] || { text: type, cls: 'badge-neutral' };
 }
 
 /** PT label for a deadline type. */
 function deadlineTypeLabel(type) {
-  if (!type) return 'Prazo';
+  if (!type) return 'Deadline';
   const key = String(type).toLowerCase();
   const map = {
-    renewal: 'Renovação',
-    opposition: 'Oposição',
-    grace_period: 'Período de tolerância',
-    grace: 'Período de tolerância',
-    response: 'Resposta',
-    payment: 'Pagamento',
-    declaration_of_use: 'Declaração de uso',
+    renewal: 'Renewal',
+    opposition: 'Opposition',
+    grace_period: 'Grace period',
+    grace: 'Grace period',
+    response: 'Response',
+    payment: 'Payment',
+    declaration_of_use: 'Declaration of use',
   };
   return map[key] || type;
 }
@@ -257,14 +257,14 @@ async function request(method, path, opts) {
   try {
     response = await fetch(`${API_BASE}${path}`, { method, headers, body });
   } catch (_) {
-    throw new Error('Não foi possível contactar o servidor. Verifique a ligação.');
+    throw new Error('Could not contact the server. Check your connection.');
   }
 
   // Handle auth expiry globally.
   if (response.status === 401) {
     clearToken();
     if (currentPath() !== '/login') navigate('/login');
-    throw new Error('Sessão expirada. Inicie sessão novamente.');
+    throw new Error('Session expired. Please sign in again.');
   }
 
   if (response.status === 204 || response.status === 205) return null;
@@ -333,8 +333,8 @@ function renderError(message, retryId) {
   return `
     <div class="state-block error" role="alert">
       <div class="state-icon">${icon('close', 40)}</div>
-      <h3>Algo correu mal</h3>
-      <p>${esc(message || 'Não foi possível carregar os dados.')}</p>
+      <h3>Something went wrong</h3>
+      <p>${esc(message || 'Could not load the data.')}</p>
       ${retry}
     </div>`;
 }
@@ -367,7 +367,7 @@ function renderShell(path) {
 
   root.innerHTML = `
     <div class="shell">
-      <aside class="sidebar${state.sidebarOpen ? ' open' : ''}" id="sidebar" aria-label="Navegação principal">
+      <aside class="sidebar${state.sidebarOpen ? ' open' : ''}" id="sidebar" aria-label="Main navigation">
         <div class="sidebar-brand">
           <img class="dashboard-wordmark" src="/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-olive-20260820" alt="markee" />
         </div>
@@ -379,11 +379,11 @@ function renderShell(path) {
             <div class="user-avatar" aria-hidden="true">${esc(initial)}</div>
             <div class="user-meta">
               <div class="user-email" title="${esc(email)}">${esc(email)}</div>
-              <div class="user-role">Sessão iniciada</div>
+              <div class="user-role">Signed in</div>
             </div>
           </div>
           <button class="btn btn-ghost btn-block" id="logout-btn">
-            ${icon('logout', 16)} Terminar sessão
+            ${icon('logout', 16)} Sign out
           </button>
         </div>
       </aside>
@@ -457,11 +457,11 @@ function renderAuth() {
     <div class="auth-wrap">
       <div class="glass-card auth-card">
         <div class="auth-brand"><img class="dashboard-wordmark" src="/assets/brand-v2/logos/markee-wordmark-dark.svg?v=theme-olive-20260820" alt="markee" /></div>
-        <p class="auth-sub">Monitorização profissional de marcas</p>
+        <p class="auth-sub">Technology-driven EU trademark platform</p>
 
-        <div class="auth-toggle" role="tablist" aria-label="Modo de autenticação">
-          <button role="tab" aria-selected="${!isRegister}" class="${!isRegister ? 'active' : ''}" data-mode="login">Entrar</button>
-          <button role="tab" aria-selected="${isRegister}" class="${isRegister ? 'active' : ''}" data-mode="register">Criar conta</button>
+        <div class="auth-toggle" role="tablist" aria-label="Authentication mode">
+          <button role="tab" aria-selected="${!isRegister}" class="${!isRegister ? 'active' : ''}" data-mode="login">Sign in</button>
+          <button role="tab" aria-selected="${isRegister}" class="${isRegister ? 'active' : ''}" data-mode="register">Create account</button>
         </div>
 
         <div id="auth-error" aria-live="assertive"></div>
@@ -481,11 +481,11 @@ function renderAuth() {
             <input class="input" id="af-email" name="email" type="email" autocomplete="email" required />
           </div>
           <div class="field">
-            <label for="af-password">Palavra-passe</label>
+            <label for="af-password">Password</label>
             <input class="input" id="af-password" name="password" type="password" autocomplete="${isRegister ? 'new-password' : 'current-password'}" required minlength="6" />
           </div>
           <button class="btn btn-primary btn-block" type="submit" id="auth-submit">
-            ${isRegister ? 'Criar conta' : 'Entrar'}
+            ${isRegister ? 'Create account' : 'Sign in'}
           </button>
         </form>
       </div>
@@ -525,7 +525,7 @@ async function onAuthSubmit(event) {
   const password = form.password.value;
 
   if (!email || !password) {
-    showAuthError('Preencha o email e a palavra-passe.');
+    showAuthError('Enter your email and password.');
     return;
   }
   if (isRegister && !form.full_name.value.trim()) {
@@ -534,7 +534,7 @@ async function onAuthSubmit(event) {
   }
 
   submit.disabled = true;
-  submit.textContent = isRegister ? 'A criar conta…' : 'A entrar…';
+  submit.textContent = isRegister ? 'Creating account…' : 'Signing in…';
 
   try {
     if (isRegister) {
@@ -552,16 +552,16 @@ async function onAuthSubmit(event) {
       form: { username: email, password },
     });
     if (!tokenResp || !tokenResp.access_token) {
-      throw new Error('Resposta de autenticação inválida.');
+      throw new Error('Invalid authentication response.');
     }
     setToken(tokenResp.access_token);
     state.user = await request('GET', '/auth/me', { auth: true });
-    toast(isRegister ? 'Conta criada com sucesso.' : 'Sessão iniciada.', 'success');
+    toast(isRegister ? 'Account created successfully.' : 'Signed in.', 'success');
     navigate('/dashboard');
   } catch (err) {
-    showAuthError(err.message || 'Falha na autenticação.');
+    showAuthError(err.message || 'Authentication failed.');
     submit.disabled = false;
-    submit.textContent = isRegister ? 'Criar conta' : 'Entrar';
+    submit.textContent = isRegister ? 'Create account' : 'Sign in';
   }
 }
 
@@ -571,7 +571,7 @@ async function onAuthSubmit(event) {
 async function renderDashboard() {
   const view = getView();
   setTopbarActions('');
-  view.innerHTML = renderLoading('A carregar o painel…');
+  view.innerHTML = renderLoading('Loading dashboard…');
 
   try {
     // Marks watched = sum of items across all watchlists.
@@ -598,22 +598,22 @@ async function renderDashboard() {
 
     view.innerHTML = `
       <div class="stat-grid">
-        ${statCard('Marcas vigiadas', marksWatched, 'eye', `${watchlists.length} vigilância(s)`)}
-        ${statCard('Alertas por ler', unreadCount, 'bell', unreadCount ? 'Requerem atenção' : 'Tudo em dia')}
-        ${statCard('Prazos a aproximar-se', upcomingCount, 'clock', upcomingCount ? 'Ver prazos' : 'Sem prazos próximos')}
+        ${statCard('Watched marks', marksWatched, 'eye', `${watchlists.length} watchlist(s)`)}
+        ${statCard('Unread alerts', unreadCount, 'bell', unreadCount ? 'Need attention' : 'All clear')}
+        ${statCard('Upcoming deadlines', upcomingCount, 'clock', upcomingCount ? 'View deadlines' : 'No upcoming deadlines')}
       </div>
 
       <div class="dash-columns">
         <section class="page-section">
           <h2 class="section-title">Alertas recentes</h2>
           <div class="glass-card">
-            ${alertsList.length ? alertsList.map(dashboardAlertRow).join('') : renderEmpty('Sem alertas', 'Ainda não existem alertas.', 'bell')}
+            ${alertsList.length ? alertsList.map(dashboardAlertRow).join('') : renderEmpty('No alerts', 'No alerts yet.', 'bell')}
           </div>
         </section>
         <section class="page-section">
-          <h2 class="section-title">Próximos prazos</h2>
+          <h2 class="section-title">Upcoming deadlines</h2>
           <div class="glass-card">
-            ${deadlineList.length ? deadlineList.map(dashboardDeadlineRow).join('') : renderEmpty('Sem prazos', 'Nenhum prazo a aproximar-se.', 'clock')}
+            ${deadlineList.length ? deadlineList.map(dashboardDeadlineRow).join('') : renderEmpty('No deadlines', 'Nenhum prazo a aproximar-se.', 'clock')}
           </div>
         </section>
       </div>`;
@@ -668,17 +668,17 @@ function renderSearch() {
   setTopbarActions('');
   view.innerHTML = `
     <form class="search-bar" id="search-form" role="search">
-      <input class="input" id="search-q" type="search" placeholder="Pesquise por uma marca…"
-             aria-label="Texto da marca" />
-      <select class="select" id="search-jur" aria-label="Jurisdição">
-        <option value="">Todas as jurisdições</option>
+      <input class="input" id="search-q" type="search" placeholder="Search for a trademark…"
+             aria-label="Trademark text" />
+      <select class="select" id="search-jur" aria-label="Jurisdiction">
+        <option value="">All jurisdictions</option>
         <option value="EUIPO">EUIPO</option>
         <option value="INPI">INPI</option>
       </select>
       <button class="btn btn-primary" type="submit">${icon('search', 16)} Pesquisar</button>
     </form>
     <div id="search-results">
-      ${renderEmpty('Pesquise por uma marca…', 'Introduza um termo para procurar marcas em bases europeias e nacionais.', 'search')}
+      ${renderEmpty('Search for a trademark…', 'Enter a term to search European and national trademark databases.', 'search')}
     </div>`;
 
   const form = document.getElementById('search-form');
@@ -694,11 +694,11 @@ async function doSearch(event) {
   const container = document.getElementById('search-results');
 
   if (!q) {
-    container.innerHTML = renderEmpty('Introduza um termo', 'Escreva o nome de uma marca para pesquisar.', 'search');
+    container.innerHTML = renderEmpty('Enter a search term', 'Enter a trademark name to search.', 'search');
     return;
   }
 
-  container.innerHTML = renderLoading('A pesquisar marcas…');
+  container.innerHTML = renderLoading('Searching trademarks…');
 
   const params = new URLSearchParams({ q, limit: '50', offset: '0' });
   if (jur) params.set('jurisdiction', jur);
@@ -706,7 +706,7 @@ async function doSearch(event) {
   try {
     const results = await request('GET', `/trademarks?${params.toString()}`, { auth: true });
     if (!Array.isArray(results) || results.length === 0) {
-      container.innerHTML = renderEmpty('Sem resultados', `Não foram encontradas marcas para “${q}”.`, 'search');
+      container.innerHTML = renderEmpty('No results', `No trademarks were found for “${q}”.`, 'search');
       return;
     }
     container.innerHTML = `<div class="result-grid">${results.map(searchResultCard).join('')}</div>`;
@@ -727,7 +727,7 @@ function searchResultCard(tm) {
     <div class="glass-card list-card">
       <div class="list-card-head">
         <div>
-          <div class="list-card-title">${esc(tm.word_mark || 'Marca figurativa')}</div>
+          <div class="list-card-title">${esc(tm.word_mark || 'Figurative mark')}</div>
           ${appNum ? `<div class="compact-sub mono">${esc(appNum)}</div>` : ''}
         </div>
         <span class="badge ${st.cls}">${esc(st.text)}</span>
@@ -746,16 +746,16 @@ function searchResultCard(tm) {
    -------------------------------------------------------------------------- */
 async function renderWatchlists() {
   const view = getView();
-  setTopbarActions(`<button class="btn btn-primary" id="new-watchlist">${icon('plus', 16)} Nova vigilância</button>`);
+  setTopbarActions(`<button class="btn btn-primary" id="new-watchlist">${icon('plus', 16)} New watchlist</button>`);
   const newBtn = document.getElementById('new-watchlist');
   if (newBtn) newBtn.addEventListener('click', openWatchlistModal);
 
-  view.innerHTML = renderLoading('A carregar vigilâncias…');
+  view.innerHTML = renderLoading('Loading watchlists…');
 
   try {
     const watchlists = await request('GET', '/watchlists', { auth: true });
     if (!Array.isArray(watchlists) || watchlists.length === 0) {
-      view.innerHTML = renderEmpty('Sem vigilâncias', 'Crie a primeira vigilância para monitorizar marcas semelhantes.', 'eye');
+      view.innerHTML = renderEmpty('No watchlists', 'Create the first watchlist to monitor similar trademarks.', 'eye');
       return;
     }
 
@@ -795,18 +795,18 @@ function watchlistCard(w, count) {
             ${esc(w.name)}
           </button>
           <div class="list-card-meta">
-            <span class="badge badge-accent">Limiar ${esc(w.similarity_threshold)}%</span>
-            <span class="badge badge-neutral">${esc(count)} marca(s)</span>
+            <span class="badge badge-accent">Threshold ${esc(w.similarity_threshold)}%</span>
+            <span class="badge badge-neutral">${esc(count)} mark(s)</span>
             ${jurisdictions.map((j) => `<span class="badge badge-neutral">${esc(j)}</span>`).join('')}
           </div>
         </div>
         <div class="flex gap-sm" style="align-items:center;">
           <label class="toggle-switch" title="Ativa/Inativa">
             <input type="checkbox" data-toggle-active="${esc(w.id)}" ${w.is_active ? 'checked' : ''}
-                   aria-label="Ativar vigilância ${esc(w.name)}" />
+                   aria-label="Enable watchlist ${esc(w.name)}" />
             <span class="toggle-slider"></span>
           </label>
-          <button class="icon-btn" data-delete-watchlist="${esc(w.id)}" aria-label="Eliminar vigilância ${esc(w.name)}">
+          <button class="icon-btn" data-delete-watchlist="${esc(w.id)}" aria-label="Delete watchlist ${esc(w.name)}">
             ${icon('trash', 18)}
           </button>
         </div>
@@ -838,7 +838,7 @@ function bindWatchlistCards(watchlists) {
       const id = input.getAttribute('data-toggle-active');
       try {
         await request('PUT', `/watchlists/${id}`, { auth: true, body: { is_active: input.checked } });
-        toast(input.checked ? 'Vigilância ativada.' : 'Vigilância desativada.', 'success');
+        toast(input.checked ? 'Watchlist enabled.' : 'Watchlist disabled.', 'success');
       } catch (err) {
         input.checked = !input.checked;
         toast(err.message, 'error');
@@ -850,12 +850,12 @@ function bindWatchlistCards(watchlists) {
     btn.addEventListener('click', async () => {
       const id = btn.getAttribute('data-delete-watchlist');
       const wl = watchlists.find((w) => String(w.id) === String(id));
-      const name = wl ? wl.name : 'esta vigilância';
-      if (!window.confirm(`Eliminar “${name}”? Esta ação é irreversível.`)) return;
+      const name = wl ? wl.name : 'this watchlist';
+      if (!window.confirm(`Delete “${name}”? This action cannot be undone.`)) return;
       try {
         await request('DELETE', `/watchlists/${id}`, { auth: true });
         if (String(state.expandedWatchlist) === String(id)) state.expandedWatchlist = null;
-        toast('Vigilância eliminada.', 'success');
+        toast('Watchlist deleted.', 'success');
         renderWatchlists();
       } catch (err) {
         toast(err.message, 'error');
@@ -868,7 +868,7 @@ async function loadWatchlistItems(id) {
   const container = document.getElementById(`items-${id}`);
   if (!container) return;
   container.hidden = false;
-  container.innerHTML = renderLoading('A carregar marcas…');
+  container.innerHTML = renderLoading('Loading marks…');
 
   try {
     const items = await request('GET', `/watchlists/${id}/items`, { auth: true });
@@ -876,11 +876,11 @@ async function loadWatchlistItems(id) {
     container.innerHTML = `
       ${list.length
         ? list.map((it) => watchlistItemRow(id, it)).join('')
-        : `<p class="text-secondary text-sm">Ainda não há marcas nesta vigilância.</p>`}
+        : `<p class="text-secondary text-sm">There are no marks in this watchlist yet.</p>`}
       <form class="inline-form" data-add-item="${esc(id)}">
         <div class="field">
-          <label for="mk-${esc(id)}">Marca</label>
-          <input class="input" id="mk-${esc(id)}" name="mark_text" type="text" placeholder="Texto da marca" required />
+          <label for="mk-${esc(id)}">Mark</label>
+          <input class="input" id="mk-${esc(id)}" name="mark_text" type="text" placeholder="Trademark text" required />
         </div>
         <div class="field">
           <label for="cl-${esc(id)}">Classes (opcional)</label>
@@ -890,7 +890,7 @@ async function loadWatchlistItems(id) {
           <label for="nt-${esc(id)}">Notas (opcional)</label>
           <input class="input" id="nt-${esc(id)}" name="notes" type="text" placeholder="Notas" />
         </div>
-        <button class="btn btn-primary" type="submit">${icon('plus', 16)} Adicionar marca</button>
+        <button class="btn btn-primary" type="submit">${icon('plus', 16)} Add mark</button>
       </form>`;
 
     // Remove-item bindings.
@@ -899,7 +899,7 @@ async function loadWatchlistItems(id) {
         const itemId = btn.getAttribute('data-remove-item');
         try {
           await request('DELETE', `/watchlists/${id}/items/${itemId}`, { auth: true });
-          toast('Marca removida.', 'success');
+          toast('Mark removed.', 'success');
           loadWatchlistItems(id);
         } catch (err) {
           toast(err.message, 'error');
@@ -924,7 +924,7 @@ function watchlistItemRow(watchlistId, item) {
         ${classes.length ? `<div class="chip-row" style="margin-top:4px;">${classes.map((c) => `<span class="chip">Cl. ${esc(c)}</span>`).join('')}</div>` : ''}
         ${item.notes ? `<div class="item-notes">${esc(item.notes)}</div>` : ''}
       </div>
-      <button class="icon-btn" data-remove-item="${esc(item.id)}" aria-label="Remover marca ${esc(item.mark_text)}">
+      <button class="icon-btn" data-remove-item="${esc(item.id)}" aria-label="Remove mark ${esc(item.mark_text)}">
         ${icon('close', 18)}
       </button>
     </div>`;
@@ -935,7 +935,7 @@ async function onAddItem(event, watchlistId) {
   const form = event.currentTarget;
   const markText = form.mark_text.value.trim();
   if (!markText) {
-    toast('Indique o texto da marca.', 'error');
+    toast('Enter the trademark text.', 'error');
     return;
   }
   const classesRaw = form.nice_classes.value.trim();
@@ -952,7 +952,7 @@ async function onAddItem(event, watchlistId) {
       auth: true,
       body: { mark_text: markText, nice_classes: niceClasses, notes },
     });
-    toast('Marca adicionada.', 'success');
+    toast('Mark added.', 'success');
     loadWatchlistItems(watchlistId);
   } catch (err) {
     toast(err.message, 'error');
@@ -969,31 +969,31 @@ function openWatchlistModal() {
   backdrop.innerHTML = `
     <div class="glass-card modal" role="dialog" aria-modal="true" aria-labelledby="wl-modal-title">
       <div class="modal-head">
-        <h2 id="wl-modal-title">Nova vigilância</h2>
-        <button class="icon-btn" id="wl-modal-close" aria-label="Fechar">${icon('close')}</button>
+        <h2 id="wl-modal-title">New watchlist</h2>
+        <button class="icon-btn" id="wl-modal-close" aria-label="Close">${icon('close')}</button>
       </div>
       <form id="wl-form">
         <div class="field">
-          <label for="wl-name">Nome</label>
-          <input class="input" id="wl-name" name="name" type="text" placeholder="ex: Marcas de moda" required />
+          <label for="wl-name">Name</label>
+          <input class="input" id="wl-name" name="name" type="text" placeholder="e.g. Fashion marks" required />
         </div>
         <div class="field">
-          <label for="wl-threshold">Limiar de semelhança</label>
+          <label for="wl-threshold">Similarity threshold</label>
           <div class="range-row">
             <input type="range" id="wl-threshold" name="threshold" min="0" max="100" value="80" />
             <span class="range-value mono" id="wl-threshold-val">80%</span>
           </div>
         </div>
         <div class="field">
-          <label>Jurisdições</label>
+          <label>Jurisdictions</label>
           <div class="checkbox-row">
             <label class="checkbox-label"><input type="checkbox" name="jur" value="EUIPO" checked /> EUIPO</label>
             <label class="checkbox-label"><input type="checkbox" name="jur" value="INPI" checked /> INPI</label>
           </div>
         </div>
         <div class="flex gap-sm" style="margin-top:var(--space-md);justify-content:flex-end;">
-          <button class="btn" type="button" id="wl-cancel">Cancelar</button>
-          <button class="btn btn-primary" type="submit" id="wl-submit">Criar vigilância</button>
+          <button class="btn" type="button" id="wl-cancel">Cancel</button>
+          <button class="btn btn-primary" type="submit" id="wl-submit">Create watchlist</button>
         </div>
       </form>
     </div>`;
@@ -1035,13 +1035,13 @@ function openWatchlistModal() {
           jurisdictions: jurisdictions.length ? jurisdictions : null,
         },
       });
-      toast('Vigilância criada.', 'success');
+      toast('Watchlist created.', 'success');
       close();
       renderWatchlists();
     } catch (err) {
       toast(err.message, 'error');
       submit.disabled = false;
-      submit.textContent = 'Criar vigilância';
+      submit.textContent = 'Create watchlist';
     }
   });
 }
@@ -1056,7 +1056,7 @@ async function renderAlerts() {
   setTopbarActions(`
     <label class="checkbox-label">
       <input type="checkbox" id="alerts-unread" ${alertsState.unreadOnly ? 'checked' : ''} />
-      Só por ler
+      Unread only
     </label>`);
   const toggle = document.getElementById('alerts-unread');
   if (toggle) toggle.addEventListener('change', () => {
@@ -1069,12 +1069,12 @@ async function renderAlerts() {
 
 async function loadAlerts() {
   const view = getView();
-  view.innerHTML = renderLoading('A carregar alertas…');
+  view.innerHTML = renderLoading('Loading alerts…');
   try {
     const alerts = await request('GET', `/alerts?unread_only=${alertsState.unreadOnly}`, { auth: true });
     const list = Array.isArray(alerts) ? alerts.filter((a) => !a.is_dismissed) : [];
     if (list.length === 0) {
-      view.innerHTML = renderEmpty('Sem alertas.', alertsState.unreadOnly ? 'Não há alertas por ler.' : 'Ainda não recebeu alertas.', 'bell');
+      view.innerHTML = renderEmpty('No alerts.', alertsState.unreadOnly ? 'No unread alerts.' : 'You have not received alerts yet.', 'bell');
       return;
     }
     view.innerHTML = `<div class="card-list">${list.map(alertCard).join('')}</div>`;
@@ -1089,10 +1089,10 @@ function alertCard(a) {
   const t = alertTypeLabel(a.alert_type);
   const scores = [];
   if (a.similarity_score !== null && a.similarity_score !== undefined) {
-    scores.push(`<span class="badge badge-accent">Semelhança ${Math.round(a.similarity_score)}%</span>`);
+    scores.push(`<span class="badge badge-accent">Similarity ${Math.round(a.similarity_score)}%</span>`);
   }
   if (a.phonetic_score !== null && a.phonetic_score !== undefined) {
-    scores.push(`<span class="badge badge-neutral">Fonética ${Math.round(a.phonetic_score)}%</span>`);
+    scores.push(`<span class="badge badge-neutral">Phonetic ${Math.round(a.phonetic_score)}%</span>`);
   }
   if (a.class_overlap_score !== null && a.class_overlap_score !== undefined) {
     scores.push(`<span class="badge badge-neutral">Classes ${Math.round(a.class_overlap_score)}%</span>`);
@@ -1110,8 +1110,8 @@ function alertCard(a) {
       ${a.body ? `<div class="list-card-body">${esc(a.body)}</div>` : ''}
       ${scores.length ? `<div class="score-row">${scores.join('')}</div>` : ''}
       <div class="list-card-actions">
-        ${a.is_read ? '' : `<button class="btn btn-sm" data-read="${esc(a.id)}">Marcar como lido</button>`}
-        <button class="btn btn-sm btn-danger" data-dismiss="${esc(a.id)}">Dispensar</button>
+        ${a.is_read ? '' : `<button class="btn btn-sm" data-read="${esc(a.id)}">Mark as read</button>`}
+        <button class="btn btn-sm btn-danger" data-dismiss="${esc(a.id)}">Dismiss</button>
       </div>
     </div>`;
 }
@@ -1124,7 +1124,7 @@ function bindAlertActions() {
       btn.disabled = true;
       try {
         await request('POST', `/alerts/${id}/read`, { auth: true });
-        toast('Alerta marcado como lido.', 'success');
+        toast('Alert marked as read.', 'success');
         loadAlerts();
       } catch (err) {
         toast(err.message, 'error');
@@ -1138,7 +1138,7 @@ function bindAlertActions() {
       btn.disabled = true;
       try {
         await request('POST', `/alerts/${id}/dismiss`, { auth: true });
-        toast('Alerta dispensado.', 'success');
+        toast('Alert dismissed.', 'success');
         loadAlerts();
       } catch (err) {
         toast(err.message, 'error');
@@ -1154,12 +1154,12 @@ function bindAlertActions() {
 async function renderDeadlines() {
   const view = getView();
   setTopbarActions('');
-  view.innerHTML = renderLoading('A carregar prazos…');
+  view.innerHTML = renderLoading('Loading deadlines…');
   try {
     const deadlines = await request('GET', '/deadlines?upcoming_only=true', { auth: true });
     const list = Array.isArray(deadlines) ? deadlines : [];
     if (list.length === 0) {
-      view.innerHTML = renderEmpty('Sem prazos', 'Não existem prazos a aproximar-se.', 'clock');
+      view.innerHTML = renderEmpty('No deadlines', 'No upcoming deadlines.', 'clock');
       return;
     }
     view.innerHTML = `<div class="card-list">${list.map(deadlineCard).join('')}</div>`;
@@ -1191,7 +1191,7 @@ function deadlineCard(d) {
 async function renderSettings() {
   const view = getView();
   setTopbarActions('');
-  view.innerHTML = renderLoading('A carregar definições…');
+  view.innerHTML = renderLoading('Loading settings…');
   try {
     const [subscription, plans] = await Promise.all([
       request('GET', '/billing/subscription', { auth: true }),
@@ -1214,19 +1214,19 @@ async function renderSettings() {
         </section>
 
         <section class="glass-card card-pad">
-          <h2 class="card-title">Subscrição</h2>
+          <h2 class="card-title">Subscription</h2>
           <div class="info-list">
-            <div class="info-row"><span class="info-label">Plano atual</span>
+            <div class="info-row"><span class="info-label">Current plan</span>
               <span class="info-value"><span class="badge badge-accent">${esc((PLAN_META[currentPlan] || {}).label || currentPlan)}</span></span></div>
-            <div class="info-row"><span class="info-label">Estado</span><span class="info-value">${esc(subscription && subscription.status ? subscription.status : 'ativo')}</span></div>
-            <div class="info-row"><span class="info-label">Máx. de marcas</span><span class="info-value mono">${esc(subscription && subscription.max_marks != null ? subscription.max_marks : '—')}</span></div>
-            <div class="info-row"><span class="info-label">Máx. de utilizadores</span><span class="info-value mono">${esc(subscription && subscription.max_users != null ? subscription.max_users : '—')}</span></div>
-            ${subscription && subscription.current_period_end ? `<div class="info-row"><span class="info-label">Renova a</span><span class="info-value mono">${esc(formatDate(subscription.current_period_end))}</span></div>` : ''}
+            <div class="info-row"><span class="info-label">Status</span><span class="info-value">${esc(subscription && subscription.status ? subscription.status : 'active')}</span></div>
+            <div class="info-row"><span class="info-label">Max marks</span><span class="info-value mono">${esc(subscription && subscription.max_marks != null ? subscription.max_marks : '—')}</span></div>
+            <div class="info-row"><span class="info-label">Max users</span><span class="info-value mono">${esc(subscription && subscription.max_users != null ? subscription.max_users : '—')}</span></div>
+            ${subscription && subscription.current_period_end ? `<div class="info-row"><span class="info-label">Renews on</span><span class="info-value mono">${esc(formatDate(subscription.current_period_end))}</span></div>` : ''}
           </div>
         </section>
 
         <section class="page-section">
-          <h2 class="section-title">Planos disponíveis</h2>
+          <h2 class="section-title">Available plans</h2>
           <div class="plan-grid" id="plan-grid">
             ${renderPlanCards(plans, currentPlan)}
           </div>
@@ -1249,19 +1249,19 @@ function renderPlanCards(plans, currentPlan) {
       const plan = (plans && plans[key]) || {};
       const isCurrent = key === currentPlan;
       const limits = [];
-      if (plan.max_marks != null) limits.push(`${plan.max_marks} marca(s)`);
+      if (plan.max_marks != null) limits.push(`${plan.max_marks} mark(s)`);
       if (plan.max_users != null) limits.push(`${plan.max_users} utilizador(es)`);
       if (plan.max_clients != null) limits.push(`${plan.max_clients} cliente(s)`);
       return `
         <div class="plan-card ${isCurrent ? 'current' : ''}">
           <div class="plan-name">${esc(meta.label)}</div>
-          <div class="plan-price">€${esc(meta.price)}<small>/mês</small></div>
+          <div class="plan-price">€${esc(meta.price)}<small>/month</small></div>
           <div class="plan-limits">
             ${limits.map((l) => `<span>${esc(l)}</span>`).join('')}
           </div>
           ${isCurrent
-            ? `<button class="btn btn-block" disabled>Plano atual</button>`
-            : `<button class="btn btn-primary btn-block" data-plan="${esc(key)}">Escolher plano</button>`}
+            ? `<button class="btn btn-block" disabled>Current plan</button>`
+            : `<button class="btn btn-primary btn-block" data-plan="${esc(key)}">Choose plan</button>`}
         </div>`;
     })
     .join('');
@@ -1287,14 +1287,14 @@ function bindPlanButtons() {
         if (resp && resp.checkout_url) {
           window.location = resp.checkout_url;
         } else {
-          toast('Pagamentos indisponíveis de momento.', 'error');
+          toast('Payments are unavailable right now.', 'error');
           btn.disabled = false;
-          btn.textContent = 'Escolher plano';
+          btn.textContent = 'Choose plan';
         }
       } catch (err) {
-        toast(err.message || 'Pagamentos indisponíveis de momento.', 'error');
+        toast(err.message || 'Payments are unavailable right now.', 'error');
         btn.disabled = false;
-        btn.textContent = 'Escolher plano';
+        btn.textContent = 'Choose plan';
       }
     })
   );
@@ -1305,16 +1305,16 @@ function bindPlanButtons() {
    -------------------------------------------------------------------------- */
 
 // Static legal note kept in source so the disclaimer is always present even
-// before the API responds: "não constitui aconselhamento jurídico".
+// before the API responds.
 const ASSESSMENT_DISCLAIMER_NOTE =
-  'Esta verificação é automática e informativa; não constitui aconselhamento jurídico nem garante o registo da marca.';
+  'This automated check is informational; it is not legal advice and does not guarantee trademark registration.';
 
-/** PT label + badge class for an assessment verdict. */
+/** English label + badge class for an assessment verdict. */
 function verdictMeta(verdict) {
   const map = {
-    eligible: { label: 'Elegível para registo', cls: 'badge-success', level: 'ok' },
-    eligible_with_risk: { label: 'Elegível com reservas', cls: 'badge-warning', level: 'warning' },
-    not_recommended: { label: 'Registo não recomendado', cls: 'badge-danger', level: 'danger' },
+    eligible: { label: 'Eligible for filing', cls: 'badge-success', level: 'ok' },
+    eligible_with_risk: { label: 'Eligible with reservations', cls: 'badge-warning', level: 'warning' },
+    not_recommended: { label: 'Registration not recommended', cls: 'badge-danger', level: 'danger' },
   };
   return map[verdict] || { label: verdict || '—', cls: 'badge-neutral', level: 'ok' };
 }
@@ -1322,18 +1322,18 @@ function verdictMeta(verdict) {
 /** PT label + level for a risk / distinctiveness value. */
 function riskMeta(level) {
   const map = {
-    low: { label: 'Baixo', level: 'ok' },
-    medium: { label: 'Médio', level: 'warning' },
-    high: { label: 'Elevado', level: 'danger' },
+    low: { label: 'Low', level: 'ok' },
+    medium: { label: 'Medium', level: 'warning' },
+    high: { label: 'High', level: 'danger' },
   };
   return map[level] || { label: level || '—', level: 'ok' };
 }
 
 function distinctivenessMeta(level) {
   const map = {
-    fully_met: { label: 'Totalmente cumprido', level: 'ok' },
-    partially_met: { label: 'Parcialmente cumprido', level: 'warning' },
-    not_met: { label: 'Não cumprido', level: 'danger' },
+    fully_met: { label: 'Fully met', level: 'ok' },
+    partially_met: { label: 'Partially met', level: 'warning' },
+    not_met: { label: 'Not met', level: 'danger' },
   };
   return map[level] || { label: level || '—', level: 'ok' };
 }
@@ -1344,37 +1344,36 @@ function renderAssessment() {
   view.innerHTML = `
     <div class="assessment-intro glass-card card-pad">
       <p class="text-secondary">
-        Verifique gratuitamente a viabilidade de registo de uma marca: distintividade,
-        classes de Nice recomendadas, marcas semelhantes e risco de oposição.
+        Check preliminary trademark viability: distinctiveness, suggested Nice classes, similar earlier marks and opposition risk.
       </p>
     </div>
     <form class="glass-card card-pad assessment-form" id="assessment-form" novalidate>
       <div class="field">
-        <label for="as-mark">Marca a verificar</label>
+        <label for="as-mark">Trademark to check</label>
         <input class="input" id="as-mark" name="mark_name" type="text"
                placeholder="ex: Zyphora" required maxlength="255" />
       </div>
       <div class="assessment-form-row">
         <div class="field">
-          <label for="as-jur">Jurisdição</label>
+          <label for="as-jur">Jurisdiction</label>
           <select class="select" id="as-jur" name="jurisdiction">
-            <option value="EU">União Europeia (EUIPO)</option>
+            <option value="EU">European Union (EUIPO)</option>
             <option value="PT">Portugal (INPI)</option>
           </select>
         </div>
         <div class="field">
-          <label for="as-classes">Classes de Nice (opcional)</label>
+          <label for="as-classes">Nice classes (opcional)</label>
           <input class="input" id="as-classes" name="nice_classes" type="text"
                  placeholder="ex: 35, 42, 45" />
         </div>
       </div>
       <div class="field">
-        <label for="as-desc">Descrição da atividade</label>
+        <label for="as-desc">Goods/services description</label>
         <textarea class="input" id="as-desc" name="business_description" rows="3"
-                  placeholder="Descreva os produtos ou serviços (ex: plataforma SaaS de gestão)"></textarea>
+                  placeholder="Describe the goods or services (e.g. SaaS management platform)"></textarea>
       </div>
       <button class="btn btn-primary" type="submit" id="as-submit">
-        ${icon('check', 16)} Verificar marca
+        ${icon('check', 16)} Check trademark
       </button>
     </form>
     <div id="assessment-result" aria-live="polite"></div>`;
@@ -1391,7 +1390,7 @@ async function doAssessment(event) {
   const container = document.getElementById('assessment-result');
   const markName = form.mark_name.value.trim();
   if (!markName) {
-    toast('Indique o nome da marca a verificar.', 'error');
+    toast('Enter the trademark name to check.', 'error');
     return;
   }
 
@@ -1402,7 +1401,7 @@ async function doAssessment(event) {
 
   const submit = document.getElementById('as-submit');
   if (submit) submit.disabled = true;
-  container.innerHTML = renderLoading('A analisar a marca…');
+  container.innerHTML = renderLoading('Checking the trademark…');
 
   try {
     const report = await request('POST', '/assessments', {
@@ -1429,7 +1428,7 @@ async function doAssessment(event) {
 
 function renderAssessmentReport(r) {
   if (!r || typeof r !== 'object') {
-    return renderError('Resposta de avaliação inválida.');
+    return renderError('Invalid assessment response.');
   }
   const vm = verdictMeta(r.verdict);
   const risk = riskMeta(r.risk_level);
@@ -1451,17 +1450,17 @@ function renderAssessmentReport(r) {
           </div>
           ${c.reason ? `<div class="compact-sub">${esc(c.reason)}</div>` : ''}
         </div>`).join('')
-    : `<p class="text-secondary text-sm">Sem recomendações de classes.</p>`;
+    : `<p class="text-secondary text-sm">No class recommendations.</p>`;
 
   let candidatesHtml;
   if (r.candidates_provenance === 'unavailable') {
     candidatesHtml = renderEmpty(
-      'Pesquisa de anterioridades indisponível',
-      'Não foi possível consultar as bases de dados neste momento. Repita mais tarde para uma análise completa.',
+      'Earlier-right search unavailable',
+      'Could not query the databases right now. Try again later for a complete analysis.',
       'search'
     );
   } else if (candidates.length === 0) {
-    candidatesHtml = renderEmpty('Sem correspondência exata', 'Não foram identificadas marcas idênticas ou muito semelhantes.', 'check');
+    candidatesHtml = renderEmpty('No exact match', 'No identical or very similar marks were identified.', 'check');
   } else {
     candidatesHtml = `<div class="card-list">${candidates.map(assessmentCandidateRow).join('')}</div>`;
   }
@@ -1481,16 +1480,16 @@ function renderAssessmentReport(r) {
 
       <div class="glass-card card-pad assessment-verdict ${vm.level}">
         <span class="badge ${vm.cls}">${esc(vm.label)}</span>
-        <p class="text-secondary">O registo de uma marca envolve sempre algum risco. Reveja o relatório e as recomendações antes de avançar.</p>
+        <p class="text-secondary">Trademark filing always involves some risk. Review the report and recommendations before proceeding.</p>
       </div>
 
       <div class="assessment-components">
-        ${assessmentComponent('Distintividade', dist.label, dist.level,
-          (distScore !== null ? `Pontuação ${distScore}/100. ` : '') + (r.distinctiveness ? esc(r.distinctiveness.rationale) : ''))}
-        ${assessmentComponent('Marca idêntica', r.identical_match ? 'Encontrada' : 'Sem correspondência exata',
+        ${assessmentComponent('Distinctiveness', dist.label, dist.level,
+          (distScore !== null ? `Score ${distScore}/100. ` : '') + (r.distinctiveness ? esc(r.distinctiveness.rationale) : ''))}
+        ${assessmentComponent('Identical mark', r.identical_match ? 'Found' : 'No exact match',
           r.identical_match ? 'danger' : 'ok',
-          r.identical_match ? 'Existe uma marca idêntica registada.' : 'Nenhuma marca idêntica foi identificada.')}
-        ${assessmentComponent('Risco de oposição', risk.label, risk.level,
+          r.identical_match ? 'An identical registered mark exists.' : 'No identical mark was identified.')}
+        ${assessmentComponent('Opposition risk', risk.label, risk.level,
           r.opposition_risk ? esc(r.opposition_risk.rationale) : '')}
       </div>
 
@@ -1500,12 +1499,12 @@ function renderAssessmentReport(r) {
       </section>
 
       <section class="page-section">
-        <h2 class="section-title">Marcas anteriores semelhantes</h2>
+        <h2 class="section-title">Similar earlier marks</h2>
         ${candidatesHtml}
       </section>
 
       <section class="page-section">
-        <h2 class="section-title">A nossa recomendação</h2>
+        <h2 class="section-title">Our recommendation</h2>
         <div class="glass-card card-pad">
           <ol class="assessment-reco-list">
             ${recommendations.map((rec) => `<li>${esc(rec)}</li>`).join('')}
@@ -1547,7 +1546,7 @@ function assessmentCandidateRow(c) {
             ${c.source ? `<span class="compact-sub mono">${esc(c.source)}</span>` : ''}
           </div>
         </div>
-        <span class="countdown ${band.level}">Semelhança ${esc(sim)}%</span>
+        <span class="countdown ${band.level}">Similarity ${esc(sim)}%</span>
       </div>
     </div>`;
 }

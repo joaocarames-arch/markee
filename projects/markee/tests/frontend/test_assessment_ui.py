@@ -45,9 +45,7 @@ def test_assessment_has_disclaimer():
     js = _js()
     lowered = js.lower()
     # The professional disclaimer wording must be present in the view.
-    assert "não constitui aconselhamento jurídico" in lowered or (
-        "aconselhamento jurídico" in lowered
-    ), "assessment report must render a legal disclaimer"
+    assert "not legal advice" in lowered, "assessment report must render a legal disclaimer"
 
 
 def test_print_styles_present():

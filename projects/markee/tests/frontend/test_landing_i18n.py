@@ -1,7 +1,7 @@
 """Landing language switching contract.
 
-The public landing must remain Portuguese by default while offering a real
-English version without duplicating the page or breaking static routing.
+The public landing must be English by default while keeping a real
+Portuguese version without duplicating the page or breaking static routing.
 
 These tests fail when:
 * a ``data-i18n`` key used in the HTML is missing from either dictionary,
@@ -127,10 +127,10 @@ def test_landing_exposes_accessible_pt_en_language_switcher():
     html = H.read_text(H.LANDING_HTML)
 
     assert 'data-language-switcher' in html
-    assert 'aria-label="Escolher idioma"' in html
+    assert 'aria-label="Choose language"' in html
     assert 'data-lang-option="pt"' in html
     assert 'data-lang-option="en"' in html
-    assert 'aria-pressed="true"' in html
+    assert re.search(r'<button[^>]*data-lang-option="en"[^>]*aria-pressed="true"|<button[^>]*aria-pressed="true"[^>]*data-lang-option="en"', html)
 
 
 def test_landing_declares_translatable_copy_and_metadata():
@@ -234,11 +234,11 @@ def test_no_visible_portuguese_outside_translatable_markup():
 def test_landing_english_dictionary_contains_real_english_copy():
     js = H.read_text(H.LANDING_JS)
 
-    assert "Your brand," in js
-    assert "under" in js and "absolute watch" in js
-    assert "Explore features" in js
-    assert "Choose the intensity" in js
-    assert "made in lisbon" in js.lower()
+    assert "Can I protect this trademark?" in js
+    assert "Find out before you file" in js
+    assert "Register a trademark" in js
+    assert "Choose the right level" in js
+    assert "built in lisbon" in js.lower()
     english_block = js.split('"en":', 1)[-1]
     assert "A sua marca," not in english_block
 

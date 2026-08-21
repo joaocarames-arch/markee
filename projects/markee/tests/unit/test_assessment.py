@@ -164,4 +164,4 @@ class TestBuildReport:
 
     def test_disclaimer_mentions_not_legal_advice(self):
         joined = " ".join(DISCLAIMERS).lower()
-        assert "jurídico" in joined or "juridico" in joined
+        assert "legal advice" in joined
