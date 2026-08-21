@@ -34,7 +34,7 @@ def test_active_frontend_uses_green_demo_and_cache_busted_stylesheet():
     landing_css = H.read_text(H.LANDING_CSS).lower()
     dashboard_css = H.read_text(H.DASHBOARD_CSS).lower()
 
-    assert 'href="/static/styles.css?v=theme-olive-20260820"' in html
+    assert 'href="/static/styles.css?v=homepage-rework-20260821"' in html
     rule = re.search(r"\.sim-versus__mark--intruder\s*\{([^}]*)\}", landing_css)
     assert rule and "color: var(--color-accent)" in rule.group(1)
     for body in (html.lower(), landing_css, dashboard_css):

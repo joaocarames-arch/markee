@@ -139,9 +139,9 @@ def test_landing_declares_translatable_copy_and_metadata():
     keys = set(re.findall(r'data-i18n="([^"]+)"', html))
     assert "meta.title" in keys
     assert "hero.title" in keys
-    assert "pricing.title" in keys
+    assert "hero.subtitle" in keys
     assert "footer.rights" in keys
-    assert len(keys) >= 90
+    assert len(keys) >= 35
 
 
 def test_every_html_i18n_key_exists_in_both_dictionaries():
@@ -188,25 +188,6 @@ def test_important_html_sections_are_marked_translatable():
         "hero.meta.est", "hero.title.line1", "hero.title.line2", "hero.title.line3",
         "ticker.inpi", "ticker.euipo", "ticker.bpi", "ticker.nice",
         "ticker.phonetic", "ticker.alerts",
-        "manifesto.eyebrow", "manifesto.text",
-        "features.eyebrow", "features.title",
-        "feature.sim.title", "feature.sim.desc", "feature.sim.meta",
-        "feature.life.title", "feature.life.desc", "feature.life.meta",
-        "feature.structured.title", "feature.structured.desc",
-        "feature.prospect.title", "feature.prospect.desc",
-        "feature.email.title", "feature.email.desc",
-        "stats.label", "stats.official", "stats.classes", "stats.weights", "stats.pt",
-        "engine.eyebrow", "engine.title", "engine.aria",
-        "engine.sim.title", "engine.sim.desc",
-        "engine.deadlines.title", "engine.deadlines.desc",
-        "engine.alert.title", "engine.alert.desc",
-        "engine.report", "engine.verdict", "engine.email_one", "engine.email_two",
-        "engine.timeline.label", "engine.timeline.registered",
-        "engine.timeline.opposition", "engine.timeline.renewal", "engine.sent",
-        "pricing.eyebrow", "pricing.title", "pricing.note", "pricing.per_month",
-        "pricing.tier.free", "pricing.tier.individual", "pricing.tier.pro",
-        "pricing.tier.professional", "pricing.tier.enterprise",
-        "pricing.ind.2", "pricing.prof.2", "pricing.start",
         "final.eyebrow", "final.title", "final.hint",
         "footer.aria", "footer.product", "footer.platform", "footer.registers",
         "footer.inpi", "footer.euipo", "footer.rights", "footer.made",
@@ -234,10 +215,10 @@ def test_no_visible_portuguese_outside_translatable_markup():
 def test_landing_english_dictionary_contains_real_english_copy():
     js = H.read_text(H.LANDING_JS)
 
-    assert "Can I protect this trademark?" in js
-    assert "Find out before you file" in js
-    assert "Register a trademark" in js
-    assert "Choose the right level" in js
+    assert "EU trademark protection, made simpler." in js
+    assert "Explore our services" in js
+    assert "professional EU trademark services firm" in js
+    assert "proprietary technology" in js
     assert "built in lisbon" in js.lower()
     english_block = js.split('"en":', 1)[-1]
     assert "A sua marca," not in english_block

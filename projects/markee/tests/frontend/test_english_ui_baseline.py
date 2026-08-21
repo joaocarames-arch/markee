@@ -62,9 +62,10 @@ def test_landing_defaults_to_english_first():
     pt_button = re.search(r"<button[^>]*data-lang-option=\"pt\"[^>]*>", html)
     assert en_button and 'aria-pressed="true"' in en_button.group(0)
     assert pt_button and 'aria-pressed="false"' in pt_button.group(0)
+    assert "EU trademark protection, made simpler." in html
+    assert "Explore our services" in html
     assert "Check your trademark" in html
-    assert "Register a trademark" in html
-    assert "Can I protect this trademark?" in js
+    assert "professional EU trademark services firm" in js
 
 
 def test_dashboard_shell_defaults_to_english_first():

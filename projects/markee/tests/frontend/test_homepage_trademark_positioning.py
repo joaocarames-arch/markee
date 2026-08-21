@@ -20,12 +20,12 @@ def test_homepage_navigation_matches_trademark_services():
     combined = html + "\n" + js
 
     for label in (
-        "Trademark Search",
-        "Trademark Registration",
-        "Monitoring",
-        "Renewals",
-        "Pricing",
-        "About",
+        "Services",
+        "Start here",
+        "Protection",
+        "Support levels",
+        "FAQ",
+        "Trust",
     ):
         assert label in combined
 
@@ -40,9 +40,11 @@ def test_homepage_hero_is_trademark_protection_first_not_monitoring_saas():
     assert hero_match, 'hero section missing'
     hero_source = hero_match.group(1) + js
 
-    assert "Can I protect this trademark?" in hero_source
-    assert "Check your trademark" in hero_source
-    assert "Register a trademark" in hero_source
+    assert "EU trademark protection, made simpler." in hero_source
+    assert "professional expertise" in hero_source
+    assert "proprietary technology" in hero_source
+    assert "Explore our services" in hero_source
+    assert "Check your trademark" not in hero_match.group(1)
     assert "monitoring SaaS" not in hero_source.lower()
     assert "continuous trademark monitoring" not in hero_source.lower()
     assert "under absolute watch" not in hero_source.lower()
@@ -51,7 +53,7 @@ def test_homepage_hero_is_trademark_protection_first_not_monitoring_saas():
 def test_homepage_explains_five_step_customer_journey():
     combined = _html() + "\n" + _js()
 
-    for step in ("Check", "Understand", "Expert Review", "Register", "Monitor"):
+    for step in ("Search", "Understand", "Expert Review", "Register", "Monitor"):
         assert re.search(rf"\b{re.escape(step)}\b", combined), f"missing journey step: {step}"
 
     assert "Search → Understand → Expert Review → Register → Monitor" in combined
